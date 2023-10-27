@@ -33,6 +33,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['booking-hotel-a07bb3df7136.herokuapp.com',
                  '8000-codewizard-1-booking-hot-qqi7tjr8vx.us2.codeanyapp.com']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-codewizard-1-booking-hot-qqi7tjr8vx.us2.codeanyapp.com',
+    'https://127.0.0.1',
+]
+
+
+# 'booking-hotel-a07bb3df7136.herokuapp.com',
 
 # Application definition
 
@@ -61,6 +68,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,6 +77,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'Strict'
 
 ROOT_URLCONF = 'base.urls'
 
