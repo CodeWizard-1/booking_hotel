@@ -46,6 +46,12 @@ INSTALLED_APPS = [
     'booking',
     'cloudinary_storage',
     'cloudinary',
+    'crispy_forms',
+    'mathfilters',
+    'ckeditor_uploader',
+    'django_ckeditor_5',
+    'taggit',
+    'anymail',
 
 ]
 
