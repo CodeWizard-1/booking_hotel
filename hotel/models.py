@@ -19,10 +19,9 @@ class Hotel (models.Model):
     description_hotel = models.TextField()
     hotel_image = CloudinaryField('image', default='plaseholder')
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    
+
     def __str__(self) -> str:
         return self.hotel_name
-    
 
 
 class Facilities(models.Model):
@@ -51,7 +50,6 @@ class Room(models.Model):
 
     def number_of_likes(self):
         return self.likes.count()
-
 
 
 class Category(models.Model):
