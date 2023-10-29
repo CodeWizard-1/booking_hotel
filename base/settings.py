@@ -171,9 +171,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 JAZZMIN_SETTINGS = {
     'site_header': 'Booking Hotel',
-    'site_brand': 'The best site for choosing and booking hotels.',
-    'site_logo': '/images/logo.png',
-    'copyright': 'All Right Reserved 2023',
+    # 'site_brand': 'The best site for choosing and booking hotels.',
+    # 'site_logo': '/images/logo.png',
+    # 'copyright': 'All Right Reserved 2023',
     'welcome_sign': 'Welcome to "Booking Hotel", Login Now.',
     'topmenu_links': [
         {'name': 'Home', 'url': 'admin:index', 'permissions': ['auth.view_user']},
@@ -213,8 +213,6 @@ JAZZMIN_SETTINGS = {
 
     'show_ui_builder': True,
 }
-
-
 
 
 JAZZMIN_UI_TWEAKS = {
