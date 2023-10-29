@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'taggit',
     'anymail',
+    'django_summernote',
 
 ]
 
