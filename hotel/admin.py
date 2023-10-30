@@ -10,7 +10,7 @@ class CityAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(SummernoteModelAdmin):
-    list_display = ('room_name', 'slug', 'status', 'is_booked',)
+    list_display = ('hotel', 'room_name', 'slug', 'status', 'is_booked',)
     search_fields = ['room_name', 'description_room']
     prepopulated_fields = {'slug': ('room_name',)}
     list_filter = ('hotel', 'status', 'category', 'price', 'is_booked',)
