@@ -29,7 +29,7 @@
                                         <p class="Likes"><i class="far fa-heart"></i>{{ Room.likes}}</p>
                                     </div>
                                 </div>
-                                <a href="#" class="post-link">
+                                <a href="{% url 'room_detail' room.slug  %}" class="post-link">
                                     <h2 class="card-title">{{ room.hotel }}</h2>
                                     <h4 class="card-title">{{ room.room_name }}</h4>
                                     <!-- <p class="card-text">{{ room.description_room }}</p> -->

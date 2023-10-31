@@ -1,36 +1,85 @@
-{% extends "base.html" %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-<div class="container-fluid">
-    <div class="row">
-
-        <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">{{ room.room_name }}</h1>
+                <!-- Post author goes before the | the post's created date goes after -->
+                <!-- <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p> -->
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- The featured image URL goes in the src attribute -->
+                {% if "placeholder" in room.room_image.url %}
+                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                {% else %}
+                <img src="{{ room.room_image.url }}" width="100%">
+                {% endif %}
             </div>
         </div>
     </div>
-
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col card mb-4  mt-3 left  top">
+            <div class="card-body">
+                <!-- The post content goes inside the card-text. -->
+                <!-- Use the | safe filter inside the template tags -->
+                <p class="card-text ">
+                    {{ room.description_room | safe }}
+                </p>
+                <div class="row">
 
-
-
-
-{% if is_paginated %}
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-        {% endif %}
-        {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
-        {% endif %}
-    </ul>
-</nav>
-{% endif %}
+                    <div class="col-1">
+                        <!-- The number of likes goes before the closing strong tag -->
+                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ room.number_of_likes }} </strong>
+                    </div>
+                    <div class="col-1">
+                        {% with Guest_reviews.count as total_reviews %}
+                        <strong class="text-secondary"><i class="far fa-comments"></i>
+                            <!-- Our total_comments variable goes before the closing strong tag -->
+                            {{ total_reviews }}</strong>
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3>Reviews:</h3>
+            <div class="card-body">
+                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                {% for review in Guest_reviews %}
+                <div class="comments" style="padding: 10px;">
+                    <p class="font-weight-bold">
+                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                        {{ Guest_reviews.name }}
+                        <span class=" text-muted font-weight-normal">
+                            <!-- The comment's created date goes here -->
+                            {{ Guest_reviews.created_on }}
+                        </span> wrote:
+                    </p>
+                    <!-- The body of the comment goes before the | -->
+                    {{ Guest_reviews.body | linebreaks }}
+                </div>
+                <!-- Our for loop ends here -->
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="card-body">
+                <!-- For later -->
+            </div>
+        </div>
+    </div>
 </div>
-{%endblock%}
+
+{% endblock content %}
