@@ -3,5 +3,58 @@
 
 {% block content %}
 
+<section class="section bg-white">
+    <div class="container text-center">
+        <h2 class="text-9 fw-500">Offers</h2>
+        <p class="lead">Promotions, deals and special offers for you</p>
+        <div class="row">
+            <div class="col-12 mt-3 left">
+                <div class="row">
+                {% for room in room_list%}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if room.room_image %}
+                                    <img class="card-img-top" src="{{ room.room_image.url }}" alt="image room">
+                                    {% else %}
+                                    <img class="card-img-top"
+                                        src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+                                        alt="image planet">
+                                    {% endif %}
+                                    <div class="image-flash">
+                                        <p class="Price">Price: {{ room.price }} €</p>
+                                    </div>
+                                    <div class="image-flash-top-right">
+                                        <p class="Likes"><i class="far fa-heart"></i>{{ Room.likes}}</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="post-link">
+                                    <h2 class="card-title">{{ room.hotel }}</h2>
+                                    <h4 class="card-title">{{ room.room_name }}</h4>
+                                    <!-- <p class="card-text">{{ room.description_room }}</p> -->
+                                </a>
+                                <hr/>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bg-white">
+    <div class="container text-center">
+        <h2 class="text-9 fw-500">Quick and easy trip planner</h2>
+        <p class="lead">Pick a vibe and explore the top destinations in Ireland</p>
+
+
+
+</section>
     
 {%endblock%}
