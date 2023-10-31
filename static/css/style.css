@@ -148,22 +148,7 @@ body {
 
 /* Hero content */
 
-.hero-wrap {
-    position: relative;
-}
 
-.hero-wrap .hero-mask {
-    z-index: 1;
-}
-
-.opacity-3 {
-    opacity: 0.3;
-}
-
-
-.travellers-dropdown {
-    display: none;
-}
 
 .icon-inside {
     position: absolute;
@@ -176,26 +161,73 @@ body {
     z-index: 3;
 }
 
-btn-primary {
-    background-color: #006ce4;
-    border-color: #006ce4;
+.hero-wrap {
+    position: relative;
+    z-index: 1;
+}
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
+.hero-wrap .hero-bg {
+    z-index: 0;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    transition: background-image 300ms ease-in 200ms;
+}
 
-.form-control {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0.25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    text-align: center;
+.form-control:not(.form-control-sm) {
+    padding: 0.81rem 0.96rem;
+    height: inherit;
+}
+
+.form-control,
+.form-select {
+    border-color: #d5d3d3;
+    color: #777;
+}
+
+.travellers-class {
+    position: relative;
+}
+
+.travellers-class-input {
+    cursor: pointer;
+}
+
+.travellers-dropdown .qty .btn {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 0.25rem !important;
+}
+
+.input-group-append .btn,
+.input-group-prepend .btn {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.text-muted {
+    color: #8e9a9d !important;
+}
+
+.btn-primary {
+    background-color: #0071cc;
+    border-color: #0071cc;
+}
+
+.btn {
+    padding: 0.75rem 2.5rem;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
