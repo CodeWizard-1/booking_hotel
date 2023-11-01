@@ -50,11 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'booking',
     'hotel',
-    'user_dashboard',
-    'userauths',
-    'addon',
     'cloudinary_storage',
     'cloudinary',
     'crispy_forms',
@@ -77,6 +73,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
