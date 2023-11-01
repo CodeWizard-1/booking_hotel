@@ -1,0 +1,166 @@
+
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+<div id="content">
+    <div class="hero-wrap">
+        <div class="hero-bg dark-overlay" style="background-image: url('{% static 'images/hero-bg.webp' %}')">
+        </div>
+        <!-- <div class="tab-pane  bg-white fade show active rounded-bottom p-4" id="hotels" role="tabpanel"
+            aria-labelledby="hotels-tab">
+            <h2 class="text-4 mb-3">Find your next stay</h2>
+            <div class="row g-3 g-lg-2">
+                <div class="col-md-12 col-lg">
+                    <div class="position-relative">
+                        <input type="text" class="form-control ui-autocomplete-input" id="hotelsFrom" required=""
+                            placeholder="Enter City" autocomplete="off">
+                        <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <div class="position-relative">
+                        <input id="hotelsCheckIn" type="text" class="form-control" required="" placeholder="Check In">
+                        <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <div class="position-relative">
+                        <input id="hotelsCheckOut" type="text" class="form-control" required="" placeholder="Check Out">
+                        <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <div class="travellers-class">
+                        <input type="text" id="hotelsTravellersClass" class="travellers-class-input form-control"
+                            name="hotels-travellers-class" placeholder="Rooms / People" required=""
+                            onkeypress="return false;">
+                        <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+                        <div class="travellers-dropdown">
+                            <div class="row align-items-center">
+                                <div class="col-sm-7">
+                                    <p class="mb-sm-0">Rooms</p>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="qty input-group">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn bg-light-4" data-value="decrease"
+                                                data-target="#hotels-rooms" data-toggle="spinner">-</button>
+                                        </div>
+                                        <input type="text" data-ride="spinner" id="hotels-rooms"
+                                            class="qty-spinner form-control" value="1" readonly="">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn bg-light-4" data-value="increase"
+                                                data-target="#hotels-rooms" data-toggle="spinner">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-2 mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-sm-7">
+                                    <p class="mb-sm-0">Adults <small class="text-muted">(12+ yrs)</small></p>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="qty input-group">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn bg-light-4" data-value="decrease"
+                                                data-target="#adult-travellers" data-toggle="spinner">-</button>
+                                        </div>
+                                        <input type="text" data-ride="spinner" id="adult-travellers"
+                                            class="qty-spinner form-control" value="1" readonly="">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn bg-light-4" data-value="increase"
+                                                data-target="#adult-travellers" data-toggle="spinner">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-2">
+                            <div class="row align-items-center">
+                                <div class="col-sm-7">
+                                    <p class="mb-sm-0">Children <small class="text-muted">(1-12 yrs)</small></p>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="qty input-group">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn bg-light-4" data-value="decrease"
+                                                data-target="#children-travellers" data-toggle="spinner">-</button>
+                                        </div>
+                                        <input type="text" data-ride="spinner" id="children-travellers"
+                                            class="qty-spinner form-control" value="0" readonly="">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn bg-light-4" data-value="increase"
+                                                data-target="#children-travellers" data-toggle="spinner">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary submit-done mt-3" type="button">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+            </form>
+        </div> -->
+    </div>
+</div>
+<section class="section bg-white">
+    <div class="container text-center">
+        <h2 class="text-9 fw-500">Offers</h2>
+        <p class="lead">Promotions, deals and special offers for you</p>
+        <div class="row">
+            <div class="col-12 mt-3 left">
+                <div class="row">
+                {% for room in room_list%}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if room.room_image %}
+                                    <img class="card-img-top" src="{{ room.room_image.url }}" alt="image room">
+                                    {% else %}
+                                    <img class="card-img-top"
+                                        src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+                                        alt="image planet">
+                                    {% endif %}
+                                    <div class="image-flash">
+                                        <p class="Price">Price: {{ room.price }} €</p>
+                                    </div>
+                                    <div class="image-flash-top-right">
+                                        <p class="Likes"><i class="far fa-heart"></i>{{ Room.likes}}</p>
+                                    </div>
+                                </div>
+                                <a href="{% url 'room_detail' room.slug  %}" class="post-link">
+                                    <h4 class="card-title">{{ room.hotel }}</h4>
+                                    <h6 class="card-title">{{ room.room_name }}</h6>
+                                </a>
+                                <hr/>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bg-white">
+    <div class="container text-center">
+        <h2 class="text-9 fw-500">Quick and easy trip planner</h2>
+        <p class="lead">Pick a vibe and explore the top destinations in Ireland</p>
+
+
+
+</section>
+    
+{%endblock%}

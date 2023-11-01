@@ -44,13 +44,36 @@ body {
     border-radius: 20px;
 }
 
+#carouselExampleAutoplaying {
+    max-height: 80vh;
+    overflow: hidden;
+
+}
+
+.carousel-item {
+
+    align-items: center;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 15px;
+}
+
 
 .image-flash {
     position: absolute;
     bottom: 5%;
     min-width: 30%;
     left: -2px;
-    background-color: #23BBBB;
+    background-color: #0071cc;
 }
 
 .image-flash-top-right {
@@ -58,7 +81,6 @@ body {
     top: 5%;
     min-width: 30%;
     right: -2px;
-    /* background-color: blue; */
 }
 
 .author {
