@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
-from pathlib import Path
 import os
+from pathlib import Path
+
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
@@ -38,13 +38,12 @@ CSRF_TRUSTED_ORIGINS = [
     'https://127.0.0.1',
 ]
 
-
-# 'booking-hotel-a07bb3df7136.herokuapp.com',
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -65,18 +64,32 @@ INSTALLED_APPS = [
     'taggit',
     'anymail',
     'django_summernote',
-
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'corsheaders',
 ]
 
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 MIDDLEWARE = [
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 CSRF_COOKIE_SECURE = True
@@ -102,6 +115,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'base.wsgi.application'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -170,77 +187,77 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-JAZZMIN_SETTINGS = {
-    'site_header': 'Booking Hotel',
-    # 'site_brand': 'The best site for choosing and booking hotels.',
-    # 'site_logo': '/images/logo.png',
-    # 'copyright': 'All Right Reserved 2023',
-    'welcome_sign': 'Welcome to "Booking Hotel", Login Now.',
-    'topmenu_links': [
-        {'name': 'Home', 'url': 'admin:index', 'permissions': ['auth.view_user']},
-        {'name': 'Company', 'url': '/admin/addons/company/'},
-        {'name': 'Users', 'url': '/admin/userauths/user/'},
+# JAZZMIN_SETTINGS = {
+#     'site_header': 'Booking Hotel',
+#     # 'site_brand': 'The best site for choosing and booking hotels.',
+#     # 'site_logo': '/images/logo.png',
+#     # 'copyright': 'All Right Reserved 2023',
+#     'welcome_sign': 'Welcome to "Booking Hotel", Login Now.',
+#     'topmenu_links': [
+#         {'name': 'Home', 'url': 'admin:index', 'permissions': ['auth.view_user']},
+#         {'name': 'Company', 'url': '/admin/addons/company/'},
+#         {'name': 'Users', 'url': '/admin/userauths/user/'},
 
-        {'model': 'auth.User'},
-    ],
+#         {'model': 'auth.User'},
+#     ],
 
-    'order_with_respect_to': [
-        'hotel',
-        'hotel.Hotel',
-        'hotel.Room',
-        'hotel.Booking',
-        'hotel.BookingDetail',
-        'hotel.Guest',
-        'hotel.RoomServices',
-        'userauths',
-        'addons',
-    ],
+#     'order_with_respect_to': [
+#         'hotel',
+#         'hotel.Hotel',
+#         'hotel.Room',
+#         'hotel.Booking',
+#         'hotel.BookingDetail',
+#         'hotel.Guest',
+#         'hotel.RoomServices',
+#         'userauths',
+#         'addons',
+#     ],
 
-    'icons': {
-        'admin.LogEntry': 'fas fa-file',
-        'auth': 'fas fa-users-cog',
-        'auth.User': 'fas fa-users',
-        'userauths.User': 'fas fa-user',
-        'userauths.Profile': 'fas fa-address-card',
-        'hotel.Hotel': 'fas fa-th',
-        'hotel.Booking': 'fas fa-calendar-week',
-        'hotel.BookingDetail': 'fas fa-calendar-alt',
-        'hotel.Guest': 'fas fa-user',
-        'hotel.Room': 'fas fa-bed',
-        'hotel.RoomServices': 'fas fa-user-cog',
-        'hotel.Notification': 'fas fa-bell',
-        'hotel.Bookmark': 'fas fa-heart',
-    },
+#     'icons': {
+#         'admin.LogEntry': 'fas fa-file',
+#         'auth': 'fas fa-users-cog',
+#         'auth.User': 'fas fa-users',
+#         'userauths.User': 'fas fa-user',
+#         'userauths.Profile': 'fas fa-address-card',
+#         'hotel.Hotel': 'fas fa-th',
+#         'hotel.Booking': 'fas fa-calendar-week',
+#         'hotel.BookingDetail': 'fas fa-calendar-alt',
+#         'hotel.Guest': 'fas fa-user',
+#         'hotel.Room': 'fas fa-bed',
+#         'hotel.RoomServices': 'fas fa-user-cog',
+#         'hotel.Notification': 'fas fa-bell',
+#         'hotel.Bookmark': 'fas fa-heart',
+#     },
 
-    'show_ui_builder': True,
-}
+#     'show_ui_builder': True,
+# }
 
 
-JAZZMIN_UI_TWEAKS = {
-    'navbar_small_text': False,
-    'footer_small_text': False,
-    'body_small_text': True,
-    'brand_small_text': False,
-    'brand_colour': 'navbar-indigo',
-    'accent': 'accent-olive',
-    'navbar': 'navbar-indigo navbar-dark',
-    'no_navbar_border': False,
-    'navbar_fixed': False,
-    'layout_boxed': False,
-    'footer_fixed': False,
-    'sidebar_fixed': False,
-    'sidebar': 'sidebar-dark-indigo',
-    'sidebar_nav_small_text': False,
-    'sidebar_disable_expand': False,
-    'sidebar_nav_child_indent': False,
-    'sidebar_nav_compact_style': False,
-    'sidebar_nav_legacy_style': False,
-    'sidebar_nav_flat_style': False,
-    'theme': 'cyborg',
-    'dark_mode_theme': 'cyborg',
-    'button_classes': {
-        'warning': 'btn-warning',
-        'danger': 'btn-danger',
-        'success': 'btn-success',
-    }
-}
+# JAZZMIN_UI_TWEAKS = {
+#     'navbar_small_text': False,
+#     'footer_small_text': False,
+#     'body_small_text': True,
+#     'brand_small_text': False,
+#     'brand_colour': 'navbar-indigo',
+#     'accent': 'accent-olive',
+#     'navbar': 'navbar-indigo navbar-dark',
+#     'no_navbar_border': False,
+#     'navbar_fixed': False,
+#     'layout_boxed': False,
+#     'footer_fixed': False,
+#     'sidebar_fixed': False,
+#     'sidebar': 'sidebar-dark-indigo',
+#     'sidebar_nav_small_text': False,
+#     'sidebar_disable_expand': False,
+#     'sidebar_nav_child_indent': False,
+#     'sidebar_nav_compact_style': False,
+#     'sidebar_nav_legacy_style': False,
+#     'sidebar_nav_flat_style': False,
+#     'theme': 'cyborg',
+#     'dark_mode_theme': 'cyborg',
+#     'button_classes': {
+#         'warning': 'btn-warning',
+#         'danger': 'btn-danger',
+#         'success': 'btn-success',
+#     }
+# }

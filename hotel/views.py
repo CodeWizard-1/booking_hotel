@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from .models import Room, Guest_reviews
+from .models import Room, Guest_reviews, City
 
 
 class RoomList(generic.ListView):
@@ -8,6 +8,12 @@ class RoomList(generic.ListView):
     queryset = Room.objects.filter(status=1).order_by('-id')
     template_name = 'index.html'
     paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        city = City.objects.get(pk=1)
+        context['City'] = city
+        return context
 
 
 class RoomDetail(View):
@@ -31,3 +37,4 @@ class RoomDetail(View):
         }
 
         return render(request, self.template_name, context)
+        
