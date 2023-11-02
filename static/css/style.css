@@ -44,34 +44,49 @@ body {
     border-radius: 20px;
 }
 
+.image-fluid {
+    width: 100%;
+    height: auto;
+}
+
+.Price,
+.City {
+    color: #fff;
+}
+
+.navbar {
+    padding: 0;
+}
+
 /* Carousel */
 
- .carousel-item {
-     position: relative;
- }
+.carousel-item {
+    position: relative;
+}
 
- .carousel-item::before {
-     content: "";
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background: rgba(0, 0, 0, 0.5);
-     z-index: 1;
- }
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
 
- .carousel-item h1,  .carousel-item h4 {
-     position: relative;
-     z-index: 2;
-     color: white;
- }
+.carousel-item h1,
+.carousel-item h4 {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
 
- .carousel-item img {
-     height: 600px;
-     width: 100%;
-     object-fit: cover;
- }
+.carousel-item img {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+}
 
 
 .image-flash {
@@ -144,7 +159,7 @@ body {
 
 .post-link:hover,
 .page-link {
-    color: #310add;
+    color: #0071cc;
 }
 
 .post-title {
@@ -158,18 +173,18 @@ body {
 }
 
 .btn-signup {
-    background-color: #23BBBB;
+    background-color: #0071cc;
     color: #fff;
 }
 
 .btn-signup:hover,
 .btn-signup:active {
     background-color: #fff;
-    color: #23BBBB;
+    color: #0071cc;
 }
 
 .link {
-    color: #23BBBB;
+    color: #0071cc;
     text-decoration: none;
 }
 
@@ -191,102 +206,3 @@ body {
     background: transparent;
     border: none;
 }
-
-/* Hero content */
-
-/* .hero-bg {
-    position: relative;
-}
-
-.hero-bg::before {
-    content: "";
-    background: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.icon-inside {
-    position: absolute;
-    right: 15px;
-    top: calc(50% - 11px);
-    pointer-events: none;
-    font-size: 18px;
-    font-size: 1.125rem;
-    color: #c4c3c3;
-    z-index: 3;
-}
-
-.hero-wrap {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-}
-
-.hero-wrap .hero-bg {
-    z-index: 0;
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    transition: background-image 300ms ease-in 200ms;
-}
-
-.form-control:not(.form-control-sm) {
-    padding: 0.81rem 0.96rem;
-    height: inherit;
-}
-
-.form-control,
-.form-select {
-    border-color: #d5d3d3;
-    color: #777;
-}
-
-.travellers-class {
-    position: relative;
-}
-
-.travellers-class-input {
-    cursor: pointer;
-}
-
-.travellers-dropdown .qty .btn {
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    border-radius: 0.25rem !important;
-}
-
-.input-group-append .btn,
-.input-group-prepend .btn {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-}
-
-.text-muted {
-    color: #8e9a9d !important;
-}
-
-.btn-primary {
-    background-color: #0071cc;
-    border-color: #0071cc;
-}
-
-.btn {
-    padding: 0.75rem 2.5rem;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-} */
