@@ -54,7 +54,7 @@
                                     <img class="card-img-top img-fluid" src="{{ room.room_image.url }}" alt="image room">
                                     {% else %}
                                     <img class="card-img-top img-fluid"
-                                        src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+                                        src="https://services.meteored.com/img/article/como-podemos-distinguir-los-planetas-de-las-estrellas-1679732078853_1024.jpeg"
                                         alt="image planet">
                                     {% endif %}
                                     <div class="image-flash">
@@ -64,7 +64,7 @@
                                         <p class="Likes"><i class="far fa-heart"></i>{{ Room.likes}}</p>
                                     </div>
                                     <div class="image-flash-top-left">
-                                        <p class="City">{{ City.city_name}}</p>
+                                        <p class="City">{{ room.hotel.city.city_name }}</p>
                                     </div>
                                 </div>
                                 <a href="{% url 'room_detail' room.slug %}" class="post-link">
