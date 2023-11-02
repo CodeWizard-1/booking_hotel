@@ -1,7 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
-from .models import Room, Guest_reviews, City
-from .forms import Guest_reviewsForm
+from .models import Room, Guest_reviews, City, Booking
+from .forms import Guest_reviewsForm, BookingForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from .forms import BookingForm
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 class RoomList(generic.ListView):
@@ -40,7 +45,7 @@ class RoomDetail(View):
         }
 
         return render(request, self.template_name, context)
-        
+
     def post(self, request, slug, *args, **kwargs):
         queryset = Room.objects.filter(status=1)
         room = get_object_or_404(queryset, slug=slug)
@@ -53,7 +58,6 @@ class RoomDetail(View):
                 liked = True
 
         reviews_form = Guest_reviewsForm(data=request.POST)
-
 
         if reviews_form.is_valid():
             reviews_form.instance.email = request.user.email
@@ -73,3 +77,34 @@ class RoomDetail(View):
         }
 
         return render(request, self.template_name, context)
+
+
+class BookRoomView(View):
+    template_name = 'booking.html'
+
+    def get(self, request, slug):
+        room = get_object_or_404(Room, slug=slug)
+        form = BookingForm()
+        return render(request, self.template_name, {'room': room, 'form': form})
+
+    def post(self, request, slug):
+        room = get_object_or_404(Room, slug=slug)
+        form = BookingForm(request.POST)
+
+        if form.is_valid():
+            # Создайте бронирование, установив поле customer
+            booking = form.save(commit=False)
+            if request.user.is_authenticated:
+                booking.customer = request.user  # Используйте текущего пользователя как клиента
+            booking.room = room
+            booking.save()
+            return redirect('success_booking')
+        else:
+            return render(request, self.template_name, {'room': room, 'form': form})
+
+
+class SuccessBookingView(View):
+    template_name = "success_booking.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)

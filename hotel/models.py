@@ -76,6 +76,9 @@ class Booking(models.Model):
     phone_number = models.CharField(max_length=14, null=True)
     email = models.EmailField()
 
+    def save(self, *args, **kwargs):
+        super(Booking, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.customer.username
 
@@ -112,5 +115,3 @@ class Guest_reviews(models.Model):
 
     def __str__(self):
         return f"Review {self.body} by {self.name}"
-
-
