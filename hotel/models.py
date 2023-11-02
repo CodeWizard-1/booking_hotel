@@ -77,6 +77,7 @@ class Booking(models.Model):
     email = models.EmailField()
 
     def save(self, *args, **kwargs):
+        self.hotel = self.room.hotel
         super(Booking, self).save(*args, **kwargs)
 
     def __str__(self):

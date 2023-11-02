@@ -92,12 +92,11 @@ class BookRoomView(View):
         form = BookingForm(request.POST)
 
         if form.is_valid():
-            # Создайте бронирование, установив поле customer
             booking = form.save(commit=False)
             if request.user.is_authenticated:
-                booking.customer = request.user  # Используйте текущего пользователя как клиента
-            booking.room = room
-            booking.save()
+                booking.customer = request.user
+                booking.room = room
+                booking.save()
             return redirect('success_booking')
         else:
             return render(request, self.template_name, {'room': room, 'form': form})

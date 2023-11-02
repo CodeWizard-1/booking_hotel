@@ -31,17 +31,23 @@ class FacilitiesAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class FCategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     search_fields = ['category_name',]
 
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('room', 'booking_date', 'customer',)
+    list_display = ('get_hotel', 'room', 'booking_date', 'checking_date',
+                    'checkout_date',  'customer', 'phone_number',)
     search_fields = ['customer', 'room', 'booking_date',
                      'checking_date', 'checkout_date', 'phone_number', 'email',]
     list_filter = ('customer', 'room', 'booking_date',
                    'checking_date', 'checkout_date', 'phone_number', 'email',)
+
+    def get_hotel(self, obj):
+        return obj.room.hotel.hotel_name if obj.room.hotel else None
+
+    get_hotel.short_description = 'Hotel'
 
 
 @admin.register(Guest_reviews)
