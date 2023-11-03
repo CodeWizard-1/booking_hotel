@@ -75,6 +75,7 @@ class Booking(models.Model):
     checkout_date = models.DateTimeField(null=True, blank=True)
     phone_number = models.CharField(max_length=14, null=True)
     email = models.EmailField()
+    is_cancelled = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.hotel = self.room.hotel

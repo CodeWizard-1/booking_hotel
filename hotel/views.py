@@ -109,11 +109,21 @@ class BookingDetailView(View):
         user = request.user
         bookings = Booking.objects.filter(customer=user)
         context = {
-            'bookings': bookings
+            'bookings': bookings,
         }
         if not bookings:
             context['no_bookings'] = True
         return render(request, self.template_name, context)
+
+    def post(self, request, booking_id):
+
+        booking = get_object_or_404(Booking, id=booking_id)
+        if request.user == booking.customer:
+            booking.is_cancelled = True
+            booking.save()
+        else:
+            return HttpResponseRedirect('/my_booking/')
+        return HttpResponseRedirect('/my_booking/')
 
 
 class SuccessBookingView(View):
