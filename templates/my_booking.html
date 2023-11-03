@@ -15,20 +15,19 @@
                                     <img class="card-img-top img-fluid rounded-4"
                                         src="{{ booking.room.room_image.url }}" alt="image room">
                                 </div>
-                                <a href="{% url 'room_detail' booking.room.slug %}" class="post-link">
+                                <a href="{% url 'room_detail' booking.room.slug %}" class="post-link"></a>
                                     <p>City: {{ booking.room.hotel.city.city_name }}</p>
                                     <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
                                     <p>Room: {{ booking.room.room_name }}</p>
                                     <p>Price: {{ booking.room.price }} €</p>
                                     <p>Check-in Date: {{ booking.checking_date }}</p>
                                     <p>Check-out Date: {{ booking.checkout_date }}</p>
-                                </a>
                                 {% if booking.is_cancelled %}
                                 <p>Status: Cancelled</p>
                                 {% else %}
                                 <form method="post" action="{% url 'cancel_booking' booking.id %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="cancel-booking-button">Cancel Booking</button>
+                                    <button type="submit" class="cancel-booking-button blue-button">Cancel Booking</button>
                                 </form>
                                 {% endif %}
                             </div>

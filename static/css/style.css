@@ -218,3 +218,10 @@ body {
   background: transparent;
   border: none;
 }
+
+.blue-button {
+    background-color: blue;
+    color: white;
+    /* Цвет текста */
+}
+
