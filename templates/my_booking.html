@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h1>Booking Details</h1>
+  {% if bookings %} {% for booking in bookings %} 
+  {% if request.user == booking.customer %}
+
+  <p>City: {{ booking.room.hotel.city.city_name }}</p>
+  <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
+  <p>Room: {{ booking.room.room_name }}</p>
+  <p>Price: {{ booking.room.price }} €</p>
+  <p>Check-in Date: {{ booking.checking_date }}</p>
+  <p>Check-out Date: {{ booking.checkout_date }}</p>
+
+  {% endif %} {% endfor %} {% else %}
+  <p>
+    No bookings found for your account. Why not
+    <a href="{% url 'home' %}">book a room</a> now?
+  </p>
+  {% endif %}
+</div>
+{% endblock %}

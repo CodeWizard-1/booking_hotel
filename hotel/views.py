@@ -102,6 +102,20 @@ class BookRoomView(View):
             return render(request, self.template_name, {'room': room, 'form': form})
 
 
+class BookingDetailView(View):
+    template_name = 'my_booking.html'
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        bookings = Booking.objects.filter(customer=user)
+        context = {
+            'bookings': bookings
+        }
+        if not bookings:
+            context['no_bookings'] = True
+        return render(request, self.template_name, context)
+
+
 class SuccessBookingView(View):
     template_name = "success_booking.html"
 
