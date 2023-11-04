@@ -107,7 +107,7 @@ class BookingDetailView(View):
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        bookings = Booking.objects.filter(customer=user)
+        bookings = Booking.objects.filter(customer=user).order_by('-id')
         context = {
             'bookings': bookings,
         }

@@ -76,6 +76,13 @@ class Booking(models.Model):
     phone_number = models.CharField(max_length=14, null=True)
     email = models.EmailField()
     is_cancelled = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    people_count = models.PositiveIntegerField(default=1)
+    children_count = models.PositiveIntegerField(default=0)
+    children_ages = models.CharField(max_length=255, null=True, blank=True)
+    child_bed = models.BooleanField(default=False)
+    playroom_services = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.hotel = self.room.hotel
