@@ -1,6 +1,7 @@
 body {
-  background-color: #f9fafc;
+    background-color: #fff;
 }
+
 
 .container-fluid,
 .blue-bg {
@@ -31,7 +32,7 @@ body {
 }
 
 .main-bg {
-  background-color: #f9fafc;
+  background-color: #fff;
 }
 
 .card {
