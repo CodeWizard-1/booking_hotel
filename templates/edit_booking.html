@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section bg-white">
+    <div class="container mt-3 mb-4">
+        <h2 class="text-9 text-center fw-500">Edit Booking</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow mb-4 rounded-4">
+                    <div class="card-body">
+                        <form method="post" action="{% url 'edit_booking' booking.id %}">
+                            {% csrf_token %}
+                            {{ form.as_p }} {# Отображение формы с полями #}
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,53 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="section bg-white">
-    <div class="container text-center">
-        <h2 class="text-9 fw-500">Booking Details:</h2>
+    <div class="container  mt-3 mb-4">
+        <h2 class="text-9 text-center fw-500">My booking</h2>
         <div class="row">
-            <div class="col-12 mt-3 left">
-                <div class="row">
-                    {% if bookings %}
-                    {% for booking in bookings %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 h-100">
-                            <div class="card-body d-flex flex-column shadow mt-3 mb-3 rounded-4">
-                                <div class="image-container">
-                                    <img class="card-img-top img-fluid rounded-4"
-                                        src="{{ booking.room.room_image.url }}" alt="image room">
-                                </div>
-                                <a href="{% url 'room_detail' booking.room.slug %}" class="post-link"></a>
-                                    <p>City: {{ booking.room.hotel.city.city_name }}</p>
-                                    <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
-                                    <p>Room: {{ booking.room.room_name }}</p>
-                                    <p>Price: {{ booking.room.price }} €</p>
-                                    <p>Check-in Date: {{ booking.checking_date }}</p>
-                                    <p>Check-out Date: {{ booking.checkout_date }}</p>
-                                {% if booking.is_cancelled %}
-                                <p>Status: Cancelled</p>
-                                {% else %}
-                                <form method="post" action="{% url 'cancel_booking' booking.id %}">
+            {% if bookings %}
+            {% for booking in bookings %}
+            <div class="col-md-6">
+                <div class="card shadow mb-4 rounded-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ booking.room.room_image.url }}" class="img-fluid rounded-start rounded-4"
+                                alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">City: {{ booking.room.hotel.city.city_name }}</h5>
+                                <p class="card-text">Hotel: {{ booking.room.hotel.hotel_name }}</p>
+                                <p class="card-text">Room: {{ booking.room.room_name }}</p>
+                                <p class="card-text">Price: {{ booking.room.price }} €</p>
+                                <p class="card-text">Check-in Date: {{ booking.checking_date }}</p>
+                                <p class="card-text">Check-out Date: {{ booking.checkout_date }}</p>
+                                <p class="card-text">Status: {% if booking.is_cancelled %}Cancelled{% else %}
+                                    Active{% endif %}</p>
+                                {% if not booking.is_cancelled %}
+                                <form method="post" action="{% url 'cancel_booking' booking.id %}"
+                                    id="cancel-booking-form">
                                     {% csrf_token %}
-                                    <button type="submit" class="cancel-booking-button blue-button">Cancel Booking</button>
+                                    <button type="submit" class="btn btn-primary">Cancel Booking</button>
                                 </form>
+                                <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit Booking</a>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
-                    {% if bookings %}
-                    {% if forloop.last %}
                 </div>
-                {% endif %}
-                {% endif %}
-                {% else %}
-                <p>
-                    No bookings found for your account. Why not
-                    <a href="{% url 'home' %}">book a room</a> now?
-                </p>
-                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% if not bookings %}
+        <div class="row">
+            <div class="col-md-12">
+                <p>No bookings found for your account. Why not <a href="{% url 'home' %}">book a room</a> now?</p>
             </div>
         </div>
-    </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

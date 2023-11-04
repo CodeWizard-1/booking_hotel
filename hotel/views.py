@@ -4,7 +4,7 @@ from .models import Room, Guest_reviews, City, Booking
 from .forms import Guest_reviewsForm, BookingForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import BookingForm
+from .forms import BookingForm, BookingEditForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -131,3 +131,22 @@ class SuccessBookingView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+class EditBookingView(View):
+    template_name = 'edit_booking.html'
+
+    def get(self, request, booking_id):
+        booking = Booking.objects.get(id=booking_id)
+        form = BookingEditForm(instance=booking)
+        return render(request, self.template_name, {'form': form, 'booking': booking})
+
+    def post(self, request, booking_id):
+        booking = Booking.objects.get(id=booking_id)
+        form = BookingEditForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            # Перенаправление после успешного редактирования
+            return redirect('my_booking')
+
+        return render(request, self.template_name, {'form': form, 'booking': booking})

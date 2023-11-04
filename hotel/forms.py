@@ -22,3 +22,18 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['phone_number', 'checking_date', 'checkout_date', 'email']
+
+
+class BookingEditForm(forms.ModelForm):
+    checking_date = forms.DateField(
+        input_formats=['%d.%m.%Y'],
+        widget=forms.TextInput(attrs={'class': 'datepicker'}))
+    checkout_date = forms.DateField(
+        input_formats=['%d.%m.%Y'],
+        widget=forms.TextInput(attrs={'class': 'datepicker'}))
+    phone_number = forms.CharField()
+    email = forms.EmailField()
+
+    class Meta:
+        model = Booking
+        fields = ['phone_number', 'checking_date', 'checkout_date', 'email']
