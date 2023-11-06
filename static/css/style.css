@@ -223,6 +223,9 @@ body {
 .blue-button {
     background-color: blue;
     color: white;
-    /* Цвет текста */
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}

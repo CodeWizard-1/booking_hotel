@@ -97,7 +97,7 @@ class BookRoomView(View):
                 booking.customer = request.user
                 booking.room = room
                 booking.save()
-            return redirect('success_booking')
+            return redirect('success_booking', booking_id=booking.id)
         else:
             return render(request, self.template_name, {'room': room, 'form': form})
 
@@ -129,8 +129,10 @@ class BookingDetailView(View):
 class SuccessBookingView(View):
     template_name = "success_booking.html"
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+    def get(self, request, booking_id, *args, **kwargs):
+        booking = get_object_or_404(Booking, id=booking_id)
+        context = {'booking': booking}
+        return render(request, self.template_name, context)
 
 
 class EditBookingView(View):
@@ -146,7 +148,6 @@ class EditBookingView(View):
         form = BookingEditForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
-            # Перенаправление после успешного редактирования
             return redirect('my_booking')
 
         return render(request, self.template_name, {'form': form, 'booking': booking})

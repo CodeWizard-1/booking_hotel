@@ -1,11 +1,33 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+
+{% block content %}
 <div class="container">
-  <h1>Reservation completed successfully!</h1>
-  <p>Thank you for choosing our hotel. Your booking was successful.</p>
-  <p>
-    You can view the details of your reservation on the
-    <a href="{% url 'my_booking' %}">My booking</a> page, or by clicking the
-    link below <a href="{% url 'my_booking' %}">View My Booking</a>
-  </p>
+    <h1>Reservation completed successfully!</h1>
+    <p>Thank you for choosing our hotel. Your booking was successful.</p>
+    <p>You can view the details of your reservation below:</p>
+
+    <div class="reservation-details">
+        <p>City: {{ booking.room.hotel.city.city_name }}</p>
+        <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
+        <p>Room: {{ booking.room.room_name }}</p>
+        <p>Check-in Date: {{ booking.checking_date }}</p>
+        <p>Check-out Date: {{ booking.checkout_date }}</p>
+        <p>Price: {{ booking.room.price }} €</p>
+        {% if booking.is_cancelled %}
+        <p>Status: Cancelled</p>
+        {% else %}
+        <div class="button-container">
+            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit Booking</a>
+            <form method="post" action="{% url 'cancel_booking' booking.id %}" id="cancel-booking-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Cancel Booking</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    <p>Alternatively, you can also view your booking on the
+        <a href="{% url 'my_booking' %}">My booking</a> page.
+    </p>
 </div>
 {% endblock %}

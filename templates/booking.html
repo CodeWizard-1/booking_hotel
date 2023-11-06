@@ -2,8 +2,7 @@
 
 {% block content %}
   <div class="container">
-    <h1 style="font-size: 24px; margin-bottom: 20px;">Booking Room: {{ room.room_name }}</h1>
-
+    <h1 style="font-size: 24px; margin-bottom: 20px;" class="text-center">Booking Room: {{ room.room_name }}</h1>
     <form method="post" style="max-width: 400px; margin: 0 auto;">
       {% csrf_token %}
       {{ form.as_p }}
