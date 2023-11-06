@@ -227,5 +227,8 @@ body {
 
 .button-container {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+    justify-content: flex-start;
+    
+
 }

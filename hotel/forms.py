@@ -13,19 +13,21 @@ class Guest_reviewsForm(forms.ModelForm):
 class BaseBookingForm(forms.ModelForm):
     checking_date = forms.DateField(
         input_formats=['%d.%m.%Y'],
-        widget=forms.TextInput(attrs={'class': 'datepicker'}))
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker'}))
     checkout_date = forms.DateField(
         input_formats=['%d.%m.%Y'],
-        widget=forms.TextInput(attrs={'class': 'datepicker'}))
-    phone_number = forms.CharField()
-    email = forms.EmailField()
-    first_name = forms.CharField(label='First Name')
-    last_name = forms.CharField(label='Last Name')
-    people_count = forms.ChoiceField(
-        choices=[(i, str(i)) for i in range(1, 11)])
-    children_count = forms.ChoiceField(
-        choices=[(i, str(i)) for i in range(0, 11)])
-    children_ages = forms.CharField(label='Ages of Children (comma-separated)')
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker'}))
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    people_count = forms.ChoiceField(label='Adults',
+        choices=[(i, str(i)) for i in range(1, 10)],
+        widget=forms.Select(attrs={'class': 'form-select'}))
+    children_count = forms.ChoiceField(label='Children',
+        choices=[(i, str(i)) for i in range(0, 10)],
+        widget=forms.Select(attrs={'class': 'form-select'}))
+    children_ages = forms.CharField(label='Ages of Children (comma-separated)', widget=forms.TextInput(attrs={'class': 'form-control'}))
     child_bed = forms.BooleanField(
         label='Child Bed',
         required=False,
@@ -37,8 +39,7 @@ class BaseBookingForm(forms.ModelForm):
 
     class Meta:
         model = Booking
-        fields = ['first_name', 'last_name', 'phone_number', 'checking_date', 'checkout_date', 'email',
-                  'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
+        fields = ['first_name', 'last_name', 'checking_date', 'checkout_date',  'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
 
 
 class BookingForm(BaseBookingForm):
