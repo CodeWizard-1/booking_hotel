@@ -1,12 +1,65 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
-from .models import Room, Guest_reviews, City, Booking
+from django.views.generic.detail import DetailView
+from .models import Room, Guest_reviews, City, Booking, Hotel
 from .forms import Guest_reviewsForm, BookingForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import BookingForm, BookingEditForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+
+class CityListView(View):
+    template_name = 'hotel_detail.html',
+
+    def get(self, request):
+        cities = City.objects.all()
+        context = {'cities': cities}
+        return render(request, self.template_name, context)
+
+
+class HotelList(generic.ListView):
+    model = Hotel
+    queryset = Hotel.objects.all()
+    template_name = 'index.html'
+    paginate_by = 6
+
+
+class HotelDetail(DetailView):
+    model = Hotel
+    template_name = 'hotel_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cities'] = City.objects.all()
+        context['hotels'] = Hotel.objects.all()
+        return context
+
+
+class CityHotelsView(View):
+    template_name = 'city_hotels.html'
+
+    def get(self, request, city_id):
+        city = City.objects.get(pk=city_id)
+        hotels = Hotel.objects.filter(city=city)
+        context = {'city': city, 'hotels': hotels}
+        return render(request, self.template_name, context)
+
+
+class SearchView(View):
+    template_name = 'search.html'
+
+    def post(self, request):
+        city_id = request.POST.get('city')
+
+        if city_id:
+            return redirect('city_hotels', city_id=city_id)
+        else:
+            return render(request, self.template_name)
+
+    def get(self, request):
+        return render(request, self.template_name)
 
 
 class RoomList(generic.ListView):

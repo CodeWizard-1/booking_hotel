@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Booking Details</h5>
+                    <form method="post" action="{% url 'search' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <select class="form-select" id="city" name="city">
+                                {% for city in cities %}
+                                <option value="{{ city.id }}">{{ city.city_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                        </div>
+                        <div class="mb-3">
+                            <label for="checkin" class="form-label">Check-In Date</label>
+                            <input type="date" class="form-control" id="checkin" name="checkin">
+                        </div>
+                        <div class="mb-3">
+                            <label for="checkout" class="form-label">Check-Out Date</label>
+                            <input type="date" class="form-control" id="checkout" name="checkout">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-12 mt-3 mb-3">
+                    <h1>Hotels in {{ city.city_name }}</h1>
+                    <ul>
+                        {% for hotel in hotels %}
+                        <li>{{ hotel.hotel_name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
