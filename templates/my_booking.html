@@ -1,71 +1,95 @@
 {% extends 'base.html' %} {% block content %}
 <section class="section bg-white">
-  <div class="container mt-3 mb-4">
-    <h2 class="text-9 text-center fw-500">My booking</h2>
-    <div class="row">
-      {% if bookings %} {% for booking in bookings %}
-      <div class="col-md-6">
-        <div class="card shadow mb-4 rounded-4">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img
-                src="{{ booking.room.room_image.url }}"
-                class="img-fluid rounded-start rounded-4"
-              />
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">
-                  City: {{ booking.room.hotel.city.city_name }}
-                </h5>
-                <p class="card-text">
-                  Hotel: {{ booking.room.hotel.hotel_name }}
-                </p>
-                <p class="card-text">Room: {{ booking.room.room_name }}</p>
-                <p class="card-text">Price: {{ booking.room.price }} €</p>
-                <p class="card-text">
-                  Check-in Date: {{ booking.checking_date }}
-                </p>
-                <p class="card-text">
-                  Check-out Date: {{ booking.checkout_date }}
-                </p>
-                <p class="card-text">
-                    Status:
-                    {% if booking.is_cancelled %}
-                    <span class="text-danger">Cancelled</span>
-                    {% else %}
-                    <span class="text-success">Active</span>
-                    {% endif %}
-                </p>
-                <div class="button-container">
-                    {% if not booking.is_cancelled %}
-                    <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit Booking</a>
-                    <form method="post" action="{% url 'cancel_booking' booking.id %}" id="cancel-booking-form">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Cancel Booking</button>
-                    </form>
-                    {% else %}
-                    <button class="btn btn-secondary" disabled>Edit Booking</button>
-                    <button class="btn btn-secondary" disabled>Cancel Booking</button>
-                    {% endif %}
+    <div class="container mt-3 mb-4">
+        <h2 class="text-9 text-center fw-500">My booking</h2>
+        <div class="row">
+            {% if bookings %} {% for booking in bookings %}
+            <div class="col-md-6">
+                <div class="card shadow mb-4 rounded-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ booking.room.room_image.url }}" class="img-fluid rounded-start rounded-4" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    City: {{ booking.room.hotel.city.city_name }}
+                                </h5>
+                                <p class="card-text">
+                                    Hotel: {{ booking.room.hotel.hotel_name }}
+                                </p>
+                                <p class="card-text">Room: {{ booking.room.room_name }}</p>
+                                <p class="card-text">Price: {{ booking.room.price }} €</p>
+                                <p class="card-text">
+                                    Check-in Date: {{ booking.checking_date }}
+                                </p>
+                                <p class="card-text">
+                                    Check-out Date: {{ booking.checkout_date }}
+                                </p>
+                                <p class="card-text">
+                                    Status: {% if booking.is_cancelled %}
+                                    <span class="text-danger">Cancelled</span>
+                                    {% else %}
+                                    <span class="text-success">Active</span>
+                                    {% endif %}
+                                </p>
+                                <div class="button-container">
+                                    {% if not booking.is_cancelled %}
+                                    <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit
+                                        Booking</a>
+                                    <!-- Добавил data-bs-toggle и data-bs-target -->
+                                    <button class="btn btn-danger cancel-booking-button" data-bs-toggle="modal"
+                                        data-bs-target="#confirmModal{{ booking.id }}">Cancel Booking</button>
+                                    {% else %}
+                                    <button class="btn btn-secondary" disabled>
+                                        Edit Booking
+                                    </button>
+                                    <button class="btn btn-secondary" disabled>
+                                        Cancel Booking
+                                    </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+            {% endfor %} {% endif %}
         </div>
-      </div>
-      {% endfor %} {% endif %}
+        {% if not bookings %}
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    No bookings found for your account. Why not
+                    <a href="{% url 'home' %}">book a room</a> now?
+                </p>
+            </div>
+        </div>
+        {% endif %}
     </div>
-    {% if not bookings %}
-    <div class="row">
-      <div class="col-md-12">
-        <p>
-          No bookings found for your account. Why not
-          <a href="{% url 'home' %}">book a room</a> now?
-        </p>
-      </div>
-    </div>
-    {% endif %}
-  </div>
 </section>
+{% if bookings %} {% for booking in bookings %}
+<div class="modal fade" id="confirmModal{{ booking.id }}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Cancellation of Booking</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Закрыть">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel this booking?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                <form method="post" action="{% url 'cancel_booking' booking.id %}">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" name="cancel_booking">Yes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %} {% endif %}
 {% endblock %}

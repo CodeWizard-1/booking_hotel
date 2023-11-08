@@ -12,7 +12,7 @@ urlpatterns = [
          name='success_booking_default'),
     path('my_booking/', views.BookingDetailView.as_view(), name='my_booking'),
     path('cancel_booking/<int:booking_id>/',
-         views.BookingDetailView.as_view(), name='cancel_booking'),
+         views.CancelBookingView.as_view(), name='cancel_booking'),
     path('edit_booking/<int:booking_id>/',
          EditBookingView.as_view(), name='edit_booking'),
     path('hotel/<slug:slug>/', views.HotelDetail.as_view(), name='hotel_detail'),
