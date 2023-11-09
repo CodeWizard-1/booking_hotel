@@ -27,7 +27,10 @@ class BaseBookingForm(forms.ModelForm):
     children_count = forms.ChoiceField(label='Children',
         choices=[(i, str(i)) for i in range(0, 10)],
         widget=forms.Select(attrs={'class': 'form-select'}))
-    children_ages = forms.CharField(label='Ages of Children (comma-separated)', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    children_ages = forms.CharField(
+    label='Ages of Children (comma-separated)',
+    widget=forms.TextInput(attrs={'class': 'form-control'}),
+    initial='0')
     child_bed = forms.BooleanField(
         label='Child Bed',
         required=False,

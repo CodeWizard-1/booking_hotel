@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from django.contrib.messages import constants as messages
 if os.path.isfile('env.py'):
     import env
 
@@ -31,10 +32,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['booking-hotel-a07bb3df7136.herokuapp.com',
-                 '8000-codewizard-1-booking-hot-qqi7tjr8vx.us2.codeanyapp.com']
+                 '8000-codewizard1-bookinghote-slqkas4q43x.ws-eu106.gitpod.io']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-codewizard-1-booking-hot-qqi7tjr8vx.us2.codeanyapp.com',
+    'https://8000-codewizard1-bookinghote-slqkas4q43x.ws-eu106.gitpod.io',
     'https://127.0.0.1',
 ]
 
@@ -76,6 +77,14 @@ LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
@@ -91,6 +100,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
 CSRF_COOKIE_SECURE = True

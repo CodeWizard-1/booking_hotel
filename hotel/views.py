@@ -8,6 +8,8 @@ from django.urls import reverse
 from .forms import BookingForm, BookingEditForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.messages import success
 
 
 class CityListView(View):
@@ -218,6 +220,9 @@ class EditBookingView(View):
         form = BookingEditForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
+
+            messages.success(request, 'Changes have been successfully saved.')
+
             return redirect('my_booking')
 
         return render(request, self.template_name, {'form': form, 'booking': booking})
