@@ -2,6 +2,7 @@ from .models import Booking
 from .models import Guest_reviews, Booking
 from django import forms
 from django.db import models
+from datetime import date, datetime
 
 
 class Guest_reviewsForm(forms.ModelForm):
@@ -11,12 +12,9 @@ class Guest_reviewsForm(forms.ModelForm):
 
 
 class BaseBookingForm(forms.ModelForm):
-    checking_date = forms.DateField(
-        input_formats=['%d.%m.%Y'],
-        widget=forms.TextInput(attrs={'class': 'form-control datepicker'}))
-    checkout_date = forms.DateField(
-        input_formats=['%d.%m.%Y'],
-        widget=forms.TextInput(attrs={'class': 'form-control datepicker'}))
+    checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date}), initial=date.today())
+    checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'onchange': 'validateDate()'}))
+
     phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'form-control'}))
