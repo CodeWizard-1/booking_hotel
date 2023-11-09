@@ -13,7 +13,7 @@ from django.contrib.messages import success
 
 
 class CityListView(View):
-    template_name = 'hotel_detail.html',
+    template_name = 'hotel_detail.html', 'city_hotels.html'
 
     def get(self, request):
         cities = City.objects.all()
