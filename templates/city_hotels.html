@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-4">
             <div class="card bg-warning mb-3 mt-3">
-                <div class="card-body ">
+                <div class="card-body">
                     <h5 class="card-title">Search</h5>
                     <form method="post" action="{% url 'search' %}">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="city" class="form-label">City</label>
+                            <label for "city" class="form-label">City</label>
                             <select class="form-select" id="city" name="city">
                                 {% for city in cities %}
                                 <option value="{{ city.id }}">{{ city.city_name }}</option>
@@ -20,13 +19,11 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                        </div>
-                        <div class="mb-3">
-                            <label for="checkin" class="form-label">Check-In Date</label>
+                            <label for "checkin" class="form-label">Check-In Date</label>
                             <input type="date" class="form-control" id="checkin" name="checkin">
                         </div>
                         <div class="mb-3">
-                            <label for="checkout" class="form-label">Check-Out Date</label>
+                            <label for "checkout" class="form-label">Check-Out Date</label>
                             <input type="date" class="form-control" id="checkout" name="checkout">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
@@ -35,16 +32,32 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="row">
-                <div class="col-12 mt-3 mb-3">
-                    <h1>Hotels in {{ city.city_name }}</h1>
-                    <ul>
-                        {% for hotel in hotels %}
-                        <li>{{ hotel.hotel_name }}</li>
-                        {% endfor %}
-                    </ul>
+            <h1>Hotels in {{ city.city_name }}</h1>
+            {% for hotel in hotels %}
+            <div class="property-card card shadow mb-4 rounded-4">
+                <div class="row property-card-container">
+                    <div class="col-md-3 rounded-4">
+                        <img src="{{ hotel.hotel_image.url }}" alt="{{ hotel.hotel_name }}" class="img-fluid">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="property-details">
+                            <h3 class="property-title">
+                                <h3 class="post-title">{{ hotel.hotel_name }}</h3>
+                            </h3>
+                            <div class="property-description">
+                                    {{ hotel.description_hotel | safe | truncatewords_html:70}}
+                                </p>
+                            </div>
+                            <div class="property-action">
+                                <button type="button">
+                                    <span>Show rooms and prices</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>

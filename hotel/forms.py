@@ -13,7 +13,7 @@ class Guest_reviewsForm(forms.ModelForm):
 
 class BaseBookingForm(forms.ModelForm):
     checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date}), initial=date.today())
-    checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'onchange': 'validateDate()'}))
+    checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date}), initial=date.today())
 
     phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))

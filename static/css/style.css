@@ -36,7 +36,7 @@ body {
 }
 
 .card {
-  border: none;
+  border: 1px solid rgb(213, 210, 210);
   background-color: transparent;
 }
 

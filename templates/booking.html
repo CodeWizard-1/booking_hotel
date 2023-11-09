@@ -1,23 +1,18 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-
-
 <section>
     <div class="container">
-        <div class="py-5 text-center">
+        <div class="mt-2 text-center">
             <h1 style="font-size: 24px; margin-bottom: 5px;" class="text-center">Booking Room</h1>
             <p class="lead">For a successful room reservation, please provide the following information:</p>
+            <h5>City:{{City.city_name}}, Hotel: {{ Hotel.hotel_name}}, Room: {{ room.room_name }} </h5>
         </div>
 
         <div class="row">
-            <div class="col-md-4 order-md-2 mb-4">
-            <h5>Photo:</h5>
-            <h5>City:</h5>
-            <h5>Hotel:</h5>
-            <h5 style="font-size: 24px; margin-bottom: 20px;">Booking Room: {{ room.room_name }}</h5>
-            </div>
-            <div class="col-md-8 order-md-1">
+            <div class="col-md-8 order-md-1 mx-auto">
                 <form method="post" class="needs-validation" novalidate="">
                     {% csrf_token %}
                     <div class="row">
