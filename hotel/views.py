@@ -127,9 +127,9 @@ class RoomDetail(View):
         if reviews_form.is_valid():
             reviews_form.instance.email = request.user.email
             reviews_form.instance.name = request.user.username
-            reviews = reviews_form.save(commit=False)
-            reviews.room = room
-            reviews.save()
+            new_review = reviews_form.save(commit=False)
+            new_review.room = room
+            new_review.save()
         else:
             reviews_form = Guest_reviewsForm()
 
@@ -138,7 +138,7 @@ class RoomDetail(View):
             "reviews": reviews,
             "commented": True,
             "liked": liked,
-            "reviews_form": Guest_reviewsForm()
+            "reviews_form": reviews_form
         }
 
         return render(request, self.template_name, context)
