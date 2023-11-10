@@ -48,20 +48,37 @@
             <p class="card-text">{{ hotel.description_hotel | safe }}</p>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <h3>Rooms in this Hotel</h3>
-            <ul>
-                {% for room in object.room_set.all %}
-                <li>
-                    <a href="{% url 'room_detail' room.slug %}">{{ room.room_name }}</a> - Price: {{ room.price }} - Description: {{
-                    room.description }}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+<!-- ----------------------------------------------------------- -->
+
+<div class="container mt-5">
+    <h2>Rooms in this Hotel</h2>
+    <table class="table table-bordered border-primary table-hover table-responsive">
+        <thead class="blue-hat">
+            <tr>
+                <th>Room type</th>
+                <th>Description</th>
+                <th>Number of guests</th>
+                <th>Price per night</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in object.room_set.all %}
+                <tr>
+                    <td>{{ room.room_name }}</td>
+                    <td>{{ room.description_room | safe |truncatewords_html:20  }}</td>
+                    <td>{{ room.capacity }}</td>
+                    <td>{{ room.price }}</td>
+                    <td>
+                        <form method="get" action="{% url 'room_detail' room.slug %}">
+                            <button type="submit" class="btn btn-primary">Book Now</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
-<!-- --------------------------------------------  -->
+<!-- -----------------------------------------------------------  -->
   
 {% endblock content %}

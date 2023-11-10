@@ -107,7 +107,7 @@ body {
   bottom: 5%;
   min-width: 30%;
   left: -2px;
-  background-color: #0071cc;
+  background-color:#013b94;
 }
 
 .image-flash-top-right {
@@ -122,7 +122,7 @@ body {
   top: 5%;
   min-width: 30%;
   left: -2px;
-  background-color: #0071cc;
+  background-color: #013b94;
 }
 
 .author {
@@ -181,14 +181,14 @@ body {
 }
 
 .btn-signup {
-  background-color: #0071cc;
+  background-color: #013b94;
   color: #fff;
 }
 
 .btn-signup:hover,
 .btn-signup:active {
   background-color: #fff;
-  color: #0071cc;
+  color: #013b94;
 }
 
 .link {
@@ -216,7 +216,7 @@ body {
 }
 
 .blue-button {
-    background-color: blue;
+    background-color: #013b94;
     color: white;
 }
 
@@ -232,4 +232,9 @@ body {
     line-height: 62.41px;
     font-size: 16px;
     padding: 0;
+}
+
+.blue-hat th {
+  background-color: #013b94;
+  color: white;
 }
