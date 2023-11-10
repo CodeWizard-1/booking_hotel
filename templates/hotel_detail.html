@@ -70,8 +70,8 @@
                     <td>{{ room.capacity }}</td>
                     <td>{{ room.price }}</td>
                     <td>
-                        <form method="get" action="{% url 'room_detail' room.slug %}">
-                            <button type="submit" class="btn btn-primary">Book Now</button>
+                        <form method="get" action="{% url 'room_detail' room.slug %}" class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">More Details ></button>
                         </form>
                     </td>
                 </tr>

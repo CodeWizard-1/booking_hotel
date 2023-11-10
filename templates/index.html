@@ -101,7 +101,7 @@
                 <div class="row">
                 {% for room in rooms%}
                     <div class="col-md-4">
-                        <div class="mb-4 h-100">
+                        <div class="card-size mb-1 h-100">
                             <div class="card card-body d-flex flex-column shadow mt-3 mb-3 rounded-4">
                                 <div class="image-container ">
                                     {% if room.room_image %}
@@ -115,7 +115,7 @@
                                         <p class="Price">Price: {{ room.price }} €</p>
                                     </div>
                                     <div class="image-flash-top-right">
-                                        <p class="Likes"><i class="far fa-heart"></i>{{ Room.likes}}</p>
+                                        <p class="Likes"><i class="far fa-heart"></i>  {{ room.number_of_likes }}</p>
                                     </div>
                                     <div class="image-flash-top-left">
                                         <p class="City">{{ room.hotel.city.city_name }}</p>
@@ -144,18 +144,18 @@
         <div class="row">
             {% for hotel in hotels %}
             <div class="col-md-4">
-                <div class="mb-4 h-100">
+                <div class="card-size mb-4 h-100">
                     <div class="card card-body d-flex flex-column shadow mt-3 mb-3 rounded-4">
                         <div class="image-container">
                             {% if hotel.hotel_image %}
                             <img class="card-img-top img-fluid rounded-4" src="{{ hotel.hotel_image.url }}"
-                                alt="фото отеля">
+                                alt="hotel photo">
                             {% else %}
                             <img class="card-img-top img-fluid"
                                 src="https://services.meteored.com/img/article/como-podemos-distinguir-los-planetas-de-las-estrellas-1679732078853_1024.jpeg"
-                                alt="фото планеты">
+                                alt="planet photo">
                             {% endif %}
-                            <div class="image-flash-top-left">
+                            <div class="image-flash-top-left-city">
                                 <p class="city">{{ hotel.city.city_name }}</p>
                             </div>
                         </div>

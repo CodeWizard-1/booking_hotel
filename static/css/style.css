@@ -122,8 +122,25 @@ body {
   top: 5%;
   min-width: 30%;
   left: -2px;
-  background-color: #013b94;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
+
+.image-flash-top-left-city {
+  position: absolute;
+  top: 5%;
+  min-width: 30%;
+  left: -2px;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
 
 .author {
   color: white;
@@ -237,4 +254,15 @@ body {
 .blue-hat th {
   background-color: #013b94;
   color: white;
+}
+
+.card-size {
+  height: 100%;
+}
+
+.Likes, .far.fa-heart {
+  color: #ffc107;
+  font-size: 1 em;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
