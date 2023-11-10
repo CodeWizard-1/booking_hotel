@@ -54,7 +54,8 @@ class CityHotelsView(View):
     def get(self, request, city_id):
         city = City.objects.get(pk=city_id)
         hotels = Hotel.objects.filter(city=city)
-        context = {'city': city, 'hotels': hotels}
+        cities = City.objects.all()
+        context = {'city': city, 'hotels': hotels, 'cities': cities}
         return render(request, self.template_name, context)
 
 
