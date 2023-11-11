@@ -13,7 +13,7 @@ from django.contrib.messages import success
 
 
 class CityListView(View):
-    template_name = 'hotel_detail.html', 'city_hotels.html'
+    template_name = 'hotel_detail.html',
 
     def get(self, request):
         cities = City.objects.all()
@@ -100,13 +100,17 @@ class RoomDetail(View):
         if request.user.is_authenticated:
             if room.likes.filter(id=request.user.id).exists():
                 liked = True
+        
+
+        cities = City.objects.all()
 
         context = {
             "room": room,
             "reviews": reviews,
             "liked": liked,
             "commented": False,
-            "reviews_form": Guest_reviewsForm()
+            "reviews_form": Guest_reviewsForm(),
+            "cities": cities,
         }
 
         return render(request, self.template_name, context)
@@ -133,12 +137,16 @@ class RoomDetail(View):
         else:
             reviews_form = Guest_reviewsForm()
 
+
+        cities = City.objects.all() 
+
         context = {
             "room": room,
             "reviews": reviews,
             "commented": True,
             "liked": liked,
-            "reviews_form": reviews_form
+            "reviews_form": reviews_form,
+            "cities": cities,
         }
 
         return render(request, self.template_name, context)
