@@ -2,32 +2,56 @@
 
 {% block content %}
 <div class="container">
-    <h1>Reservation completed successfully!</h1>
-    <p>Thank you for choosing our hotel. Your booking was successful.</p>
-    <p>You can view the details of your reservation below:</p>
+    <div class="row justify-content-center" style="height: 100vh;">
+        <div class="card col-md-8 text-center">
+            <h1>Reservation completed successfully!</h1>
+            <p>Thank you for choosing our hotel. Your booking was successful.</p>
+            <p>You can view the details of your reservation below:</p>
 
-    <div class="reservation-details">
-        <p>City: {{ booking.room.hotel.city.city_name }}</p>
-        <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
-        <p>Room: {{ booking.room.room_name }}</p>
-        <p>Check-in Date: {{ booking.checking_date }}</p>
-        <p>Check-out Date: {{ booking.checkout_date }}</p>
-        <p>Price: {{ booking.room.price }} €</p>
-        {% if booking.is_cancelled %}
-        <p>Status: Cancelled</p>
-        {% else %}
-        <div class="button-container">
-            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit Booking</a>
-            <form method="post" action="{% url 'cancel_booking' booking.id %}" id="cancel-booking-form">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Cancel Booking</button>
-            </form>
+            <div class="reservation-details">
+                <p>City: {{ booking.room.hotel.city.city_name }}</p>
+                <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
+                <p>Room: {{ booking.room.room_name }}</p>
+                <p>Check-in Date: {{ booking.checking_date }}</p>
+                <p>Check-out Date: {{ booking.checkout_date }}</p>
+                <p>Price: {{ booking.room.price }} €</p>
+                {% if booking.is_cancelled %}
+                <p>Status: Cancelled</p>
+                {% else %}
+                    <div class="button-container justify-content-center">
+                        <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit
+                            Booking</a>
+                        <button class="btn btn-danger cancel-booking-button" data-bs-toggle="modal"
+                            data-bs-target="#confirmModal{{ booking.id }}">Cancel Booking</button>
+                    </div>
+                {% endif %}
+            </div>
+            <div>
+                <p>Alternatively, you can also view your booking on the
+                    <a href="{% url 'my_booking' %}">My booking</a> page.
+                </p>
+             </div>
         </div>
-        {% endif %}
+    </div> 
+</div>
+<div class="modal fade" id="confirmModal{{ booking.id }}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Cancellation of Booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel this booking?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                <form method="post" action="{% url 'cancel_booking' booking.id %}">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" name="cancel_booking">Yes</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <p>Alternatively, you can also view your booking on the
-        <a href="{% url 'my_booking' %}">My booking</a> page.
-    </p>
 </div>
 {% endblock %}
