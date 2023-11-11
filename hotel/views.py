@@ -157,11 +157,16 @@ class BookRoomView(View):
 
     def get(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
+        hotel = room.hotel
+        city = hotel.city
         form = BookingForm()
-        return render(request, self.template_name, {'room': room, 'form': form})
+
+        return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
 
     def post(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
+        hotel = room.hotel
+        city = hotel.city
         form = BookingForm(request.POST)
 
         if form.is_valid():
@@ -172,7 +177,7 @@ class BookRoomView(View):
                 booking.save()
             return redirect('success_booking', booking_id=booking.id)
         else:
-            return render(request, self.template_name, {'room': room, 'form': form})
+            return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
 
 
 class BookingDetailView(View):

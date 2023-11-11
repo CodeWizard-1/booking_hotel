@@ -3,77 +3,79 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<section>
-    <div class="container">
-        <div class="mt-2 text-center">
-            <h1 style="font-size: 24px; margin-bottom: 5px;" class="text-center">Booking Room</h1>
-            <p class="lead">For a successful room reservation, please provide the following information:</p>
-            <h5>City:{{City.city_name}}, Hotel: {{ Hotel.hotel_name}}, Room: {{ room.room_name }} </h5>
-        </div>
-
+<section class="section bg-white">
+    <div class="container mt-3 mb-4">
+        <h2 class="text-9 text-center fw-500">Booking Room</h2>
+        <p class="text-9 text-center">For a successful room reservation, please provide the following information:</p>
         <div class="row">
-            <div class="col-md-8 order-md-1 mx-auto">
-                <form method="post" class="needs-validation" novalidate="">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            {{ form.first_name.label_tag }}
-                            {{ form.first_name }}
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            {{ form.last_name.label_tag }}
-                            {{ form.last_name }}
-                        </div>
+            <div class="col-md-6 mx-auto" >
+                <div class="card shadow mb-4 rounded-4">
+                    <div class="card-body">
+                        <form method="post" class="needs-validation" novalidate="">
+                            {% csrf_token %}
+                            <p>City: {{city.city_name}}</p>
+                            <p>Hotel: {{ hotel.hotel_name}}</p>
+                            <p>Room: {{ room.room_name }}</p>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.first_name.label_tag }}
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.last_name.label_tag }}
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.checking_date.label_tag }}
+                                    {{ form.checking_date }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.checkout_date.label_tag }}
+                                    {{ form.checkout_date }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.phone_number.label_tag }}
+                                    {{ form.phone_number }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.email.label_tag }}
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    {{ form.people_count.label_tag }}
+                                    {{ form.people_count }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ form.children_count.label_tag }}
+                                    {{ form.children_count }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.children_ages.label_tag }}
+                                    {{ form.children_ages }}
+                                </div>
+                            </div>
+                            
+                            <p class="mb-3">Do you need a baby crib in the room? (It's complimentary)</p>
+                            <div class="d-block my-3">
+                                {{ form.child_bed }}
+                            </div>
+                            <p class="mb-3">Do you need the services of a playroom for children? (It's complimentary)</p>
+                            <div class="d-block my-3">
+                                {{ form.playroom_services }}
+                            </div>
+                            <button type="submit" class="btn btn-primary " style="display: block; margin-top: 10px; margin-bottom: 10px">Book Now</button>
+                        </form>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            {{ form.checking_date.label_tag }}
-                            {{ form.checking_date }}
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            {{ form.checkout_date.label_tag }}
-                            {{ form.checkout_date }}
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            {{ form.phone_number.label_tag }}
-                            {{ form.phone_number }}
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            {{ form.email.label_tag }}
-                            {{ form.email }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            {{ form.people_count.label_tag }}
-                            {{ form.people_count }}
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            {{ form.children_count.label_tag }}
-                            {{ form.children_count }}
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            {{ form.children_ages.label_tag }}
-                            {{ form.children_ages }}
-                        </div>
-                    </div>
-
-                    <p class="mb-3">Do you need a baby crib in the room? (It's complimentary)</p>
-                    <div class="d-block my-3">
-                        {{ form.child_bed }}
-                    </div>
-                    <p class="mb-3">Do you need the services of a playroom for children? (It's complimentary)</p>                
-                    <div class="d-block my-3">
-                        {{ form.playroom_services }}
-                    </div>
-                    <hr class="mb-4">
-                    <button type="submit" class="btn btn-primary " style="display: block; margin-top: 10px; margin-bottom: 10px">Book Now</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
