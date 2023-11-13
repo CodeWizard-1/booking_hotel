@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
+<!-- {% load crispy_forms_tags %} -->
 
 {% block content %}
 <section class="section bg-white">
@@ -11,13 +11,14 @@
             <div class="col-md-6 mx-auto" >
                 <div class="card shadow mb-4 rounded-4">
                     <div class="card-body">
-                        <form method="post" class="needs-validation" novalidate="">
+                        <form method="post" class="needs-validation">
                             {% csrf_token %}
                             <p>City: {{city.city_name}}</p>
                             <p>Hotel: {{ hotel.hotel_name}}</p>
                             <p>Room: {{ room.room_name }}</p>
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                {{ form|crispy }}
+                                <!-- <div class="col-md-6 mb-3">
                                     {{ form.first_name.label_tag }}
                                     {{ form.first_name }}
                                 </div>
@@ -71,7 +72,7 @@
                             <p class="mb-3">Do you need the services of a playroom for children? (It's complimentary)</p>
                             <div class="d-block my-3">
                                 {{ form.playroom_services }}
-                            </div>
+                            </div> -->
                             <button type="submit" class="btn btn-primary " style="display: block; margin-top: 10px; margin-bottom: 10px">Book Now</button>
                         </form>
                     </div>

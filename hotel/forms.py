@@ -3,6 +3,8 @@ from .models import Guest_reviews, Booking
 from django import forms
 from django.db import models
 from datetime import date, datetime
+from django.core.validators import RegexValidator, EmailValidator,  MinLengthValidator, MaxLengthValidator
+from phonenumber_field.formfields import PhoneNumberField
 
 
 class Guest_reviewsForm(forms.ModelForm):
@@ -15,28 +17,63 @@ class BaseBookingForm(forms.ModelForm):
     checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date}), initial=date.today())
     checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date}), initial=date.today())
 
-    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone_number = forms.CharField(
+        label='Phone Number',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'tel'}),
+        required=True,
+        validators=[
+            RegexValidator(
+                regex=r'^[\d\+\-]+$',
+                message='Enter a valid phone number with digits, +, or - only.',
+            ),
+        ],
+    )
+
+    email = forms.EmailField(label='Email address', widget=forms.EmailInput(attrs={'class': 'form-control'}), required=True)
+
+    first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'form-control'}), 
+    required=True,
+    validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.')]
+    )
+
+    last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'form-control'}), 
+    required=True,
+    validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.')]
+    )
+
     people_count = forms.ChoiceField(label='Adults',
         choices=[(i, str(i)) for i in range(1, 10)],
-        widget=forms.Select(attrs={'class': 'form-select'}))
+        widget=forms.Select(attrs={'class': 'form-select'}), required=True)
+
     children_count = forms.ChoiceField(label='Children',
         choices=[(i, str(i)) for i in range(0, 10)],
-        widget=forms.Select(attrs={'class': 'form-select'}))
+        widget=forms.Select(attrs={'class': 'form-select'}), required=True)
+
     children_ages = forms.CharField(
     label='Ages of Children (comma-separated)',
     widget=forms.TextInput(attrs={'class': 'form-control'}),
-    initial='0')
+    initial='0',
+    validators=[RegexValidator(regex=r'^\d+(,\s*\d+)*$', message='Enter valid ages separated by commas.')], required=True)
+    
+
     child_bed = forms.BooleanField(
         label='Child Bed',
         required=False,
         widget=forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]))
+
     playroom_services = forms.BooleanField(
         label='Playroom Services',
         required=False,
         widget=forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]))
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        checking_date = cleaned_data.get('checking_date')
+        checkout_date = cleaned_data.get('checkout_date')
+
+        if checking_date and checkout_date and checkout_date < checking_date:
+            self.add_error('checkout_date', 'Checkout date must be later than checking date.')
 
     class Meta:
         model = Booking
