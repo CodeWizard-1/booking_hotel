@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-<!-- {% load crispy_forms_tags %} -->
+{% load crispy_forms_tags %}
 
 {% block content %}
 <section class="section bg-white"> 
@@ -16,63 +16,10 @@
                             <p>City: {{city.city_name}}</p>
                             <p>Hotel: {{ hotel.hotel_name}}</p>
                             <p>Room: {{ room.room_name }}</p>
+                            <p>Price is per night : € {{ room.price }}</p>
                             <div class="row">
-                                {{ form|crispy }}
-                                <!-- <div class="col-md-6 mb-3">
-                                    {{ form.first_name.label_tag }}
-                                    {{ form.first_name }}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    {{ form.last_name.label_tag }}
-                                    {{ form.last_name }}
-                                </div>
+                            {{ form|crispy }}
                             </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    {{ form.checking_date.label_tag }}
-                                    {{ form.checking_date }}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    {{ form.checkout_date.label_tag }}
-                                    {{ form.checkout_date }}
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    {{ form.phone_number.label_tag }}
-                                    {{ form.phone_number }}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    {{ form.email.label_tag }}
-                                    {{ form.email }}
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    {{ form.people_count.label_tag }}
-                                    {{ form.people_count }}
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    {{ form.children_count.label_tag }}
-                                    {{ form.children_count }}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    {{ form.children_ages.label_tag }}
-                                    {{ form.children_ages }}
-                                </div>
-                            </div>
-                            
-                            <p class="mb-3">Do you need a baby crib in the room? (It's complimentary)</p>
-                            <div class="d-block my-3">
-                                {{ form.child_bed }}
-                            </div>
-                            <p class="mb-3">Do you need the services of a playroom for children? (It's complimentary)</p>
-                            <div class="d-block my-3">
-                                {{ form.playroom_services }}
-                            </div> -->
                             <button type="submit" class="btn btn-primary " style="display: block; margin-top: 10px; margin-bottom: 10px">Book Now</button>
                         </form>
                     </div>

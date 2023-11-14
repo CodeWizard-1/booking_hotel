@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-
+from datetime import timedelta
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -35,7 +35,7 @@ class Room(models.Model):
     room_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=0)
     is_booked = models.BooleanField(default=False)
     capacity = models.IntegerField()
     description_room = models.TextField()
@@ -83,10 +83,19 @@ class Booking(models.Model):
     children_ages = models.CharField(max_length=255, null=True, blank=True)
     child_bed = models.BooleanField(default=False)
     playroom_services = models.BooleanField(default=False)
+    total_price = models.DecimalField(max_digits=10, decimal_places=0, default=0)
 
     def save(self, *args, **kwargs):
         self.hotel = self.room.hotel
+        self.total_price = self.calculate_total_price()
         super(Booking, self).save(*args, **kwargs)
+
+    def calculate_total_price(self):
+        if self.checking_date and self.checkout_date:
+            duration = self.checkout_date - self.checking_date
+            total_days = duration.days
+            return total_days * self.room.price
+        return 0
 
     def __str__(self):
         return self.customer.username

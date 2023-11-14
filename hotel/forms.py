@@ -36,6 +36,7 @@ class BaseBookingForm(forms.ModelForm):
     validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.')]
     )
 
+
     last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'form-control'}), 
     required=True,
     validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.')]
@@ -75,9 +76,11 @@ class BaseBookingForm(forms.ModelForm):
         if checking_date and checkout_date and checkout_date < checking_date:
             self.add_error('checkout_date', 'Checkout date must be later than checking date.')
 
+
     class Meta:
         model = Booking
         fields = ['first_name', 'last_name', 'checking_date', 'checkout_date',  'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
+
 
 
 class BookingForm(BaseBookingForm):

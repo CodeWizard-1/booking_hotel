@@ -38,14 +38,15 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('get_hotel', 'room', 'booking_date', 'checking_date',
-                    'checkout_date',  'customer', 'phone_number', 'child_bed', 'playroom_services', 'is_cancelled',)
+                    'checkout_date',  'customer', 'phone_number', 'child_bed', 'playroom_services', 'is_cancelled')
     search_fields = ['customer', 'room', 'booking_date',
-                     'checking_date', 'checkout_date', 'phone_number', 'email',]
+                     'checking_date', 'checkout_date', 'phone_number', 'email']
     list_filter = ('customer', 'room', 'booking_date',
-                   'checking_date', 'checkout_date', 'phone_number', 'email', 'child_bed', 'playroom_services', 'is_cancelled',)
+                   'checking_date', 'checkout_date', 'phone_number', 'email', 'child_bed', 'playroom_services', 'is_cancelled')
 
     def get_hotel(self, obj):
         return obj.room.hotel.hotel_name if obj.room.hotel else None
+
 
     get_hotel.short_description = 'Hotel'
 

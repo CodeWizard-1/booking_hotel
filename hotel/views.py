@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
 from django.views.generic.detail import DetailView
 from .models import Room, Guest_reviews, City, Booking, Hotel
-from .forms import Guest_reviewsForm, BookingForm
+from .forms import Guest_reviewsForm, BookingForm, BookingEditForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import BookingForm, BookingEditForm
@@ -159,7 +159,10 @@ class BookRoomView(View):
         room = get_object_or_404(Room, slug=slug)
         hotel = room.hotel
         city = hotel.city
-        form = BookingForm()
+        # form = BookingForm()
+
+        total_price = room.price
+        form = BookingForm(initial={'total_price': total_price})
 
         return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
 
@@ -189,8 +192,10 @@ class BookingDetailView(View):
         context = {
             'bookings': bookings,
         }
+        
         if not bookings:
             context['no_bookings'] = True
+
         return render(request, self.template_name, context)
 
     def post(self, request):
@@ -217,7 +222,9 @@ class SuccessBookingView(View):
 
     def get(self, request, booking_id, *args, **kwargs):
         booking = get_object_or_404(Booking, id=booking_id)
-        context = {'booking': booking}
+        total_price = booking.room.price * (booking.checkout_date - booking.checking_date).days
+        context = {'booking': booking, 'total_price': total_price}
+
         return render(request, self.template_name, context)
 
 
@@ -239,4 +246,6 @@ class EditBookingView(View):
 
             return redirect('my_booking')
 
-        return render(request, self.template_name, {'form': form, 'booking': booking})
+        total_price = booking.room.price * (booking.checkout_date - booking.checking_date).days
+
+        return render(request, self.template_name, {'form': form, 'booking': booking, 'total_price': total_price})

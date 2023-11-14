@@ -16,7 +16,7 @@
                             <p>Room: {{ booking.room.room_name }}</p>
                             <p>Check-in Date: {{ booking.checking_date }}</p>
                             <p>Check-out Date: {{ booking.checkout_date }}</p>
-                            <p>Price: {{ booking.room.price }} €</p>
+                            <p>Total Price: {{ total_price }} €</p>
                             {% if booking.is_cancelled %}
                             <p>Status: Cancelled</p>
                             {% else %}

@@ -101,7 +101,7 @@
                 <div class="row">
                 {% for room in rooms%}
                     <div class="col-md-4">
-                        <div class="card-size mb-1 h-100">
+                        <div class="card-size  h-100">
                             <div class="card card-body d-flex flex-column shadow mt-3 mb-3 rounded-4">
                                 <div class="image-container ">
                                     {% if room.room_image %}
@@ -112,7 +112,7 @@
                                         alt="image planet">
                                     {% endif %}
                                     <div class="image-flash">
-                                        <p class="Price">Price: {{ room.price }} €</p>
+                                        <p class="Price">Price: € {{ room.price }}</p>
                                     </div>
                                     <div class="image-flash-top-right">
                                         <p class="Likes"><i class="far fa-heart"></i>  {{ room.number_of_likes }}</p>
@@ -121,10 +121,11 @@
                                         <p class="City">{{ room.hotel.city.city_name }}</p>
                                     </div>
                                 </div>
-                                <a href="{% url 'room_detail' room.slug %}" class="post-link">
+                                <a href="{% url 'room_detail' room.slug %}" class="post-link mt-3">
                                     <h4 class="card-title text-center">{{ room.hotel }}</h4>
                                     <h6 class="card-title text-center">{{ room.room_name }}</h6>
                                 </a>
+
                             </div>
                         </div>
                     </div>
@@ -159,7 +160,7 @@
                                 <p class="city">{{ hotel.city.city_name }}</p>
                             </div>
                         </div>
-                        <a href="{% url 'hotel_detail' hotel.slug %}" class="post-link">
+                        <a href="{% url 'hotel_detail' hotel.slug %}" class="post-link mt-5">
                             <h4 class="card-title text-center">{{ hotel.hotel_name }}</h4>
                         </a>
                     </div>

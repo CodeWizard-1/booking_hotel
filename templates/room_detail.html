@@ -64,9 +64,9 @@
             {% if user.is_authenticated %}
               <h3>Leave a review:</h3>
               <p>Posting as: {{ user.username }}</p>
-              <form method="post" style="margin-top: 1.3em">
+              <form method="post" style="margin-top: 1em">
                 {{ reviews_form | crispy }} {% csrf_token %}
-                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                <button type="submit" class="btn btn-warning btn-lg">Submit</button>
               </form>
             {% endif %}
           {% endif %}
@@ -117,7 +117,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p class="text-danger">To book a room, you need to <a href="{% url 'account_login' %}">login</a>. <br>Not registered yet? <a href="{% url 'account_signup' %}">Register here</a>.</p>
+        <p>To book a room, you need to <a href="{% url 'account_login' %}">login</a>. <br>Not registered yet? <a href="{% url 'account_signup' %}">Register here</a>.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
