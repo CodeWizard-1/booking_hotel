@@ -14,8 +14,8 @@ class Guest_reviewsForm(forms.ModelForm):
 
 
 class BaseBookingForm(forms.ModelForm):
-    checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date}), initial=date.today())
-    checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date}), initial=date.today())
+    checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_in_date'}),  initial=date.today())
+    checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_out_date'}), initial=date.today())
 
     phone_number = forms.CharField(
         label='Phone Number',

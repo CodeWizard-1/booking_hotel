@@ -68,7 +68,7 @@
                     <td>{{ room.room_name }}</td>
                     <td>{{ room.description_room | safe |truncatewords_html:20  }}</td>
                     <td>{{ room.capacity }}</td>
-                    <td>{{ room.price }}</td>
+                    <td><strong>&euro; {{ room.price }}</strong></td>
                     <td>
                         <form method="get" action="{% url 'room_detail' room.slug %}" class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">More Details ></button>

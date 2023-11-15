@@ -11,14 +11,15 @@
             <div class="col-md-6 mx-auto" >
                 <div class="card shadow mb-4 rounded-4">
                     <div class="card-body">
-                        <form method="post" class="needs-validation">
+                        <form method="post" class="needs-validation" id="bookingForm">
                             {% csrf_token %}
-                            <p>City: {{city.city_name}}</p>
-                            <p>Hotel: {{ hotel.hotel_name}}</p>
-                            <p>Room: {{ room.room_name }}</p>
-                            <p>Price is per night : € {{ room.price }}</p>
+                            <p><strong>City:</strong> {{city.city_name}}</p>
+                            <p><strong>Hotel:</strong> {{ hotel.hotel_name}}</p>
+                            <p><strong>Room:</strong> {{ room.room_name }}</p>
+                            <p><strong>Price per night:</strong> €  <span id="price">{{ room.price }}</span></p>
                             <div class="row">
                             {{ form|crispy }}
+                            <p style="margin-top: 3rem;"><strong>Total Price:</strong> € <span id="totalPrice">0</span></p>
                             </div>
                             <button type="submit" class="btn btn-primary " style="display: block; margin-top: 10px; margin-bottom: 10px">Book Now</button>
                         </form>
