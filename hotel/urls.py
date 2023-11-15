@@ -4,7 +4,6 @@ from .views import EditBookingView, SuccessBookingView, CityListView
 
 
 urlpatterns = [
-    # path('', views.RoomList.as_view(), name='home'),
     path('', views.HotelList.as_view(), name='home'),
     path('success-booking/<int:booking_id>/',
          SuccessBookingView.as_view(), name='success_booking'),
@@ -21,4 +20,5 @@ urlpatterns = [
          views.BookRoomView.as_view(), name='book_room'),
     path('search/', views.SearchView.as_view(), name='search'),
     path('city/<int:city_id>/', views.CityHotelsView.as_view(), name='city_hotels'),
+    path('like/<slug:slug>', views.RoomLike.as_view(), name='room_like'),
 ]

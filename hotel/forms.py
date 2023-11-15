@@ -26,6 +26,14 @@ class BaseBookingForm(forms.ModelForm):
                 regex=r'^[\d\+\-]+$',
                 message='Enter a valid phone number with digits, +, or - only.',
             ),
+            MinLengthValidator(
+                limit_value=10,
+                message='Phone number must have at least 10 digits.',
+            ),
+            MaxLengthValidator(
+                limit_value=15,
+                message='Phone number must have at most 15 digits.',
+            ),
         ],
     )
 
@@ -33,13 +41,22 @@ class BaseBookingForm(forms.ModelForm):
 
     first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class': 'form-control'}), 
     required=True,
-    validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.')]
+    validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.'),
+    RegexValidator(
+                regex=r'^[A-Za-zА-Яа-яЁё]+$',
+                message='Enter a valid first name without numbers, symbols, or spaces.',
+            ),]
     )
 
 
     last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'form-control'}), 
     required=True,
-    validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.')]
+    validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.'),
+    RegexValidator(
+                regex=r'^[A-Za-zА-Яа-яЁё]+$',
+                message='Enter a valid last first name without numbers, symbols, or spaces.',
+            ),
+    ]
     )
 
     people_count = forms.ChoiceField(label='Adults',

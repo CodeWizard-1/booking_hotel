@@ -13,7 +13,7 @@
               <label for="city" class="form-label">City</label>
               <select class="form-select" id="city" name="city">
                 {% for city in cities %}
-                  <option value="{{ city.id }}">{{ city.city_name }}</option>
+                <option value="{{ city.id }}">{{ city.city_name }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -35,20 +35,20 @@
         <h3>Reviews:</h3>
         <div class="card-body">
           {% if reviews %}
-            {% for review in reviews %}
-              <!-- Review Display -->
-              <div class="comments" style="padding: 10px">
-                <p class="font-weight-bold">
-                  {{ review.name }}
-                  <span class="text-muted font-weight-normal">
-                    {{ review.created_on }} wrote:
-                  </span>
-                </p>
-                {{ review.body | linebreaks }}
-              </div>
-            {% endfor %}
+          {% for review in reviews %}
+          <!-- Review Display -->
+          <div class="comments" style="padding: 10px">
+            <p class="font-weight-bold">
+              {{ review.name }}
+              <span class="text-muted font-weight-normal">
+                {{ review.created_on }} wrote:
+              </span>
+            </p>
+            {{ review.body | linebreaks }}
+          </div>
+          {% endfor %}
           {% else %}
-            <p>No reviews yet.</p>
+          <p>No reviews yet.</p>
           {% endif %}
         </div>
       </div>
@@ -57,18 +57,18 @@
       <div class="card mb-4 mt-3">
         <div class="card-body">
           {% if commented %}
-            <div class="alert alert-success" role="alert">
-              Your review is awaiting approval
-            </div>
+          <div class="alert alert-success" role="alert">
+            Your review is awaiting approval
+          </div>
           {% else %}
-            {% if user.is_authenticated %}
-              <h3>Leave a review:</h3>
-              <p>Posting as: {{ user.username }}</p>
-              <form method="post" style="margin-top: 1em">
-                {{ reviews_form | crispy }} {% csrf_token %}
-                <button type="submit" class="btn btn-warning btn-lg">Submit</button>
-              </form>
-            {% endif %}
+          {% if user.is_authenticated %}
+          <h3>Leave a review:</h3>
+          <p>Posting as: {{ user.username }}</p>
+          <form method="post" style="margin-top: 1em">
+            {{ reviews_form | crispy }} {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+          </form>
+          {% endif %}
           {% endif %}
         </div>
       </div>
@@ -90,19 +90,29 @@
             <div class="row">
               <!-- Likes -->
               <div class="col-1">
-                <strong class="text-secondary"><i class="far fa-heart"></i> {{ room.number_of_likes }}</strong>
-              </div>
-              <!-- Comments -->
-              <div class="col-1">
-                {% with Guest_reviews.count as total_reviews %}
-                  <strong class="text-secondary"><i class="far fa-comments"></i>{{ total_reviews }}</strong>
-                {% endwith %}
+                <!-- ------------------------------------------------------------- -->
+                <strong>
+                  {% if user.is_authenticated %}
+                  <form class="d-inline" action="{% url 'room_like' room.slug %}" method="POST">
+                    {% csrf_token %}
+                    {% if liked %}
+                    <button type="submit" name="likeroom_id" value="{{room.slug}}" class="btn-like"><i
+                        class="fas fa-heart"></i></button>
+                    {% else %}
+                    <button type="submit" name="likeroom_id" value="{{room.slug}}" class="btn-like"><i
+                        class="far fa-heart"></i></button>
+                    {% endif %}
+                  </form>
+                  {% else %}
+                  <span class="text-secondary"><i class="far fa-heart"></i></span>
+                  {% endif %}
+                  <span class="text-secondary">{{ room.number_of_likes }} </span>
+                </strong>
               </div>
             </div>
             <!-- Booking Button -->
-            <a href="{% url 'book_room' room.slug %}" class="btn btn-primary"
-              {% if not user.is_authenticated %}
-                data-bs-toggle="modal" data-bs-target="#loginModal"{% endif %}>Book now</a>
+            <a href="{% url 'book_room' room.slug %}" class="btn btn-primary" {% if not user.is_authenticated %}
+              data-bs-toggle="modal" data-bs-target="#loginModal" {% endif %}>Book now</a>
           </div>
         </div>
       </div>
@@ -114,13 +124,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>To book a room, you need to <a href="{% url 'account_login' %}">login</a>. <br>Not registered yet? <a href="{% url 'account_signup' %}">Register here</a>.</p>
+        <p>To book a room, you need to <a href="{% url 'account_login' %}">login</a>. <br>Not registered yet? <a
+            href="{% url 'account_signup' %}">Register here</a>.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

@@ -23,10 +23,10 @@
                                 <p class="card-text"><strong>Room:</strong> {{ booking.room.room_name }}</p>
                                 <p class="card-text"><strong>Total Price:</strong> € {{ booking.total_price }}</p>
                                 <p class="card-text">
-                                    <strong>Check-in Date:</strong> {{ booking.checking_date }}
+                                    <strong>Check-in Date:</strong> {{ booking.checking_date|date:"d F Y" }}
                                 </p>
                                 <p class="card-text">
-                                    <strong>Check-out Date:</strong> {{ booking.checkout_date }}
+                                    <strong>Check-out Date:</strong> {{ booking.checkout_date|date:"d F Y" }}
                                 </p>
                                 <p class="card-text">
                                     <strong>Status:</strong> {% if booking.is_cancelled %}

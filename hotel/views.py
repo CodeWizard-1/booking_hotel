@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 from django.views.generic.detail import DetailView
 from .models import Room, Guest_reviews, City, Booking, Hotel
@@ -249,3 +249,15 @@ class EditBookingView(View):
         total_price = booking.room.price * (booking.checkout_date - booking.checking_date).days
 
         return render(request, self.template_name, {'form': form, 'booking': booking, 'total_price': total_price})
+
+class RoomLike(View):
+
+    def post(self, request, slug):
+        room = get_object_or_404(Room, slug=slug)
+
+        if room.likes.filter(id=request.user.id).exists():
+            room.likes.remove(request.user)
+        else:
+            room.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('room_detail', args=[slug]))
