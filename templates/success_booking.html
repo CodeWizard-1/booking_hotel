@@ -11,12 +11,12 @@
                 <div class="card shadow mb-4 rounded-4">
                     <div class="card-body">
                         <div class="reservation-details">
-                            <p>City: {{ booking.room.hotel.city.city_name }}</p>
-                            <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
-                            <p>Room: {{ booking.room.room_name }}</p>
-                            <p>Check-in Date: {{ booking.checking_date }}</p>
-                            <p>Check-out Date: {{ booking.checkout_date }}</p>
-                            <p>Total Price: {{ total_price }} €</p>
+                            <p><strong>City:</strong> {{ booking.room.hotel.city.city_name }}</p>
+                            <p><strong>Hotel:</strong> {{ booking.room.hotel.hotel_name }}</p>
+                            <p><strong>Room:</strong> {{ booking.room.room_name }}</p>
+                            <p><strong>Check-in Date:</strong> {{ booking.checking_date|date:"d F Y" }}</p>
+                            <p><strong>Check-out Date:</strong> {{ booking.checkout_date|date:"d F Y" }}</p>
+                            <p><strong>Total Price:</strong> {{ total_price }} €</p>
                             {% if booking.is_cancelled %}
                             <p>Status: Cancelled</p>
                             {% else %}

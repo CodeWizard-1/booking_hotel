@@ -9,11 +9,13 @@
                     <div class="card-body">
                         <form method="post" action="{% url 'edit_booking' booking.id %}" class="needs-validation">
                             {% csrf_token %}
-                            <p>City: {{ booking.room.hotel.city.city_name }}</p>
-                            <p>Hotel: {{ booking.room.hotel.hotel_name }}</p>
-                            <p>Room: {{ booking.room.room_name }}</p>
+                            <p><strong>City:</strong> {{ booking.room.hotel.city.city_name }}</p>
+                            <p><strong>Hotel:</strong> {{ booking.room.hotel.hotel_name }}</p>
+                            <p><strong>Room:</strong> {{ booking.room.room_name }}</p>
+                            <p><strong>Price per night:</strong> €  <span id="price">{{ booking.room.price }}</span></p>
                             <div class="row">
                                 {{ form.as_p }}
+                                <p style="margin-top: 3rem;"><strong>Total Price:</strong> € <span id="totalPrice">{{ total_price }}</span></p>
                             </div>
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>
