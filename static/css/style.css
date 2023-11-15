@@ -3,23 +3,11 @@ body {
     padding-top: 56px;
 }
 
-main {
-  padding-top: 60px;
-}
-
-
-
 .container-fluid,
 .blue-bg {
   background-color: #013b94;
 }
 
-.brand {
-  font-family: Lato, sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #4a4a4f;
-}
 
 .red-o {
   color: #e84610;
@@ -70,12 +58,18 @@ main {
 
 .navbar-brand {
   font-size: 24px;
+  font-weight: bold;
+  margin-left: 100px;
+  margin-top: 10px;
 }
 
 .navbar-nav {
   align-items: center;
 }
 
+.ms-auto {
+  margin-right: 100px!important;
+}
 .nav-link {
   font-size: 18px;
 }
