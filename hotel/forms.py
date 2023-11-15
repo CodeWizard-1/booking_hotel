@@ -75,12 +75,12 @@ class BaseBookingForm(forms.ModelForm):
     
 
     child_bed = forms.BooleanField(
-        label='Child Bed',
+        label='Child Bed (complimentary)',
         required=False,
         widget=forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]))
 
     playroom_services = forms.BooleanField(
-        label='Playroom Services',
+        label='Playroom Services (complimentary)',
         required=False,
         widget=forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]))
 
