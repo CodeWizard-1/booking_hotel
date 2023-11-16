@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages import success
 from django.http import JsonResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class CityListView(View):
@@ -51,11 +52,24 @@ class HotelDetail(DetailView):
 
 class CityHotelsView(View):
     template_name = 'city_hotels.html'
+    paginate_by = 6
 
     def get(self, request, city_id):
         city = City.objects.get(pk=city_id)
         hotels = Hotel.objects.filter(city=city)
         cities = City.objects.all()
+
+        paginator = Paginator(hotels, self.paginate_by)
+        page = request.GET.get('page')
+
+        try:
+            hotels = paginator.page(page)
+        except PageNotAnInteger:
+            hotels = paginator.page(1)
+        except EmptyPage:
+            hotels = paginator.page(paginator.num_pages)
+
+            
         context = {'city': city, 'hotels': hotels, 'cities': cities}
         return render(request, self.template_name, context)
 
