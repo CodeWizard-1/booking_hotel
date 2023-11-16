@@ -10,11 +10,26 @@ class CityAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(SummernoteModelAdmin):
-    list_display = ('hotel', 'room_name', 'slug', 'status',)
+    list_display = ('hotel', 'room_name', 'slug', 'on_main_display','status')
     search_fields = ['room_name', 'description_room']
     prepopulated_fields = {'slug': ('room_name',)}
-    list_filter = ('hotel', 'status', 'category', 'price',)
+    list_filter = ('hotel', 'status', 'category','price')
     summernote_fields = ('description_room',)
+
+
+    def on_main_display(self, obj):
+        return obj.on_main
+
+    on_main_display.boolean = True
+    on_main_display.short_description = 'Show on Main Page'
+
+    def save_model(self, request, obj, form, change):
+            super().save_model(request, obj, form, change)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['on_main'].widget.attrs['class'] = 'checkbox'
+        return form
 
 
 @admin.register(Hotel)

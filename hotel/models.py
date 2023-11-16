@@ -44,6 +44,7 @@ class Room(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='room_likes', blank=True)
+    on_main = models.BooleanField(default=False, verbose_name='Show on Main Page')
 
     def __str__(self) -> str:
         return self.room_name
