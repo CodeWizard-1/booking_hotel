@@ -69,7 +69,7 @@ class CityHotelsView(View):
         except EmptyPage:
             hotels = paginator.page(paginator.num_pages)
 
-            
+
         context = {'city': city, 'hotels': hotels, 'cities': cities}
         return render(request, self.template_name, context)
 
