@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages import success
+from django.http import JsonResponse
 
 
 class CityListView(View):
@@ -159,12 +160,15 @@ class BookRoomView(View):
         room = get_object_or_404(Room, slug=slug)
         hotel = room.hotel
         city = hotel.city
-        # form = BookingForm()
 
         total_price = room.price
         form = BookingForm(initial={'total_price': total_price})
 
-        return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
+        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form, 'roomId': room.id}
+
+        return render(request, self.template_name, context)
+
+        # return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
 
     def post(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
@@ -261,3 +265,4 @@ class RoomLike(View):
             room.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('room_detail', args=[slug]))
+

@@ -92,6 +92,8 @@ class BaseBookingForm(forms.ModelForm):
 
         if checking_date and checkout_date and checkout_date < checking_date:
             self.add_error('checkout_date', 'Checkout date must be later than checking date.')
+        elif checkout_date == checking_date:
+            self.add_error('checkout_date', 'Checkout date cannot be the same as checking date.')
 
 
     class Meta:

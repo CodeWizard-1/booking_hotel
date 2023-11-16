@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Room, Hotel, City, Facilities, Category, Booking, Guest_reviews
 from django_summernote.admin import SummernoteModelAdmin
-
+from django.utils import formats
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
@@ -10,10 +10,10 @@ class CityAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(SummernoteModelAdmin):
-    list_display = ('hotel', 'room_name', 'slug', 'status', 'is_booked',)
+    list_display = ('hotel', 'room_name', 'slug', 'status',)
     search_fields = ['room_name', 'description_room']
     prepopulated_fields = {'slug': ('room_name',)}
-    list_filter = ('hotel', 'status', 'category', 'price', 'is_booked',)
+    list_filter = ('hotel', 'status', 'category', 'price',)
     summernote_fields = ('description_room',)
 
 
@@ -37,8 +37,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('get_hotel', 'room', 'booking_date', 'checking_date',
-                    'checkout_date',  'customer', 'phone_number', 'child_bed', 'playroom_services', 'is_cancelled')
+    list_display = ('get_hotel', 'room', 'booking_date_formatted', 'checking_date_formatted',
+                    'checkout_date_formatted',  'customer', 'phone_number', 'child_bed', 'playroom_services', 'is_cancelled')
     search_fields = ['customer', 'room', 'booking_date',
                      'checking_date', 'checkout_date', 'phone_number', 'email']
     list_filter = ('customer', 'room', 'booking_date',
@@ -50,6 +50,20 @@ class BookingAdmin(admin.ModelAdmin):
 
     get_hotel.short_description = 'Hotel'
 
+    def checking_date_formatted(self, obj):
+        return formats.date_format(obj.checking_date, "SHORT_DATE_FORMAT")
+
+    checking_date_formatted.short_description = 'Checking date'
+
+    def checkout_date_formatted(self, obj):
+        return formats.date_format(obj.checkout_date, "SHORT_DATE_FORMAT")
+
+    checkout_date_formatted.short_description = 'Checkout date'
+
+    def booking_date_formatted(self, obj):
+        return formats.date_format(obj.booking_date, "SHORT_DATETIME_FORMAT")
+
+    booking_date_formatted.short_description = 'Booking date'
 
 @admin.register(Guest_reviews)
 class Guest_reviewsAdmin(admin.ModelAdmin):
