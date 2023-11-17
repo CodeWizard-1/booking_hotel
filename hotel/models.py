@@ -19,6 +19,7 @@ class Hotel (models.Model):
     description_hotel = models.TextField()
     hotel_image = CloudinaryField('image', default='plaseholder')
     city = models.ForeignKey(City, on_delete=models.CASCADE)
+    on_main = models.BooleanField(default=False, verbose_name='Show on Main Page')
 
     def __str__(self) -> str:
         return self.hotel_name

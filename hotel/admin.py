@@ -34,10 +34,25 @@ class RoomAdmin(SummernoteModelAdmin):
 
 @admin.register(Hotel)
 class HotelAdmin(SummernoteModelAdmin):
-    list_display = ('hotel_name', 'slug',)
+    list_display = ('hotel_name', 'on_main_display',)
     search_fields = ['hotel_name', 'description_hotel']
     prepopulated_fields = {'slug': ('hotel_name',)}
     summernote_fields = ('description_hotel',)
+
+    def on_main_display(self, obj):
+        return obj.on_main
+
+    on_main_display.boolean = True
+    on_main_display.short_description = 'Show on Main Page'
+
+    def save_model(self, request, obj, form, change):
+            super().save_model(request, obj, form, change)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['on_main'].widget.attrs['class'] = 'checkbox'
+        return form
+
 
 
 @admin.register(Facilities)

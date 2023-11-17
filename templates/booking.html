@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
-
+{% load static %}
 {% block content %}
 <section class="section bg-white"> 
     <div class="container mt-3 mb-4">
         <h2 class="text-9 text-center fw-500">Booking Room</h2>
         <p class="text-9 text-center">For a successful room reservation, please provide the following information:</p>
         <div class="row">
-            <div class="col-md-6 mx-auto" >
+            <div class="col-md-6">
                 <div class="card shadow mb-4 rounded-4">
                     <div class="card-body">
                         <form method="post" class="needs-validation" id="bookingForm">
@@ -21,10 +21,13 @@
                             {{ form|crispy }}
                             <p style="margin-top: 3rem;"><strong>Total Price:</strong> € <span id="totalPrice">0</span></p>
                             </div>
-                            <button type="submit" class="btn btn-primary " style="display: block; margin-top: 10px; margin-bottom: 10px">Book Now</button>
+                            <button type="submit" class="btn btn-primary btn-block" style="display: block; margin-top: 10px; margin-bottom: 10px">Book Now</button>
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-6 card-body align-items-center justify-content-center fixed-image-container">
+                <img src="{% static 'images/form.webp' %}" alt="Form Image" class="img-fluid fixed-image">
             </div>
         </div>
     </div>

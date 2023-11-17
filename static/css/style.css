@@ -319,3 +319,16 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.fixed-image-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+}
+
+.fixed-image {
+  width: 100%;
+  height: auto;
+}

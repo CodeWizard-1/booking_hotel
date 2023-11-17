@@ -26,17 +26,21 @@ class CityListView(View):
 
 class HotelList(generic.ListView):
     model = Hotel
-    queryset = Hotel.objects.all()
     template_name = 'index.html'
-    paginate_by = 6
+    ordering = 'hotel_name'
+    context_object_name = 'hotels'
+
+    def get_queryset(self):
+        return Hotel.objects.filter(on_main=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cities'] = City.objects.all()
-        context['hotels'] = Hotel.objects.all()
         context['rooms'] = Room.objects.filter(status=1).order_by('-id')
-        city = City.objects.get(pk=1)
-        context['City'] = city
+        
+        city_id = self.request.GET.get('city_id')
+        context['City'] = City.objects.get(pk=city_id) if city_id else None
+
         return context
 
 

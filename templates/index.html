@@ -141,11 +141,11 @@
                     {% if room.on_main %}
                     <div class="col-md-4">
                         <a href="{% url 'room_detail' room.slug %}">
-                            <div class="card card-body d-flex flex-column shadow mt-3 mb-3 rounded-4 hover-effect"">
+                            <div class="card card-body d-flex flex-column shadow mt-1 mb-2 rounded-4 hover-effect">
                                 <div class="image-container ">
                                     {% if room.room_image %}
-                                    <img class="card-img-top img-fluid rounded-4 fixed-height-img" src="{{ room.room_image.url }}"
-                                        alt="image room">
+                                    <img class="card-img-top img-fluid rounded-4 fixed-height-img"
+                                        src="{{ room.room_image.url }}" alt="image room">
                                     {% else %}
                                     <img class="card-img-top img-fluid fixed-height-img"
                                         src="https://services.meteored.com/img/article/como-podemos-distinguir-los-planetas-de-las-estrellas-1679732078853_1024.jpeg"
@@ -179,37 +179,47 @@
             </div>
         </div>
 </section>
-
+<!-- ------------------------------------------------------- -->
+<!-- ------------------------------------------------------- -->
 <section class="section bg-white">
-    <div class="container text-center  mb-5 mt-5">
+    <div class="container text-center mt-5">
         <h2 class="text-9 fw-500">Best Hotels: High Ratings and Guest Preference</h2>
         <div class="row">
-            {% for hotel in hotels %}
-            <div class="col-md-4">
-                <div class="card-size mb-4 h-100">
-                    <div class="card card-body d-flex flex-column shadow mt-3 mb-3 rounded-4">
-                        <div class="image-container">
-                            {% if hotel.hotel_image %}
-                            <img class="card-img-top img-fluid rounded-4" src="{{ hotel.hotel_image.url }}"
-                                alt="hotel photo">
-                            {% else %}
-                            <img class="card-img-top img-fluid"
-                                src="https://services.meteored.com/img/article/como-podemos-distinguir-los-planetas-de-las-estrellas-1679732078853_1024.jpeg"
-                                alt="planet photo">
-                            {% endif %}
-                            <div class="image-flash-top-left-city">
-                                <p class="city">{{ hotel.city.city_name }}</p>
+            <div class="col-12 mt-3 left">
+                <div class="row">
+                    {% for hotel in hotels %}
+                    {% if hotel.on_main %}
+                    <div class="col-md-4">
+                        <a href="{% url 'hotel_detail' hotel.slug %}">
+                            <div class="card card-body d-flex flex-column shadow mt-1 mb-2 rounded-4 hover-effect">
+                                <div class="image-container ">
+                                    {% if hotel.hotel_image %}
+                                    <img class="card-img-top img-fluid rounded-4 fixed-height-img"
+                                        src="{{ hotel.hotel_image.url }}" alt="image room">
+                                    {% else %}
+                                    <img class="card-img-top img-fluid fixed-height-img"
+                                        src="https://services.meteored.com/img/article/como-podemos-distinguir-los-planetas-de-las-estrellas-1679732078853_1024.jpeg"
+                                        alt="image planet">
+                                    {% endif %}
+                                    <div class="image-flash-top-left">
+                                        <p class="City">{{ hotel.city.city_name }}</p>
+                                    </div>
+                                </div>
+                                <a href="{% url 'hotel_detail' hotel.slug %}" class="post-link mt-5">
+                                    <h4 class="card-title text-center">{{ hotel.hotel_name }}</h4>
+                                </a>
                             </div>
-                        </div>
-                        <a href="{% url 'hotel_detail' hotel.slug %}" class="post-link mt-5">
-                            <h4 class="card-title text-center">{{ hotel.hotel_name }}</h4>
                         </a>
                     </div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
-    </div>
 </section>
 
 {%endblock%}
