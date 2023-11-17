@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.contrib.messages import success
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import F
 
 
 class CityListView(View):
@@ -175,14 +176,16 @@ class BookRoomView(View):
         hotel = room.hotel
         city = hotel.city
 
+        booked_dates = Booking.objects.filter(room=room).values_list('checking_date', 'checkout_date')
+        booked_dates = [str(date) for dates in booked_dates for date in dates]
+
         total_price = room.price
         form = BookingForm(initial={'total_price': total_price})
 
-        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form, 'roomId': room.id}
+        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form, 'roomId': room.id, 'booked_dates': booked_dates}
 
         return render(request, self.template_name, context)
 
-        # return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
 
     def post(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
@@ -266,7 +269,10 @@ class EditBookingView(View):
 
         total_price = booking.room.price * (booking.checkout_date - booking.checking_date).days
 
-        return render(request, self.template_name, {'form': form, 'booking': booking, 'total_price': total_price})
+        booked_dates = Booking.objects.filter(room=booking.room).exclude(id=booking.id).values_list('checking_date', 'checkout_date')
+        booked_dates = [str(date) for dates in booked_dates for date in dates]
+
+        return render(request, self.template_name, {'form': form, 'booking': booking, 'total_price': total_price, 'booked_dates': booked_dates})
 
 class RoomLike(View):
 
@@ -279,4 +285,3 @@ class RoomLike(View):
             room.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('room_detail', args=[slug]))
-

@@ -5,6 +5,7 @@ from django.db import models
 from datetime import date, datetime
 from django.core.validators import RegexValidator, EmailValidator,  MinLengthValidator, MaxLengthValidator
 from phonenumber_field.formfields import PhoneNumberField
+from django.contrib.auth.forms import PasswordResetForm
 
 
 class Guest_reviewsForm(forms.ModelForm):
@@ -110,3 +111,5 @@ class BookingForm(BaseBookingForm):
 class BookingEditForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
+
+

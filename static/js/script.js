@@ -17,12 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!isNaN(checkInDate.getTime()) && !isNaN(checkOutDate.getTime())) {
                     var numberOfNights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
                     var totalPrice = pricePerNight * numberOfNights;
-                    document.getElementById('totalPrice').innerText = Math.max(0, totalPrice).toFixed(2);
+                    document.getElementById('totalPrice').innerText = Math.max(0, totalPrice).toFixed(0);
                 } else {
                     document.getElementById('totalPrice').innerText = '0';
                 }
             }
 
     updateTotalPrice();
-
 });

@@ -199,16 +199,6 @@ body {
   color: lightgray;
 }
 
-.btn-signup {
-  background-color: #013b94;
-  color: #fff;
-}
-
-.btn-signup:hover,
-.btn-signup:active {
-  background-color: #fff;
-  color: #013b94;
-}
 
 .link {
   color: #0071cc;
@@ -305,4 +295,3 @@ body {
 .footer a {
   text-decoration: none;
 }
-
