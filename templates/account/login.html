@@ -17,8 +17,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
-            <form class="login card  shadow p-3 pt-5 " method="POST" action="{% url 'account_login' %}">
+        <div class="col-md-6 d-flex align-items-center justify-content-center ">
+            <form class="login card form-control shadow p-3 pt-5" method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 {% if redirect_field_value %}
@@ -27,7 +27,7 @@
                 <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
             </form>
         </div>
-        <div class="col-md-6 card-body  align-items-center justify-content-center">
+        <div class="col-md-6 card-body  d-flex align-items-center justify-content-center">
             <img src="{% static 'images/sign-in.webp' %}"  alt="Sign In Image" class="img-fluid" style="max-width: 80%; height: auto;">
         </div>
     </div>

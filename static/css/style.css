@@ -300,7 +300,12 @@ body {
   box-sizing: border-box; 
 }
 
-.helptext {
+.helptext, label[for="id_login"], 
+label[for="id_password"], 
+label[for="id_username"], 
+label[for="id_email"], 
+label[for="id_password1"], 
+label[for="id_password2"]  {
   display: none;
 }
 
