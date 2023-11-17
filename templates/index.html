@@ -1,5 +1,4 @@
-
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -45,7 +44,8 @@
     <div class="container">
         <div class="row">
             <div class="col position-relative">
-                <form method="post" action="{% url 'search' %}" class="card shadow rounded-3 position-relative p-1 bg-warning">
+                <form method="post" action="{% url 'search' %}"
+                    class="card shadow rounded-3 position-relative p-1 bg-warning">
                     {% csrf_token %}
                     <div class="row align-items-center">
                         <div class="col-lg-3">
@@ -55,7 +55,7 @@
                                     <label for="city" class="form-label sr-only">City</label>
                                     <select class="form-select" id="city" name="city">
                                         {% for city in cities %}
-                                            <option value="{{ city.id }}">{{ city.city_name }}</option>
+                                        <option value="{{ city.id }}">{{ city.city_name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -93,25 +93,42 @@
 <section class="section bg-white">
     <div class="container text-center mt-5">
         <h2 class="text-9 fw-500">Why Book with Us?</h2>
-        <div class="row">
-            <div class="col-md-4 card  d-flex flex-column card-info">
-                <img src="{% static 'images/advantage1.webp' %}" alt="Advantage 1" class="img-fluid mb-3">
-                <h4>Best Price Guarantee</h4>
-                <p>Find a lower price online and we'll match it!</p>
+        <div class="row ">
+            <div class="col-md-4">
+                <div class="card-size  h-100">
+                    <div class="card card-size card-body d-flex flex-column shadow mt-3 mb-3 rounded-4 h-100">
+                        <div class="image-container ">
+                            <img src="{% static 'images/advantage1.webp' %}" alt="Advantage 1" class="img-fluid mb-3">
+                            <h4>Best Price Guarantee</h4>
+                            <p>Find a lower price online and we'll match it!</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 card  d-flex flex-column card-info">
-                <img src="{% static 'images/advantage2.webp' %}" alt="Advantage 2" class="img-fluid mb-3">
-                <h4>Exclusive Deals</h4>
-                <p>Access special discounts and offers when you book with us.</p>
+            <div class="col-md-4">
+                <div class="card-size  h-100">
+                    <div class="card card-size card-body d-flex flex-column shadow mt-3 mb-3 rounded-4 h-100">
+                        <div class="image-container ">
+                            <img src="{% static 'images/advantage2.webp' %}" alt="Advantage 2" class="img-fluid mb-3">
+                            <h4>Exclusive Deals</h4>
+                            <p>Access special discounts and offers when you book with us.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 card  d-flex flex-column card-info">
-                <img src="{% static 'images/advantage3.webp' %}" alt="Advantage 3" class="img-fluid mb-3">
-                <h4>Flexible Booking Options</h4>
-                <p>Enjoy the flexibility to modify or cancel your reservation.</p>
+            <div class="col-md-4">
+                <div class="card-size  h-100">
+                    <div class="card card-size card-body d-flex flex-column shadow mt-3 mb-3 rounded-4 h-100">
+                        <div class="image-container ">
+                            <img src="{% static 'images/advantage3.webp' %}" alt="Advantage 3" class="img-fluid mb-3">
+                            <h4>Flexible Booking Options</h4>
+                            <p>Enjoy the flexibility to modify or cancel your reservation.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
 </section>
 <!-- ------------------------------------------ -->
 <section class="section bg-white">
@@ -120,16 +137,17 @@
         <div class="row">
             <div class="col-12 mt-3 left">
                 <div class="row">
-                {% for room in rooms%}
-                {% if room.on_main %}
+                    {% for room in rooms%}
+                    {% if room.on_main %}
                     <div class="col-md-4">
-                        <div class="card-size  h-100">
-                            <div class="card card-body d-flex flex-column shadow mt-3 mb-3 rounded-4">
+                        <a href="{% url 'room_detail' room.slug %}">
+                            <div class="card card-body d-flex flex-column shadow mt-3 mb-3 rounded-4 hover-effect"">
                                 <div class="image-container ">
                                     {% if room.room_image %}
-                                    <img class="card-img-top img-fluid rounded-4" src="{{ room.room_image.url }}" alt="image room">
+                                    <img class="card-img-top img-fluid rounded-4 fixed-height-img" src="{{ room.room_image.url }}"
+                                        alt="image room">
                                     {% else %}
-                                    <img class="card-img-top img-fluid"
+                                    <img class="card-img-top img-fluid fixed-height-img"
                                         src="https://services.meteored.com/img/article/como-podemos-distinguir-los-planetas-de-las-estrellas-1679732078853_1024.jpeg"
                                         alt="image planet">
                                     {% endif %}
@@ -137,7 +155,7 @@
                                         <p class="Price">Price: € {{ room.price }}</p>
                                     </div>
                                     <div class="image-flash-top-right">
-                                        <p class="Likes"><i class="far fa-heart"></i>  {{ room.number_of_likes }}</p>
+                                        <p class="Likes"><i class="far fa-heart"></i> {{ room.number_of_likes }}</p>
                                     </div>
                                     <div class="image-flash-top-left">
                                         <p class="City">{{ room.hotel.city.city_name }}</p>
@@ -149,7 +167,7 @@
                                 </a>
 
                             </div>
-                        </div>
+                        </a>
                     </div>
                     {% endif %}
                     {% if forloop.counter|divisibleby:3 %}
@@ -157,9 +175,9 @@
                 <div class="row">
                     {% endif %}
                     {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
 </section>
 
 <section class="section bg-white">
@@ -193,5 +211,5 @@
         </div>
     </div>
 </section>
-    
+
 {%endblock%}
