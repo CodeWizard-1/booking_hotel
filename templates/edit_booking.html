@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <section class="section bg-white">
     <div class="container mt-3 mb-4">
         <h2 class="text-9 text-center fw-500">Edit Booking</h2>
         <div class="row">
-            <div class="col-md-6 mx-auto" >
+            <div class="col-md-6 card-body align-items-center justify-content-center fixed-image-container">
+                <img src="{% static 'images/edit.webp' %}" alt="Form Image" class="img-fluid fixed-image">
+            </div>
+            <div class="col-md-6" >
                 <div class="card shadow mb-4 rounded-4">
                     <div class="card-body">
                         <form method="post" action="{% url 'edit_booking' booking.id %}" class="needs-validation">
@@ -17,7 +21,7 @@
                                 {{ form.as_p }}
                                 <p style="margin-top: 3rem;"><strong>Total Price:</strong> € <span id="totalPrice">{{ total_price }}</span></p>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
                         </form>
                     </div>
                 </div>
