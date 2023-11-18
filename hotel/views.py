@@ -12,7 +12,6 @@ from django.contrib import messages
 from django.contrib.messages import success
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import F
 
 
 class CityListView(View):
@@ -180,13 +179,10 @@ class BookRoomView(View):
         hotel = room.hotel
         city = hotel.city
 
-        booked_dates = Booking.objects.filter(room=room).values_list('checking_date', 'checkout_date')
-        booked_dates = [str(date) for dates in booked_dates for date in dates]
-
         total_price = room.price
         form = BookingForm(initial={'total_price': total_price})
 
-        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form, 'roomId': room.id, 'booked_dates': booked_dates}
+        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form}
 
         return render(request, self.template_name, context)
 
@@ -195,7 +191,15 @@ class BookRoomView(View):
         room = get_object_or_404(Room, slug=slug)
         hotel = room.hotel
         city = hotel.city
-        form = BookingForm(request.POST)
+        # form = BookingForm(request.POST)
+
+        booking_id = request.POST.get('booking_id')
+        
+        if booking_id:
+            booking = get_object_or_404(Booking, pk=booking_id, customer=request.user)
+            form = BookingForm(request.POST, instance=booking)
+        else:
+            form = BookingForm(request.POST)
 
         if form.is_valid():
             booking = form.save(commit=False)

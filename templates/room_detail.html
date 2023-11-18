@@ -25,7 +25,7 @@
               <label for="checkout" class="form-label">Check-Out Date</label>
               <input type="date" class="form-control" id="checkout" name="checkout">
             </div>
-            <button type="submit" class="btn btn-primary btn-block ">Search</button>
+            <button type="submit" class="btn btn-primary btn-block custom-search-btn">Search</button>
           </form>
         </div>
       </div>
@@ -66,7 +66,7 @@
           <p>Posting as: {{ user.username }}</p>
           <form method="post" style="margin-top: 1em">
             {{ reviews_form | crispy }} {% csrf_token %}
-            <button type="submit" class="btn btn-warning btn-block mt-2">Submit</button>
+            <button type="submit" class="btn btn-warning btn-block mt-2 custom-search-btn ">Submit</button>
           </form>
           {% endif %}
           {% endif %}
@@ -125,7 +125,8 @@
               </div>
             </div>
             <!-- Booking Button -->
-            <a href="{% url 'book_room' room.slug %}" class="btn btn-primary btn-block" {% if not user.is_authenticated %}
+            <a href="{% url 'book_room' room.slug %}" class="btn btn-primary btn-block custom-search-btn " 
+            {% if not user.is_authenticated %}
               data-bs-toggle="modal" data-bs-target="#loginModal" {% endif %}>Book now</a>
           </div>
         </div>

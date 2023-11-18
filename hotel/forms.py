@@ -6,6 +6,7 @@ from datetime import date, datetime
 from django.core.validators import RegexValidator, EmailValidator,  MinLengthValidator, MaxLengthValidator
 from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.forms import PasswordResetForm
+from django.core.exceptions import ValidationError
 
 
 class Guest_reviewsForm(forms.ModelForm):
@@ -86,21 +87,47 @@ class BaseBookingForm(forms.ModelForm):
         widget=forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]))
 
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        self.room = kwargs.pop('room', None) 
+        super(BaseBookingForm, self).__init__(*args, **kwargs)
+
     def clean(self):
         cleaned_data = super().clean()
         checking_date = cleaned_data.get('checking_date')
         checkout_date = cleaned_data.get('checkout_date')
+        room = self.room 
 
-        if checking_date and checkout_date and checkout_date < checking_date:
-            self.add_error('checkout_date', 'Checkout date must be later than checking date.')
-        elif checkout_date == checking_date:
-            self.add_error('checkout_date', 'Checkout date cannot be the same as checking date.')
 
+        print(f"Checking date: {checking_date}")
+        print(f"Checkout date: {checkout_date}")
+        print(f"Room: {room}")
+
+
+        if checking_date and checkout_date and room:
+            if self.instance:
+                overlapping_bookings = Booking.objects.filter(
+                    room=room,
+                    checkout_date__gt=checking_date,
+                    checking_date__lt=checkout_date,
+                    customer=self.request.user
+                ).exclude(pk=self.instance.pk)
+            else:
+                overlapping_bookings = Booking.objects.filter(
+                    room=room,
+                    checkout_date__gt=checking_date,
+                    checking_date__lt=checkout_date,
+                    customer=self.request.user
+                )
+
+            if overlapping_bookings.exists():
+                raise ValidationError('Выбранные даты перекрываются с существующими бронированиями для этой комнаты.')
+
+        return cleaned_data
 
     class Meta:
         model = Booking
-        fields = ['first_name', 'last_name', 'checking_date', 'checkout_date',  'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
-
+        fields = ['first_name', 'last_name', 'checking_date', 'checkout_date', 'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
 
 
 class BookingForm(BaseBookingForm):

@@ -66,9 +66,6 @@ body {
   align-items: center;
 }
 
-.ms-auto {
-  margin-right: 100px!important;
-}
 .nav-link {
   font-size: 18px;
 }
@@ -303,7 +300,7 @@ body {
 .helptext, label[for="id_login"], 
 label[for="id_password"], 
 label[for="id_username"], 
-label[for="id_email"], 
+.login label[for="id_email"],
 label[for="id_password1"], 
 label[for="id_password2"]  {
   display: none;

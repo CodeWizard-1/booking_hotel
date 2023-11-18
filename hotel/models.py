@@ -125,7 +125,7 @@ class Guest_reviews(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE,
                              related_name="rooms")
     name = models.CharField(max_length=80)
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

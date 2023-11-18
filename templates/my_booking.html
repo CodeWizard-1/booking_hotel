@@ -37,9 +37,9 @@
                                 </p>
                                 <div class="button-container">
                                     {% if not booking.is_cancelled %}
-                                    <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit
+                                    <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary custom-search-btn ">Edit
                                         Booking</a>
-                                    <button class="btn btn-danger cancel-booking-button" data-bs-toggle="modal"
+                                    <button class="btn btn-danger cancel-booking-button custom-search-btn" data-bs-toggle="modal"
                                         data-bs-target="#confirmModal{{ booking.id }}">Cancel Booking</button>
                                     {% else %}
                                     <button class="btn btn-secondary" disabled>
