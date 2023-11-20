@@ -7,6 +7,8 @@ from django.core.validators import RegexValidator, EmailValidator,  MinLengthVal
 from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.exceptions import ValidationError
+from django.db.models import Q
+
 
 
 class Guest_reviewsForm(forms.ModelForm):
@@ -92,7 +94,6 @@ class BaseBookingForm(forms.ModelForm):
         self.room = kwargs.pop('room', None) 
         super(BaseBookingForm, self).__init__(*args, **kwargs)
 
-
     class Meta:
         model = Booking
         fields = ['first_name', 'last_name', 'checking_date', 'checkout_date', 'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
@@ -121,6 +122,9 @@ class BookingForm(BaseBookingForm):
         checkout_date = cleaned_data.get('checkout_date')
 
         if checking_date and checkout_date:
+            if checking_date >= checkout_date:
+                raise ValidationError('Check-out date must be later than check-in date.')
+
             room = self.room
             existing_bookings = Booking.objects.filter(
                 Q(room=room),
@@ -130,7 +134,7 @@ class BookingForm(BaseBookingForm):
 
             if existing_bookings.filter(Q(is_cancelled=False)).exists():
                 raise ValidationError('The selected dates overlap with an existing booking for this room.')
-                
+
         return cleaned_data
     
 
@@ -138,5 +142,26 @@ class BookingForm(BaseBookingForm):
 class BookingEditForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
+
+    def clean(self):
+        cleaned_data = super().clean()
+        checking_date = cleaned_data.get('checking_date')
+        checkout_date = cleaned_data.get('checkout_date')
+
+        if checking_date and checkout_date:
+            if checking_date >= checkout_date:
+                raise ValidationError('Check-out date must be later than check-in date.')
+
+            room = self.room
+            existing_bookings = Booking.objects.filter(
+                Q(room=room),
+                Q(Q(checkout_date__gt=checking_date) & Q(checking_date__lt=checkout_date)) |
+                Q(Q(checking_date__lt=checkout_date) & Q(checkout_date__gt=checking_date)),
+            )
+
+            if existing_bookings.filter(Q(is_cancelled=False)).exists():
+                raise ValidationError('The selected dates overlap with an existing booking for this room.')
+
+        return cleaned_data
 
 

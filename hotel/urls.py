@@ -1,7 +1,9 @@
 from . import views
 from django.urls import path
-from .views import EditBookingView, SuccessBookingView, CityListView
+from .views import HotelList, SuccessBookingView, BookingDetailView, CancelBookingView, EditBookingView, HotelDetail, RoomDetail, BookRoomView, SearchView, CityHotelsView, RoomLike, SuccessBookingView, CityListView, error_404
+from django.conf.urls import handler404
 
+handler404 = error_404
 
 urlpatterns = [
     path('', views.HotelList.as_view(), name='home'),

@@ -291,3 +291,6 @@ class RoomLike(View):
             room.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('room_detail', args=[slug]))
+
+def error_404(request, exception):
+    return render(request, '404.html', status=404)

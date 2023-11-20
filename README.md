@@ -32,7 +32,24 @@
 ## Design & Planning:
 
 ### User Stories
-Write your user stories in this section
+User Story 1: As a website user, I want to see a list of available hotels in a selected city so I can choose one for booking.
+User Story 2: As a website user, I want to see detailed information about a hotel, including photos, prices, and descriptions, to make an informed decision
+User Story 3: As a website user, I want to have the ability to filter hotels by various criteria, such as price, rating, and location, to simplify my selection
+User Story 4: As a website user, I want a search function to find a hotel by its name, so I can quickly locate a specific hotel
+User Story 5: As a website user, I want to register an account to access additional features, such as saving favorite hotels
+User Story 6: As a website user, I want the option to recover my password if I forget it, to regain access to my account
+User Story 7: As a website user, I want the ability to book a hotel by selecting dates and providing necessary information
+User Story 8: As a website user, I want to see a booking confirmation with order details
+User Story 9: As a website user, I want to see my past booking history to keep track of and manage my reservations
+User Story 10: As a website user, I want the option to cancel a hotel booking in case my plans change
+User Story 11: As a website user, I want to read reviews from other guests about hotels to evaluate service quality
+User Story 12: As a website user, I want to be able to like and comment to share my experience
+User Story 13: As a website user, I want to add hotels to my favorites list for future consideration
+User Story 14: As a website user, I want to see the total cost of my stay, including any additional expenses
+User Story 15: As a website user, I want to see information about the amenities and services offered by each hotel
+User Story 16: As a website user, I want to see the contact information for hotels to get in touch with them
+User Story 16: As a website user, I want the ability to log in to my account using my username and password
+
 ### Wireframes
 Attach wireframes in this section
 ### Agile Methodology
