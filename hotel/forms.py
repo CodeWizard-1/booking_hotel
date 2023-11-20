@@ -92,38 +92,6 @@ class BaseBookingForm(forms.ModelForm):
         self.room = kwargs.pop('room', None) 
         super(BaseBookingForm, self).__init__(*args, **kwargs)
 
-    def clean(self):
-        cleaned_data = super().clean()
-        checking_date = cleaned_data.get('checking_date')
-        checkout_date = cleaned_data.get('checkout_date')
-        room = self.room 
-
-
-        print(f"Checking date: {checking_date}")
-        print(f"Checkout date: {checkout_date}")
-        print(f"Room: {room}")
-
-
-        if checking_date and checkout_date and room:
-            if self.instance:
-                overlapping_bookings = Booking.objects.filter(
-                    room=room,
-                    checkout_date__gt=checking_date,
-                    checking_date__lt=checkout_date,
-                    customer=self.request.user
-                ).exclude(pk=self.instance.pk)
-            else:
-                overlapping_bookings = Booking.objects.filter(
-                    room=room,
-                    checkout_date__gt=checking_date,
-                    checking_date__lt=checkout_date,
-                    customer=self.request.user
-                )
-
-            if overlapping_bookings.exists():
-                raise ValidationError('Выбранные даты перекрываются с существующими бронированиями для этой комнаты.')
-
-        return cleaned_data
 
     class Meta:
         model = Booking
@@ -133,6 +101,27 @@ class BaseBookingForm(forms.ModelForm):
 class BookingForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        checking_date = cleaned_data.get('checking_date')
+        checkout_date = cleaned_data.get('checkout_date')
+
+        if checking_date and checkout_date:
+            room = self.room
+            existing_bookings = Booking.objects.filter(
+                room=room,
+                is_cancelled=False,
+                checkout_date__gt=checking_date,
+                checking_date__lt=checkout_date,
+            )
+
+            if existing_bookings.exists():
+                raise ValidationError('The selected dates overlap with an existing booking for this room.')
+
+        return cleaned_data
+    
 
 
 class BookingEditForm(BaseBookingForm):

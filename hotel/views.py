@@ -180,7 +180,7 @@ class BookRoomView(View):
         city = hotel.city
 
         total_price = room.price
-        form = BookingForm(initial={'total_price': total_price})
+        form = BookingForm(request=request, room=room, initial={'total_price': total_price})
 
         context = {'room': room, 'city': city, 'hotel': hotel, 'form': form}
 
@@ -191,15 +191,8 @@ class BookRoomView(View):
         room = get_object_or_404(Room, slug=slug)
         hotel = room.hotel
         city = hotel.city
-        # form = BookingForm(request.POST)
+        form = BookingForm(request.POST, request=request, room=room)
 
-        booking_id = request.POST.get('booking_id')
-        
-        if booking_id:
-            booking = get_object_or_404(Booking, pk=booking_id, customer=request.user)
-            form = BookingForm(request.POST, instance=booking)
-        else:
-            form = BookingForm(request.POST)
 
         if form.is_valid():
             booking = form.save(commit=False)
