@@ -67,7 +67,7 @@ class BaseBookingForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-select'}), required=True)
 
     children_count = forms.ChoiceField(label='Children',
-        choices=[(i, str(i)) for i in range(0, 10)],
+        choices=[(i, str(i)) for i in range(0, 4)],
         widget=forms.Select(attrs={'class': 'form-select'}), required=True)
 
     children_ages = forms.CharField(
@@ -102,6 +102,18 @@ class BaseBookingForm(forms.ModelForm):
 class BookingForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
+
+
+    def __init__(self, *args, **kwargs):
+        super(BookingForm, self).__init__(*args, **kwargs)
+
+        # Динамическое заполнение выбора для поля people_count на основе capacity выбранной комнаты
+        room = self.room
+        if room:
+            capacity = room.capacity
+            self.fields['people_count'].choices = [
+                (i, str(i)) for i in range(1, capacity + 1)
+            ]
 
 
     def clean(self):
