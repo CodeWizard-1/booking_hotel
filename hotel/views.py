@@ -210,9 +210,14 @@ class BookingDetailView(View):
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        bookings = Booking.objects.filter(customer=user).order_by('-id')
+        bookings = Booking.objects.filter(customer=user).order_by('-is_cancelled','-id')
+        active_bookings = [booking for booking in bookings if not booking.is_cancelled]
+        cancelled_bookings = [booking for booking in bookings if booking.is_cancelled]
+        
+        sorted_bookings = active_bookings + cancelled_bookings
+
         context = {
-            'bookings': bookings,
+            'bookings': sorted_bookings,
         }
         
         if not bookings:
