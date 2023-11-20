@@ -7,6 +7,7 @@ from django.core.validators import RegexValidator, EmailValidator,  MinLengthVal
 from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 
 
 class Guest_reviewsForm(forms.ModelForm):
@@ -111,15 +112,14 @@ class BookingForm(BaseBookingForm):
         if checking_date and checkout_date:
             room = self.room
             existing_bookings = Booking.objects.filter(
-                room=room,
-                is_cancelled=False,
-                checkout_date__gt=checking_date,
-                checking_date__lt=checkout_date,
+                Q(room=room),
+                Q(Q(checkout_date__gt=checking_date) & Q(checking_date__lt=checkout_date)) |
+                Q(Q(checking_date__lt=checkout_date) & Q(checkout_date__gt=checking_date)),
             )
 
-            if existing_bookings.exists():
+            if existing_bookings.filter(Q(is_cancelled=False)).exists():
                 raise ValidationError('The selected dates overlap with an existing booking for this room.')
-
+                
         return cleaned_data
     
 
