@@ -1,39 +1,111 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome,
+![Deployed Site View](./documentation/image-15.png)
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+<br>
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+[View the deployed app on Heroku](https://booking-hotel-a07bb3df7136.herokuapp.com/)
+## Table Of Contents:
+1. [Design & Planning](#design-&-planning)
+    * [User Stories](#user-stories)
+    * [Wireframes](#wireframes)
+    * [Agile Methodology](#agile-methodology)
+    * [Typography](#typography)
+    * [Colour Scheme](#colour-scheme)
+    * [Database Diagram](#database-diagram)
+    
+2. [Features](#features)
+    * [Navigation](#Navigation-bar)
+    * [Footer](#footer)
+    * [Home page](#home-page)
+    * [add your pages](#)
+    * [Login page](#profile-page)
+    * [Sign up page](#signup-page)
 
-## Codeanywhere Reminders
+3. [Technologies Used](#technologies-used)
+4. [Libraries](#libraries-used)
+5. [Testing](#testing)
+6. [Bugs](#bugs)
+7. [Deployment](#deployment)
+8. [Credits](#credits)
+9. [Acknowledgment](#acknowledgment)
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+## Design & Planning:
 
-`python3 -m http.server`
+### User Stories
+Write your user stories in this section
+### Wireframes
+Attach wireframes in this section
+### Agile Methodology
+Explain agile approach to your project (itterations, user stories, tasks,acceptance criteria, labels, story points...) and insert screenshoots of your Kanban board 
+### Typography
+Explain font you've used for your project
+### Colour Scheme
+Screenshoot of the colour scheme for your project
+### DataBase Diagram
+Image of the database diagram for your project, you can name your database models as well and how they are connected
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+## Features:
+Explain your features on the website,(navigation, pages, links, forms, input fields, CRUD....)
+## Technologies Used
+List of technologies used for your project
+## Testing
+Important part of your README!!!
+### Google's Lighthouse Performance
+Screenshots of certain pages and scores (mobile and desktop)
+### Browser Compatibility
+Check compatability with different browsers (Firefox, Edge, Chrome)
+### Responsiveness
+Screenshots of the responsivness, pick few devices
+### Code Validation
+Validate your code HTML, CSS, JS & Python (Validate all your templates, static files, views, forms, models, urls), display screenshots
+### Manual Testing user stories
+Test all your user stories, you an create table 
+User Story |  Test | Pass
+--- | --- | :---:
+paste here you user story | what is visible to the user and what action they should perform | &check;
+- attach screenshot
+### Manual Testing features
+Test all your features, you can use the same approach 
+| Status | feature
+|:-------:|:--------|
+| &check; | description
+- attach screenshot
+### Automated testing
+If you created automated tests, insert screenshoots of your coverage and number of tests
+## Bugs
+List of bugs and how did you fix them, you can create simple table
+| Bug | Fix
+|:-------:|:--------|
+|   |    |
+## Deployment
+This website is deployed to Heroku from a GitHub repository, the following steps were taken:
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+#### Creating Repository on GitHub
+- First make sure you are signed into [Github](https://github.com/) and go to the code institutes template, which can be found [here](https://github.com/Code-Institute-Org/gitpod-full-template).
+- Then click on **use this template** and select **Create a new repository** from the drop-down. Enter the name for the repository and click **Create repository from template**.
+- Once the repository was created, I clicked the green **gitpod** button to create a workspace in gitpod so that I could write the code for the site.
 
-`http_server`
+#### Creating an app on Heroku
+- After creating the repository on GitHub, head over to [heroku](https://www.heroku.com/) and sign in.
+- On the home page, click **New** and **Create new app** from the drop down.
+- Give the app a name(this must be unique) and select a **region** I chose **Europe** as I am in Europe, Then click **Create app**.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+#### Create a database On ElephantSQL
+- Log into the [ElephantSQL](https://www.elephantsql.com/) website and click **Create new Instance**
+- Enter a **Name** and keep the plan as **Tiny Turtle Free**, then **tags** field can be left blank, Select a region closest to you, I selected **EU-West-1(Ireland)** as I'm in Ireland. Then click **Review** and afterward click **create an instance**.
+- On The Dashboard click on your database instance name.
+- You will see the details for your database instance, in the URL section click on the copy icon to copy the database URL.
+- Head over to gitpod and create a **Database URL** environment variable in your env.py file and set it equal to the copied URL.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
-
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
----
-
-Happy coding!
+#### Deploying to Heroku.
+- Head back over to [heroku](https://www.heroku.com/) and click on your **app** and then go to the **Settings tab**
+- On the **settings page** scroll down to the **config vars** section and enter the **DATABASE_URL** which you will set equal to the elephantSQL URL, create **Secret key** this can be anything,
+**CLOUDINARY_URL** this will be set to your cloudinary url and finally **Port** which will be set to 8000.
+- Then scroll to the top and go to the **deploy tab** and go down to the **Deployment method** section and select **Github** and then sign into your account.
+- Below that in the **search for a repository to connect to** search box enter the name of your repository that you created on **GitHub** and click **connect**
+- Once it has been connected scroll down to the **Manual Deploy** and click **Deploy branch** when it has deployed you will see a **view app** button below and this will bring you to your newly deployed app.
+- Please note that when deploying manually you will have to deploy after each change you make to your repository.
+## Credits
+List of used resources for your website (text, images, snippets of code, projects....)
+## Acknowledgment
+Mention people who helped you with your project(mentor, colleagues...)
