@@ -7,7 +7,6 @@ from django.core.validators import RegexValidator, EmailValidator,  MinLengthVal
 from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.exceptions import ValidationError
-from django.db.models import Q
 
 
 class Guest_reviewsForm(forms.ModelForm):
