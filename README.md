@@ -1,9 +1,8 @@
-
-![Deployed Site View](./documentation/image-15.png)
+![Alt text](image-2.png)
 
 <br>
 
-[View the deployed app on Heroku](https://booking-hotel-a07bb3df7136.herokuapp.com/)
+[View the deployed site on Heroku](https://booking-hotel-a07bb3df7136.herokuapp.com/)
 ## Table Of Contents:
 1. [Design & Planning](#design-&-planning)
     * [User Stories](#user-stories)

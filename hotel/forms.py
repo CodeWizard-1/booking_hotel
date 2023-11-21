@@ -15,6 +15,12 @@ class Guest_reviewsForm(forms.ModelForm):
     class Meta:
         model = Guest_reviews
         fields = ('body', )
+        labels = {
+            'body': 'Message',  # Устанавливаем желаемую метку
+        }
+        widgets = {
+            'body': forms.Textarea(attrs={'placeholder': 'Type your message here...'}),
+        }
 
 
 class BaseBookingForm(forms.ModelForm):

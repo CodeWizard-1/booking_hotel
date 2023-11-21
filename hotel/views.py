@@ -56,7 +56,7 @@ class HotelDetail(DetailView):
 
 class CityHotelsView(View):
     template_name = 'city_hotels.html'
-    paginate_by = 6
+    paginate_by = 4
 
     def get(self, request, city_id):
         city = City.objects.get(pk=city_id)
