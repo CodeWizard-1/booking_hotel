@@ -1,67 +1,68 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <section class="section bg-white"> 
-    <div class="container mt-3 mb-4">
-        <h2 class="text-9 text-center fw-500">Reservation completed successfully!</h2>
-        <p class="text-9 text-center">Thank you for choosing our hotel. Your booking was successful.</p>
-        <p class="text-9 text-center">You can view the details of your reservation below:</p>
+    <div class="container">
         <div class="row">
-            <div class="col-md-6 mx-auto" >
-                <div class="card shadow mb-4 rounded-4">
-                    <div class="card-body">
-                        <div class="reservation-details">
-                            <p><strong>City:</strong> {{ booking.room.hotel.city.city_name }}</p>
-                            <p><strong>Hotel:</strong> {{ booking.room.hotel.hotel_name }}</p>
-                            <p><strong>Room:</strong> {{ booking.room.room_name }}</p>
-                            <p><strong>Check-in Date:</strong> {{ booking.checking_date|date:"d F Y" }}</p>
-                            <p><strong>Check-out Date:</strong> {{ booking.checkout_date|date:"d F Y" }}</p>
-                            <p><strong>Total Price:</strong> {{ total_price }} €</p>
-                            {% if booking.is_cancelled %}
-                            <p>Status: Cancelled</p>
-                            {% else %}
-                                <div class="button-container justify-content-center">
-                                    <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit
-                                        Booking</a>
-                                    <button class="btn btn-danger cancel-booking-button" data-bs-toggle="modal"
-                                        data-bs-target="#confirmModal{{ booking.id }}">Cancel Booking</button>
-                                </div>
-                            {% endif %}
+            <div class="col-md-12 text-center  mt-3">
+                <h2 class="text-9 text-center fw-500">Reservation completed successfully!</h2>
+                <p class="text-9 text-center">Thank you for choosing our hotel. Your booking was successful. <br> You can view the details of your reservation below:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 d-flex align-items-center justify-content-center  ">
+                <div class="card card-body shadow mb-4 rounded-4">
+                    <p><strong>City:</strong> {{ booking.room.hotel.city.city_name }}</p>
+                    <p><strong>Hotel:</strong> {{ booking.room.hotel.hotel_name }}</p>
+                    <p><strong>Room:</strong> {{ booking.room.room_name }}</p>
+                    <p><strong>Check-in Date:</strong> {{ booking.checking_date|date:"d F Y" }}</p>
+                    <p><strong>Check-out Date:</strong> {{ booking.checkout_date|date:"d F Y" }}</p>
+                    <p><strong>Total Price:</strong> € {{ total_price }} </p>
+                    {% if booking.is_cancelled %}
+                    <p>Status: Cancelled</p>
+                    {% else %}
+                        <div class="button-container justify-content-center">
+                            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit
+                                Booking</a>
+                            <button class="btn btn-danger cancel-booking-button" data-bs-toggle="modal"
+                                data-bs-target="#confirmModal{{ booking.id }}">Cancel Booking</button>
                         </div>
-                        <br>
-                        <div>
-                            <p>Alternatively, you can also view your booking on the
-                                <a href="{% url 'my_booking' %}">My booking</a> page. 
-                            If you prefer, you can make another selection by navigating to the main menu
-                            <a href="{% url 'home' %}">here</a>.
-                            </p>
-                            </p>
-                        </div>
+                    {% endif %}
+                    <br>
+                    <div>
+                        <p>Alternatively, you can also view your booking on the
+                            <a href="{% url 'my_booking' %}">My booking</a> page. 
+                        If you prefer, you can make another selection by navigating to the main menu
+                        <a href="{% url 'home' %}">here</a>.
+                        </p>
                     </div>
-                </div> 
+                </div>
+            </div>
+            <div class="col-md-6 card-body d-flex align-items-center justify-content-center fixed-image-container">
+                <img src="{% static 'images/success.webp' %}" alt="Form Image" class="img-fluid" style="max-width: 80%; height: auto;">
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="confirmModal{{ booking.id }}" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Confirm Cancellation of Booking</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to cancel this booking?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
-                <form method="post" action="{% url 'cancel_booking' booking.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-danger" name="cancel_booking">Yes</button>
-                </form>
+    <div class="modal fade" id="confirmModal{{ booking.id }}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Cancellation of Booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to cancel this booking?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                    <form method="post" action="{% url 'cancel_booking' booking.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" name="cancel_booking">Yes</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- ----------------------------------------------- -->
+</section>
 {% endblock %}
+

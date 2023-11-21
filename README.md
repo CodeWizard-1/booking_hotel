@@ -32,27 +32,80 @@
 
 ### User Stories
 User Story 1: As a website user, I want to see a list of available hotels in a selected city so I can choose one for booking.
+
 User Story 2: As a website user, I want to see detailed information about a hotel, including photos, prices, and descriptions, to make an informed decision
+
 User Story 3: As a website user, I want to have the ability to filter hotels by various criteria, such as price, rating, and location, to simplify my selection
 User Story 4: As a website user, I want a search function to find a hotel by its name, so I can quickly locate a specific hotel
+
 User Story 5: As a website user, I want to register an account to access additional features, such as saving favorite hotels
+
 User Story 6: As a website user, I want the option to recover my password if I forget it, to regain access to my account
+
 User Story 7: As a website user, I want the ability to book a hotel by selecting dates and providing necessary information
+
 User Story 8: As a website user, I want to see a booking confirmation with order details
+
 User Story 9: As a website user, I want to see my past booking history to keep track of and manage my reservations
+
 User Story 10: As a website user, I want the option to cancel a hotel booking in case my plans change
+
 User Story 11: As a website user, I want to read reviews from other guests about hotels to evaluate service quality
+
 User Story 12: As a website user, I want to be able to like and comment to share my experience
+
 User Story 13: As a website user, I want to add hotels to my favorites list for future consideration
+
 User Story 14: As a website user, I want to see the total cost of my stay, including any additional expenses
+
 User Story 15: As a website user, I want to see information about the amenities and services offered by each hotel
+
 User Story 16: As a website user, I want to see the contact information for hotels to get in touch with them
-User Story 16: As a website user, I want the ability to log in to my account using my username and password
+
+User Story 17: As a website user, I want the ability to log in to my account using my username and password
 
 ### Wireframes
-Attach wireframes in this section
+
+**Data base Models**
+
+
+**Interface Model**
+![Alt text](Home.png) ![Alt text](<Sign Up.png>)   ![Alt text](<Sign In.png>) ![Alt text](<Hotels in city.png>) ![Alt text](<Hotel description.png>)  ![Alt text](<Room description.png>) ![Alt text](Booking.png)  ![Alt text](<Success page.png>) ![Alt text](<my booking.png>) ![Alt text](<Sign Out.png>) ![Alt text](<Mobile Home.png>) ![Alt text](<Mobile Hotel description.png>) ![Alt text](<Mobile Room description.png>)    
 ### Agile Methodology
-Explain agile approach to your project (itterations, user stories, tasks,acceptance criteria, labels, story points...) and insert screenshoots of your Kanban board 
+When working on the project using the Agile approach, I took each user story and carefully determined its significance and priority. I introduced labels to distinguish tasks by their importance.
+
+**Definition and Planning:**
+
+At the beginning of each iteration, I conducted planning and selected user stories for work. I identified which ones were "must-have" for the successful completion of the project and which were "could-have" or "should-have" for improving functionality.
+
+![Alt text](label.png)
+
+
+**Iteration Creation:**
+
+Each iteration represented a specific period, usually a few days, during which I focused on completing the selected user stories.
+
+**Applying Labels and Updating Status:**
+
+Labels like "must-have," "should-have," and "could-have" were used to indicate the importance of the task. 
+
+**Updating on the Kanban Board:**
+
+The Kanban board on GitHub visualized the entire development process. Moving tasks through columns reflected their current status, from "To Do" to "In Progress," and "Done."
+
+![Alt text](kanban.png)
+
+**Regular Reviews and Retrospectives:**
+
+At the end of each iteration, I conducted a review of completed work and held a retrospective to identify improvements in the process.
+
+**Repetition:**
+
+In the next iteration, I took new user stories, re-evaluating their priority and importance to continue the project's development.
+
+This approach helped me effectively manage priorities and focus on important tasks in each iteration, ensuring the project progressed in the desired direction.
+
+
 ### Typography
 Explain font you've used for your project
 ### Colour Scheme

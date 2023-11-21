@@ -41,7 +41,7 @@
             <p class="font-weight-bold">
               {{ review.name }}
               <span class="text-muted font-weight-normal">
-                {{ review.created_on }} wrote:
+                wrote {{ review.created_on|date:"d.m.Y" }}:
               </span>
             </p>
             {{ review.body | linebreaks }}
