@@ -27,6 +27,8 @@ class BaseBookingForm(forms.ModelForm):
     checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_in_date'}),  initial=date.today())
     checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_out_date'}), initial=date.today())
 
+
+
     phone_number = forms.CharField(
         label='Phone Number',
         widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'tel'}),
@@ -113,7 +115,7 @@ class BookingForm(BaseBookingForm):
     def __init__(self, *args, **kwargs):
         super(BookingForm, self).__init__(*args, **kwargs)
 
-        # Динамическое заполнение выбора для поля people_count на основе capacity выбранной комнаты
+    
         room = self.room
         if room:
             capacity = room.capacity

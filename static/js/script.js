@@ -1,5 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const today = new Date();
+
+    const checkinInput = document.getElementById('checkin');
+    const checkinDatepicker = new Datepicker(checkinInput, {
+        startDate: new Date(),
+        minDate: today,
+    });
+
+    const checkoutInput = document.getElementById('checkout');
+    const checkoutDatepicker = new Datepicker(checkoutInput, {
+        startDate: new Date(),
+        minDate: today,
+    });
+
+
+
     setTimeout(function () {
         let messages = document.getElementById('msg');
         let alert = new bootstrap.Alert(messages);
@@ -24,32 +40,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     updateTotalPrice();
-
-
-    $( function() {
-        $( "checkin").datepicker();
-      } );
-
-    // $(document).ready(function () {
-       
-    //     $('#checkin').datepicker({
-    //         format: 'yyyy-mm-dd',
-    //         autoclose: true,
-    //         todayHighlight: true,
-    //         language: 'ru',
-    //         container: '#checkin-container', 
-    //         orientation: 'bottom' 
-    //     });
-    
-        
-    //     $('#checkout').datepicker({
-    //         format: 'yyyy-mm-dd',
-    //         autoclose: true,
-    //         todayHighlight: true,
-    //         language: 'ru',
-    //         container: '#checkout-container', 
-    //         orientation: 'bottom'
-    //     });
-    // });
 
 });
