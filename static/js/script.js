@@ -1,21 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const today = new Date();
-
-    const checkinInput = document.getElementById('checkin');
-    const checkinDatepicker = new Datepicker(checkinInput, {
-        startDate: new Date(),
-        minDate: today,
-    });
-
-    const checkoutInput = document.getElementById('checkout');
-    const checkoutDatepicker = new Datepicker(checkoutInput, {
-        startDate: new Date(),
-        minDate: today,
-    });
-
-
-
     setTimeout(function () {
         let messages = document.getElementById('msg');
         let alert = new bootstrap.Alert(messages);

@@ -1,4 +1,4 @@
-![Alt text](image-2.png)
+![Alt text](hotel/documentation/image-2.png)
 
 <br>
 
@@ -67,10 +67,13 @@ User Story 17: As a website user, I want the ability to log in to my account usi
 ### Wireframes
 
 **Data base Models**
+The data models for the project are shown below:
 
+![Alt text](hotel/documentation/drawSQL-hotel.png) 
 
 **Interface Model**
-![Alt text](Home.png) ![Alt text](<Sign Up.png>)   ![Alt text](<Sign In.png>) ![Alt text](<Hotels in city.png>) ![Alt text](<Hotel description.png>)  ![Alt text](<Room description.png>) ![Alt text](Booking.png)  ![Alt text](<Success page.png>) ![Alt text](<my booking.png>) ![Alt text](<Sign Out.png>) ![Alt text](<Mobile Home.png>) ![Alt text](<Mobile Hotel description.png>) ![Alt text](<Mobile Room description.png>)    
+The interface models for the project are shown below:
+![Alt text](hotel/documentation/Home.png) ![Alt text](<hotel/documentation/Sign Up.png>)   ![Alt text](<hotel/documentation/Sign In.png>) ![Alt text](<hotel/documentation/Hotels in city.png>) ![Alt text](<hotel/documentation/Hotel description.png>)  ![Alt text](<hotel/documentation/Room description.png>) ![Alt text](hotel/documentation/Booking.png)  ![Alt text](<Success page.png>) ![Alt text](<hotel/documentation/my booking.png>) ![Alt text](<hotel/documentation/Sign Out.png>) ![Alt text](<hotel/documentation/Mobile Home.png>) ![Alt text](<hotel/documentation/Mobile Hotel description.png>) ![Alt text](<hotel/documentation/Mobile Room description.png>)    
 ### Agile Methodology
 When working on the project using the Agile approach, I took each user story and carefully determined its significance and priority. I introduced labels to distinguish tasks by their importance.
 
@@ -78,7 +81,7 @@ When working on the project using the Agile approach, I took each user story and
 
 At the beginning of each iteration, I conducted planning and selected user stories for work. I identified which ones were "must-have" for the successful completion of the project and which were "could-have" or "should-have" for improving functionality.
 
-![Alt text](label.png)
+![Alt text](hotel/documentation/label.png)
 
 
 **Iteration Creation:**
@@ -93,7 +96,7 @@ Labels like "must-have," "should-have," and "could-have" were used to indicate t
 
 The Kanban board on GitHub visualized the entire development process. Moving tasks through columns reflected their current status, from "To Do" to "In Progress," and "Done."
 
-![Alt text](kanban.png)
+![Alt text](hotel/documentation/kanban.png)
 
 **Regular Reviews and Retrospectives:**
 
@@ -107,14 +110,127 @@ This approach helped me effectively manage priorities and focus on important tas
 
 
 ### Typography
-Explain font you've used for your project
+I chose the Roboto and Lato fonts from Google Fonts for the project. Roboto with a weight of 300 gives a modern and lightweight appearance, ensuring good readability. Lato (weights 300 and 700) provides versatility and the ability to emphasize different parts of the content. These fonts convey modernity and professionalism, which is important for a hotel booking website.
 ### Colour Scheme
-Screenshoot of the colour scheme for your project
-### DataBase Diagram
-Image of the database diagram for your project, you can name your database models as well and how they are connected
+I chose blue, light blue, and white for my project. Blue for trust and professionalism, light blue for calmness and comfort, and white for cleanliness and clarity. These colors create a pleasant and professional atmosphere, which is important for a hotel booking website.
 
 ## Features:
-Explain your features on the website,(navigation, pages, links, forms, input fields, CRUD....)
+**CRUD Functionality**
+
+CRUD user functionality is primarily related to Booking:
+- Create: Users create a reservation by going through the entire user flow. The reservation is created after the user completes the checkout process.
+- Read: Users can view the reservations they have created by logging in.
+- Update: Users can edit a Booking by changing the information.
+- Delete: Users can cancel a reservation, which will remove it from the database.
+
+CRUD administration functionality exists for all models and is executed from the Django admin panel.
+
+**Authentication & Authorisation**
+
+Users can create an account on the registration page.
+Users can login from the login page.
+Login is required to access certain pages such as Booking, My Bookings and Edit Bookings. Requesting these pages without authorization will redirect users to the login page.
+
+
+![Alt text](image.png)
+
+login page
+
+![Alt text](image-2.png)
+
+If the user is not logged in at the time of booking a room, a modal window is displayed on the screen informing them of the need to register or log in using their username.
+
+![Alt text](image-5.png)
+
+If an authorized user decides to log out of their account, they will see the following message:
+
+![Alt text](image-18.png)
+
+**Navigation**
+
+The main navigation is located in the header and is present on all pages.
+The hamburger menu is present on mobile devices and expands to show the main navigation links.
+
+![Alt text](image-3.png)
+
+
+**Search**
+
+The hotel search form by city is located on the main page and allows users to search for hotels by selecting a city from a drop-down menu, the desired check-in date and check-out date.
+After which the user is redirected to a page that displays all hotels in the selected city.
+![Alt text](image-4.png)
+
+**Home page**
+
+On the main page there is a block with the advantages of booking on this site
+![Alt text](image-6.png)
+
+The next block is a block with selected offers of rooms from different hotels. The user can see basic information about the room, such as city, price per night, number of likes, hotel and room name. By clicking on the room card, the user will go directly to the room page.
+
+![Alt text](image-7.png)
+
+You can control which rooms will be added to this block on the main screen from the admin panel.
+
+![Alt text](image-12.png)
+![Alt text](image-8.png)
+
+The next block comes with selected hotels.
+
+
+![Alt text](image-9.png)
+
+Which hotels will be added to the main screen are also controlled from the admin panel.
+
+![Alt text](image-11.png)
+![Alt text](image-10.png)
+
+**Hotels**
+
+When searching for hotels in a specific city, the user is taken to a page with a list of hotels with an image of the hotel and brief information about the hotel.
+
+![Alt text](image-15.png)
+
+
+After selecting a hotel, the user clicks the “Show rooms and prices” button and goes to the hotel page with a detailed description and room options.
+
+![Alt text](image-14.png)
+
+After a brief overview of the room options at a given hotel, the user can select “More details” to learn more about the selected room.
+On the page of the selected room, the user can learn more about the room, read reviews about it, and if he has already been to this room before, he can leave his review about the room and like it if he wants.
+Only authorized users can leave reviews and like.
+![Alt text](image-16.png)
+
+
+After the user has decided to book a room and clicks the “Book Now” button, he is taken to the booking page where he needs to enter the necessary information.
+
+![Alt text](image-19.png)
+
+
+
+After the user has entered the necessary data correctly, he is redirected to a page informing the user about the successful reservation.
+
+![Alt text](image-20.png)
+
+
+If necessary, the user can immediately edit his data by clicking on the "Edit booking" button
+
+![Alt text](image-21.png)
+
+After changes are made, the user is automatically redirected to the "My Bookings" page.
+On this page, he can also go to the booking edit page or, if necessary, cancel the booking by clicking on the “Cancel booking” button.
+
+
+![Alt text](image-22.png)
+
+When choosing to cancel a booking, a modal window will appear in front of the user asking them to confirm the specified actions, and only after the user confirms the booking will the booking be cancelled.
+
+![Alt text](image-23.png)
+
+Canceled bookings are removed from the database but remain on the user’s page; the status changes to “Canceled” and the buttons become inactive. Moreover, if the user has several bookings, then bookings with an active status will go first, and those with an inactive status will be shuffled to the end of the list and come after the active ones.
+
+![](image-24.png)
+
+
 ## Technologies Used
 List of technologies used for your project
 ## Testing
