@@ -19,12 +19,12 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for "checkin" class="form-label">Check-In Date</label>
-                            <input type="text" class="form-control" id="checkin" name="checkin">
+                            <label for="checkin" class="form-label">Check-In Date</label>
+                            <input type="date" class="form-control" id="checkin" name="checkin">
                         </div>
                         <div class="mb-3">
-                            <label for "checkout" class="form-label">Check-Out Date</label>
-                            <input type="text" class="form-control" id="checkout" name="checkout">
+                            <label for="checkout" class="form-label">Check-Out Date</label>
+                            <input type="date" class="form-control" id="checkout" name="checkout">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block custom-search-btn">Search</button>
                     </form>
@@ -43,9 +43,9 @@
                     </div>
                     <div class="col-md-9">
                         <div class="property-details">
-                            <h3 class="property-title">
-                                <h3 class="post-title">{{ hotel.hotel_name }}</h3>
-                            </h3>
+                            <h2 class="property-title">
+                                <h2 class="post-title">{{ hotel.hotel_name }}</h2>
+                            </h2>
                             <div class="property-description">
                                     {{ hotel.description_hotel | safe | truncatewords_html:70}}
                                 </p>

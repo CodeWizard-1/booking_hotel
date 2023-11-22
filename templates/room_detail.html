@@ -18,12 +18,12 @@
               </select>
             </div>
             <div class="mb-3">
-              <label for "checkin" class="form-label">Check-In Date</label>
-              <input type="text" class="form-control" id="checkin" name="checkin">
+              <label for="checkin" class="form-label">Check-In Date</label>
+              <input type="date" class="form-control" id="checkin" name="checkin">
           </div>
           <div class="mb-3">
-              <label for "checkout" class="form-label">Check-Out Date</label>
-              <input type="text" class="form-control" id="checkout" name="checkout">
+              <label for="checkout" class="form-label">Check-Out Date</label>
+              <input type="date" class="form-control" id="checkout" name="checkout">
           </div>
             <button type="submit" class="btn btn-primary btn-block custom-search-btn">Search</button>
           </form>
@@ -70,10 +70,10 @@
               <form class="d-inline" action="{% url 'room_like' room.slug %}" method="POST">
                 {% csrf_token %}
                 {% if liked %}
-                <button type="submit" name="likeroom_id" value="{{room.slug}}" class="btn-like"><i
+                <button type="submit" name="likeroom_id" value="{{room.slug}}" class="btn-like" aria-label="Like this"><i
                     class="fas fa-heart"></i></button>
                 {% else %}
-                <button type="submit" name="likeroom_id" value="{{room.slug}}" class="btn-like"><i
+                <button type="submit" name="likeroom_id" value="{{room.slug}}" class="btn-like" aria-label="Like this"><i
                     class="far fa-heart"></i></button>
                 {% endif %}
               </form>
@@ -101,7 +101,7 @@
         <div class="col-12 mt-3 mb-3">
           <h3 class="post-title">{{ hotel.hotel_name }}</h3>
           <h2 class="post-title">{{ room.room_name }}</h2>
-          <img src="{{ room.room_image.url }}" alt="{{ room.room_image.url }}" class="img-fluid rounded-2">
+          <img src="{{ room.room_image.url }}" alt="{{ room.room_image.url }}" class="img-fluid rounded-2"  width="1200" height="1200">
         </div>
         <div class="col card mb-4 mt-3 left top">
           <div class="card-body">

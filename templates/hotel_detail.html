@@ -22,12 +22,12 @@
                         <div class="mb-3">
                         </div>
                         <div class="mb-3">
-                            <label for "checkin" class="form-label">Check-In Date</label>
-                            <input type="text" class="form-control" id="checkin" name="checkin">
+                            <label for="checkin" class="form-label">Check-In Date</label>
+                            <input type="date" class="form-control" id="checkin" name="checkin">
                         </div>
                         <div class="mb-3">
-                            <label for "checkout" class="form-label">Check-Out Date</label>
-                            <input type="text" class="form-control" id="checkout" name="checkout">
+                            <label for="checkout" class="form-label">Check-Out Date</label>
+                            <input type="date" class="form-control" id="checkout" name="checkout">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block custom-search-btn">Search</button>
                     </form>
@@ -55,18 +55,18 @@
     <table class="table table-bordered border-primary table-hover table-responsive text-center">
         <thead class="blue-hat">
             <tr>
-                <th>Room type</th>
-                <th>Description</th>
-                <th>Number of guests</th>
-                <th>Price per night</th>
-                <th></th>
+                <th scope="col">Room type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Number of guests</th>
+                <th scope="col">Price per night</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             {% for room in object.room_set.all %}
                 <tr>
-                    <td>{{ room.room_name }}</td>
-                    <td>{{ room.description_room | safe |truncatewords_html:20  }}</td>
+                    <td scope="row">{{ room.room_name }}</td>
+                    <td>{{ room.description_room | safe |truncatewords_html:20 }}</td>
                     <td>{{ room.capacity }}</td>
                     <td><strong>&euro; {{ room.price }}</strong></td>
                     <td>

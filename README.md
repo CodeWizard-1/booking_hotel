@@ -66,7 +66,7 @@ User Story 17: As a website user, I want the ability to log in to my account usi
 
 **Interface Model**
 The interface models for the project are shown below:
-![Alt text](hotel/documentation/Home.png) ![Alt text](<hotel/documentation/Sign Up.png>)   ![Alt text](<hotel/documentation/Sign In.png>) ![Alt text](<hotel/documentation/Hotels in city.png>) ![Alt text](<hotel/documentation/Hotel description.png>)  ![Alt text](<hotel/documentation/Room description.png>) ![Alt text](hotel/documentation/Booking.png)  ![Alt text](<Success page.png>) ![Alt text](<hotel/documentation/my booking.png>) ![Alt text](<hotel/documentation/Sign Out.png>) ![Alt text](<hotel/documentation/Mobile Home.png>) ![Alt text](<hotel/documentation/Mobile Hotel description.png>) ![Alt text](<hotel/documentation/Mobile Room description.png>)    
+![Alt text](hotel/documentation/Home.png) ![Alt text](<hotel/documentation/Sign Up.png>)   ![Alt text](<hotel/documentation/Sign In.png>) ![Alt text](<hotel/documentation/Hotels in city.png>) ![Alt text](<hotel/documentation/Hotel description.png>)  ![Alt text](<hotel/documentation/Room description.png>) ![Alt text](hotel/documentation/Booking.png)  ![Alt text](<hotel/documentation/Success page.png>) ![Alt text](<hotel/documentation/my booking.png>) ![Alt text](<hotel/documentation/Sign Out.png>) ![Alt text](<hotel/documentation/Mobile Home.png>) ![Alt text](<hotel/documentation/Mobile Hotel description.png>) ![Alt text](<hotel/documentation/Mobile Room description.png>)    
 ### Agile Methodology
 When working on the project using the Agile approach, I took each user story and carefully determined its significance and priority. I introduced labels to distinguish tasks by their importance.
 
