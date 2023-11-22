@@ -277,31 +277,26 @@ Functionality that is not in the scope of this project but may be added later to
 - [Cloudinary](https://cloudinary.com/) - used for storing static files and media files.
 
 ## Testing
-Important part of your README!!!
+
 ### Google's Lighthouse Performance
-Screenshots of certain pages and scores (mobile and desktop)
+
 ### Browser Compatibility
-Check compatability with different browsers (Firefox, Edge, Chrome)
+
 ### Responsiveness
-Screenshots of the responsivness, pick few devices
+
 ### Code Validation
-Validate your code HTML, CSS, JS & Python (Validate all your templates, static files, views, forms, models, urls), display screenshots
+
 ### Manual Testing user stories
-Test all your user stories, you an create table 
-User Story |  Test | Pass
---- | --- | :---:
-paste here you user story | what is visible to the user and what action they should perform | &check;
-- attach screenshot
+
 ### Manual Testing features
-Test all your features, you can use the same approach 
 | Status | feature
 |:-------:|:--------|
 | &check; | description
 - attach screenshot
 ### Automated testing
-If you created automated tests, insert screenshoots of your coverage and number of tests
+
 ## Bugs
-List of bugs and how did you fix them, you can create simple table
+
 | Bug | Fix
 |:-------:|:--------|
 |   |    |
