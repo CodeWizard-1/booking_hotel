@@ -13,12 +13,11 @@
     * [Database Diagram](#database-diagram)
     
 2. [Features](#features)
+    * [CRUD Functionality](#crud-functionality)
+    * [Authentication \& Authorisation](#authentication--authorisation)
     * [Navigation](#Navigation-bar)
-    * [Footer](#footer)
     * [Home page](#home-page)
-    * [add your pages](#)
-    * [Login page](#profile-page)
-    * [Sign up page](#signup-page)
+
 
 3. [Technologies Used](#technologies-used)
 4. [Libraries](#libraries-used)
@@ -26,7 +25,6 @@
 6. [Bugs](#bugs)
 7. [Deployment](#deployment)
 8. [Credits](#credits)
-9. [Acknowledgment](#acknowledgment)
 
 ## Design & Planning:
 
@@ -65,11 +63,6 @@ User Story 16: As a website user, I want to see the contact information for hote
 User Story 17: As a website user, I want the ability to log in to my account using my username and password
 
 ### Wireframes
-
-**Data base Models**
-The data models for the project are shown below:
-
-![Alt text](hotel/documentation/drawSQL-hotel.png) 
 
 **Interface Model**
 The interface models for the project are shown below:
@@ -111,10 +104,20 @@ This approach helped me effectively manage priorities and focus on important tas
 
 ### Typography
 I chose the Roboto and Lato fonts from Google Fonts for the project. Roboto with a weight of 300 gives a modern and lightweight appearance, ensuring good readability. Lato (weights 300 and 700) provides versatility and the ability to emphasize different parts of the content. These fonts convey modernity and professionalism, which is important for a hotel booking website.
+
 ### Colour Scheme
 I chose blue, light blue, and white for my project. Blue for trust and professionalism, light blue for calmness and comfort, and white for cleanliness and clarity. These colors create a pleasant and professional atmosphere, which is important for a hotel booking website.
 
+### Database Diagram
+
+**Data base Models**
+The data models for the project are shown below:
+
+![Alt text](hotel/documentation/drawSQL-hotel.png) 
+
+
 ## Features:
+
 **CRUD Functionality**
 
 CRUD user functionality is primarily related to Booking:
@@ -230,9 +233,49 @@ Canceled bookings are removed from the database but remain on the user’s page;
 
 ![](image-24.png)
 
+**Future Implementations**
+
+Functionality that is not in the scope of this project but may be added later to improve the user experience:
+ - search for hotels by name;
+ - add hotels to favorites:
+ - password recovery
+
+
 
 ## Technologies Used
-List of technologies used for your project
+
+**Core Development Technologies**
+- Django used as a full-stack framwork for developing the app.
+- JavaScript used for client-side interaction and validation.
+- HTML/CSS + Django Template Language used for building out site pages.
+
+**Libraries, Frameworks and Packages**
+- [Tailwind CSS](https://tailwindcss.com/) - used to style elements throughout the site.
+- [Flowbite](https://htmx.org/) - a Tailwind-based open-source library; used very sparingly for small number of minor components in the site (radio select, dropdown select)
+
+
+**Python/Django Packages**
+
+- [Gunicorn](https://pypi.org/project/gunicorn/) - provides HTTP server.
+- [psycopg2](https://pypi.org/project/psycopg2/) - provides PostgreSQL connection.
+- [Pillow](https://pypi.org/project/Pillow/) - used for image processing (Model ImageField).
+- [Whitenoise](https://pypi.org/project/whitenoise/) - used for serving static files.
+- [Django Markdown Field](https://pypi.org/project/django-markdownfield/) - adds a markdown-compatible text field to admin panel (for BlogPost model).
+- [Black](https://pypi.org/project/black/) - A PEP8 compliant code formatter.
+
+
+**Infrastructural Technologies**
+
+* Git -  Version control.
+* [GitHub](https://github.com/) - All files for the website stored and saved in a repository.
+* Gitpod - IDE used to write the code.
+* [Drawsql](https://drawsql.app/) -For creating a date base model
+* [Heroku](https://dashboard.heroku.com/apps) - For deployment of the project.
+* [Cloudconvert](https://cloudconvert.com/) - For compression of image files to improve website performance.
+* [UiDev](https://ui.dev/amiresponsive) - For generating an image of the deployed app on devices
+- [PostgreSQL](https://www.postgresql.org/) (via Digital Ocean) - used for database.
+- [Cloudinary](https://cloudinary.com/) - used for storing static files and media files.
+
 ## Testing
 Important part of your README!!!
 ### Google's Lighthouse Performance
@@ -291,6 +334,4 @@ This website is deployed to Heroku from a GitHub repository, the following steps
 - Once it has been connected scroll down to the **Manual Deploy** and click **Deploy branch** when it has deployed you will see a **view app** button below and this will bring you to your newly deployed app.
 - Please note that when deploying manually you will have to deploy after each change you make to your repository.
 ## Credits
-List of used resources for your website (text, images, snippets of code, projects....)
-## Acknowledgment
-Mention people who helped you with your project(mentor, colleagues...)
+
