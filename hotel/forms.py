@@ -11,13 +11,6 @@ from django.db.models import Q
 
 
 
-
-def validate_children_ages(value):
-    ages = [int(age.strip()) for age in value.split(',') if age.strip().isdigit()]
-    for age in ages:
-        if age < 0 or age > 99:
-            raise forms.ValidationError('Enter valid ages between 0 and 99.')
-
 class Guest_reviewsForm(forms.ModelForm):
     class Meta:
         model = Guest_reviews
@@ -86,20 +79,21 @@ class BaseBookingForm(forms.ModelForm):
         choices=[(i, str(i)) for i in range(0, 4)],
         widget=forms.Select(attrs={'class': 'form-select'}), required=True)
 
-    # children_ages = forms.CharField(
-    # label='Ages of Children (comma-separated)',
-    # widget=forms.TextInput(attrs={'class': 'form-control'}),
-    # initial='0',
-    # validators=[RegexValidator(regex=r'^\d+(,\s*\d+)*$', message='Enter valid ages separated by commas.')], required=True)
-    
+
+    def validate_children_ages(value):
+        ages = [int(age.strip()) for age in value.split(',') if age.strip().isdigit()]
+        for age in ages:
+            if age < 0 or age > 99:
+                raise forms.ValidationError('Enter valid ages between 1 and 99.')
+
+
     children_ages = forms.CharField(
     label='Ages of Children (comma-separated)',
     widget=forms.TextInput(attrs={'class': 'form-control'}),
     initial='0',
     validators=[
         RegexValidator(regex=r'^\d+(,\s*\d+)*$', message='Enter valid ages separated by commas.'),
-        validate_children_ages
-    ],
+        validate_children_ages],
     required=True)
 
     child_bed = forms.BooleanField(
@@ -111,6 +105,36 @@ class BaseBookingForm(forms.ModelForm):
         label='Playroom Services (complimentary)',
         required=False,
         widget=forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]))
+
+
+    
+
+    def clean(self):
+        cleaned_data = super().clean()
+        children_count = cleaned_data.get('children_count')
+        children_ages = cleaned_data.get('children_ages')
+
+       
+        if int(children_count) == 0 and int(children_ages) == 0:
+            return cleaned_data
+
+        
+        if children_count and int(children_count) > 0 and not any(age.strip() for age in str(children_ages).split(',')):
+            raise ValidationError('Please enter at least one age for the children.')
+
+           
+        if any(age.strip() for age in str(children_ages).split(',')) and (not children_count or int(children_count) <= 0):
+            raise ValidationError('Please enter a valid number of children.')
+
+
+        if children_count and int(children_count) > 0:
+            ages = [int(age.strip()) for age in str(children_ages).split(',') if age.strip().isdigit()]
+            if not all(age > 0 for age in ages):
+                raise ValidationError('Please enter valid ages for the children.')
+
+        return cleaned_data
+
+
 
 
     def __init__(self, *args, **kwargs):
