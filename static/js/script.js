@@ -19,10 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
         dateFormat: 'd-m-Y',
         minDate: today,
         defaultDate: today,
-    });;
+    });
 
 
-
+    
 
     setTimeout(function () {
         let messages = document.getElementById('msg');
@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
         alert.close();
     }, 2000);
 
-    document.getElementById('id_check_in_date').addEventListener('change', updateTotalPrice);
-    document.getElementById('id_check_out_date').addEventListener('change', updateTotalPrice);
+    idcheckinInput.addEventListener('changeDate', updateTotalPrice);
+    idcheckoutInput.addEventListener('changeDate', updateTotalPrice);
 
     function updateTotalPrice() {
         const pricePerNight = parseFloat(document.getElementById('price').innerText);
-        const checkInDate = new Date(document.getElementById('id_check_in_date').value);
-        const checkOutDate = new Date(document.getElementById('id_check_out_date').value);
+        const checkInDate = new Date(idcheckinInput.value);
+        const checkOutDate = new Date(idcheckoutInput.value);
 
         if (!isNaN(checkInDate.getTime()) && !isNaN(checkOutDate.getTime())) {
             const numberOfNights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));

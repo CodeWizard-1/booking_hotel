@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'corsheaders',
+    "django_flatpickr",
 ]
 
 SITE_ID = 1

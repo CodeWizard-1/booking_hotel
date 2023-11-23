@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.contrib.messages import success
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from datetime import timedelta
 
 class CityListView(View):
     template_name = 'hotel_detail.html',
@@ -182,7 +182,15 @@ class BookRoomView(View):
         total_price = room.price
         form = BookingForm(request=request, room=room, initial={'total_price': total_price})
 
-        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form}
+        bookings = Booking.objects.filter(room=room)
+        booked_dates = []
+        for booking in bookings:
+            current_date = booking.checking_date
+            while current_date <= booking.checkout_date:
+                booked_dates.append(current_date.strftime("%d/%m/%Y"))
+                current_date += timedelta(days=1)
+
+        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form, 'booked_dates': booked_dates}
 
         return render(request, self.template_name, context)
 
@@ -256,12 +264,22 @@ class SuccessBookingView(View):
 
 
 class EditBookingView(View):
+
     template_name = 'edit_booking.html'
 
     def get(self, request, booking_id):
         booking = Booking.objects.get(id=booking_id)
         form = BookingEditForm(instance=booking)
-        return render(request, self.template_name, {'form': form, 'booking': booking})
+        room = booking.room
+
+        other_bookings = Booking.objects.filter(room=room).exclude(id=booking.id)
+        booked_dates = []
+        for booking in other_bookings:
+            current_date = booking.checking_date
+            while current_date <= booking.checkout_date:
+                booked_dates.append(current_date.strftime("%d/%m/%Y"))
+                current_date += timedelta(days=1)
+        return render(request, self.template_name, {'form': form, 'booking': booking, 'booked_dates': booked_dates})
 
     def post(self, request, booking_id):
         booking = Booking.objects.get(id=booking_id)

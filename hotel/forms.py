@@ -1,4 +1,3 @@
-from .models import Booking
 from .models import Guest_reviews, Booking
 from django import forms
 from django.db import models
@@ -8,6 +7,9 @@ from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.forms import PasswordResetForm
 from django.core.exceptions import ValidationError
 from django.db.models import Q
+from django.forms import DateInput
+from django_flatpickr.widgets import DatePickerInput, TimePickerInput, DateTimePickerInput
+from django_flatpickr.schemas import FlatpickrOptions
 
 
 
@@ -24,11 +26,32 @@ class Guest_reviewsForm(forms.ModelForm):
 
 
 class BaseBookingForm(forms.ModelForm):
-    checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_in_date'}),  initial=date.today())
-    checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_out_date'}), initial=date.today())
+    # checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_in_date'}),  initial=date.today())
+    # checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_out_date'}), initial=date.today())
 
+    # checking_date = forms.DateField(
+    #     widget=DatePickerInput(
+    #         attrs={'class': 'datepicker'},
+    #         options=FlatpickrOptions(
+    #             altFormat="d/m/Y",
+    #             minDate=date.today().strftime('%Y-%m-%d'),
+    #             defaultDate=date.today().strftime('%Y-%m-%d'),
+    #         ),
+    #     ),
+    # )
 
+    # checkout_date = forms.DateField(
+    #     widget=DatePickerInput(
+    #         attrs={'class': 'datepicker'},
+    #         options=FlatpickrOptions(
+    #             altFormat="d/m/Y",
+    #             minDate=date.today().strftime('%Y-%m-%d'),
+    #             defaultDate=date.today().strftime('%Y-%m-%d'),
+    #         ),
+    #     ),
+    # )
 
+    
     phone_number = forms.CharField(
         label='Phone Number',
         widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'tel'}),
@@ -132,6 +155,15 @@ class BaseBookingForm(forms.ModelForm):
             if not all(age > 0 for age in ages):
                 raise ValidationError('Please enter valid ages for the children.')
 
+
+
+        room = self.room
+        existing_bookings = Booking.objects.filter(
+            Q(room=room),
+            Q(Q(checkout_date__gt=checking_date) & Q(checking_date__lt=checkout_date)) |
+            Q(Q(checking_date__lt=checkout_date) & Q(checkout_date__gt=checking_date)),
+        )
+
         return cleaned_data
 
 
@@ -142,9 +174,21 @@ class BaseBookingForm(forms.ModelForm):
         self.room = kwargs.pop('room', None) 
         super(BaseBookingForm, self).__init__(*args, **kwargs)
 
+
+
+
     class Meta:
         model = Booking
         fields = ['first_name', 'last_name', 'checking_date', 'checkout_date', 'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
+
+        widgets = {
+            'checking_date': forms.TextInput(attrs={'autocomplete': 'off'}),
+            'checking_date': forms.TextInput(attrs={'autocomplete': 'off'}),
+        }
+
+
+
+
 
 
 class BookingForm(BaseBookingForm):
