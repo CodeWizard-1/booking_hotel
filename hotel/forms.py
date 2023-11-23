@@ -11,6 +11,13 @@ from django.db.models import Q
 
 
 
+
+def validate_children_ages(value):
+    ages = [int(age.strip()) for age in value.split(',') if age.strip().isdigit()]
+    for age in ages:
+        if age < 0 or age > 99:
+            raise forms.ValidationError('Enter valid ages between 0 and 99.')
+
 class Guest_reviewsForm(forms.ModelForm):
     class Meta:
         model = Guest_reviews
@@ -79,12 +86,21 @@ class BaseBookingForm(forms.ModelForm):
         choices=[(i, str(i)) for i in range(0, 4)],
         widget=forms.Select(attrs={'class': 'form-select'}), required=True)
 
+    # children_ages = forms.CharField(
+    # label='Ages of Children (comma-separated)',
+    # widget=forms.TextInput(attrs={'class': 'form-control'}),
+    # initial='0',
+    # validators=[RegexValidator(regex=r'^\d+(,\s*\d+)*$', message='Enter valid ages separated by commas.')], required=True)
+    
     children_ages = forms.CharField(
     label='Ages of Children (comma-separated)',
     widget=forms.TextInput(attrs={'class': 'form-control'}),
     initial='0',
-    validators=[RegexValidator(regex=r'^\d+(,\s*\d+)*$', message='Enter valid ages separated by commas.')], required=True)
-    
+    validators=[
+        RegexValidator(regex=r'^\d+(,\s*\d+)*$', message='Enter valid ages separated by commas.'),
+        validate_children_ages
+    ],
+    required=True)
 
     child_bed = forms.BooleanField(
         label='Child Bed (complimentary)',
