@@ -5,7 +5,6 @@ from .models import Room, Guest_reviews, City, Booking, Hotel
 from .forms import Guest_reviewsForm, BookingForm, BookingEditForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import BookingForm, BookingEditForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -187,7 +186,7 @@ class BookRoomView(View):
         for booking in bookings:
             current_date = booking.checking_date
             while current_date <= booking.checkout_date:
-                booked_dates.append(current_date.strftime("%d/%m/%Y"))
+                booked_dates.append(current_date.strftime("%m/%d/%Y"))
                 current_date += timedelta(days=1)
 
         context = {'room': room, 'city': city, 'hotel': hotel, 'form': form, 'booked_dates': booked_dates}
@@ -201,14 +200,13 @@ class BookRoomView(View):
         city = hotel.city
         form = BookingForm(request.POST, request=request, room=room)
 
-
         if form.is_valid():
-            booking = form.save(commit=False)
             if request.user.is_authenticated:
+                booking = form.save(commit=False)
                 booking.customer = request.user
                 booking.room = room
                 booking.save()
-            return redirect('success_booking', booking_id=booking.id)
+                return redirect('success_booking', booking_id=booking.id)
         else:
             return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
 
@@ -274,10 +272,10 @@ class EditBookingView(View):
 
         other_bookings = Booking.objects.filter(room=room).exclude(id=booking.id)
         booked_dates = []
-        for booking in other_bookings:
-            current_date = booking.checking_date
-            while current_date <= booking.checkout_date:
-                booked_dates.append(current_date.strftime("%d/%m/%Y"))
+        for other_booking in other_bookings:
+            current_date = other_booking.checking_date
+            while current_date <= other_booking.checkout_date:
+                booked_dates.append(current_date.strftime("%m/%d/%Y"))
                 current_date += timedelta(days=1)
         return render(request, self.template_name, {'form': form, 'booking': booking, 'booked_dates': booked_dates})
 

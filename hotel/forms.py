@@ -28,29 +28,6 @@ class Guest_reviewsForm(forms.ModelForm):
 class BaseBookingForm(forms.ModelForm):
     # checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_in_date'}),  initial=date.today())
     # checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_out_date'}), initial=date.today())
-
-    # checking_date = forms.DateField(
-    #     widget=DatePickerInput(
-    #         attrs={'class': 'datepicker'},
-    #         options=FlatpickrOptions(
-    #             altFormat="d/m/Y",
-    #             minDate=date.today().strftime('%Y-%m-%d'),
-    #             defaultDate=date.today().strftime('%Y-%m-%d'),
-    #         ),
-    #     ),
-    # )
-
-    # checkout_date = forms.DateField(
-    #     widget=DatePickerInput(
-    #         attrs={'class': 'datepicker'},
-    #         options=FlatpickrOptions(
-    #             altFormat="d/m/Y",
-    #             minDate=date.today().strftime('%Y-%m-%d'),
-    #             defaultDate=date.today().strftime('%Y-%m-%d'),
-    #         ),
-    #     ),
-    # )
-
     
     phone_number = forms.CharField(
         label='Phone Number',
@@ -182,8 +159,8 @@ class BaseBookingForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'checking_date', 'checkout_date', 'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
 
         widgets = {
-            'checking_date': forms.TextInput(attrs={'autocomplete': 'off'}),
-            'checking_date': forms.TextInput(attrs={'autocomplete': 'off'}),
+            'checking_date': forms.TextInput(attrs={'autocomplete': 'off', 'data-input-format': 'dd/mm/yyyy', 'data-format': 'DD/MM/YYYY'}),
+            'checking_date': forms.TextInput(attrs={'autocomplete': 'off', 'data-input-format': 'dd/mm/yyyy', 'data-format': 'DD/MM/YYYY'}),
         }
 
 
@@ -235,6 +212,15 @@ class BookingEditForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Передаем существующее бронирование в форму
+        if 'instance' in kwargs:
+            booking = kwargs['instance']
+            self.fields['checking_date'].initial = booking.checking_date
+            self.fields['checkout_date'].initial = booking.checkout_date
+
     def clean(self):
         cleaned_data = super().clean()
         checking_date = cleaned_data.get('checking_date')
@@ -251,9 +237,12 @@ class BookingEditForm(BaseBookingForm):
                 Q(Q(checking_date__lt=checkout_date) & Q(checkout_date__gt=checking_date)),
             )
 
+            # Исключим текущее бронирование из проверки пересечения дат
+            if self.instance:
+                existing_bookings = existing_bookings.exclude(id=self.instance.id)
+
             if existing_bookings.filter(Q(is_cancelled=False)).exists():
                 raise ValidationError('The selected dates overlap with an existing booking for this room.')
 
         return cleaned_data
-
 
