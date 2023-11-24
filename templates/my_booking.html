@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <section class="section bg-white">
     <div class="container mt-3 mb-4">
-        <h2 class="text-9 text-center fw-500">My booking</h2>
+        <h1 class="text-9 text-center fw-500">My booking</h1>
         <div class="row">
             {% if bookings %} {% for booking in bookings %}
             <div class="col-md-6">
@@ -9,14 +9,14 @@
                     <div class="row g-0">
                         <div class="col-md-4">
                             <div class="d-flex m-1" style="height: 100%;">
-                                <img src="{{ booking.room.room_image.url }}" class="img-fluid rounded-4" style="height: 75%; width: 100%; object-fit: cover;">
+                                <img src="{{ booking.room.room_image.url }}" class="img-fluid rounded-4" style="height: 75%; width: 100%; object-fit: cover;" alt="Room img ">
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">
+                                <h2 class="card-title">
                                     City: {{ booking.room.hotel.city.city_name }}
-                                </h5>
+                                </h2>
                                 <p class="card-text">
                                     <strong>Hotel:</strong> {{ booking.room.hotel.hotel_name }}
                                 </p>

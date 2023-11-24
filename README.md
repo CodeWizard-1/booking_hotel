@@ -1,4 +1,4 @@
-![Alt text](hotel/documentation/image-2.png)
+![Alt text](image-25.png)
 
 <br>
 
@@ -154,14 +154,14 @@ If an authorized user decides to log out of their account, they will see the fol
 The main navigation is located in the header and is present on all pages.
 The hamburger menu is present on mobile devices and expands to show the main navigation links.
 
-![Alt text](image-3.png)
+![Alt text](image-26.png)
 
 
 **Search**
 
 The hotel search form by city is located on the main page and allows users to search for hotels by selecting a city from a drop-down menu, the desired check-in date and check-out date.
 After which the user is redirected to a page that displays all hotels in the selected city.
-![Alt text](image-4.png)
+![Alt text](image-27.png)
 
 **Home page**
 
@@ -191,17 +191,18 @@ Which hotels will be added to the main screen are also controlled from the admin
 
 When searching for hotels in a specific city, the user is taken to a page with a list of hotels with an image of the hotel and brief information about the hotel.
 
-![Alt text](image-15.png)
+![Alt text](image-28.png)
 
 
 After selecting a hotel, the user clicks the “Show rooms and prices” button and goes to the hotel page with a detailed description and room options.
 
-![Alt text](image-14.png)
+![Alt text](image-29.png)
 
 After a brief overview of the room options at a given hotel, the user can select “More details” to learn more about the selected room.
 On the page of the selected room, the user can learn more about the room, read reviews about it, and if he has already been to this room before, he can leave his review about the room and like it if he wants.
 Only authorized users can leave reviews and like.
-![Alt text](image-16.png)
+
+![Alt text](image-30.png)
 
 
 After the user has decided to book a room and clicks the “Book Now” button, he is taken to the booking page where he needs to enter the necessary information.
@@ -279,6 +280,29 @@ Functionality that is not in the scope of this project but may be added later to
 ## Testing
 
 ### Google's Lighthouse Performance
+
+All pages were tested using Lighthouse with the primary goal of identifying performance and accessibility issues.
+The Lighthouse test results are shown below:
+
+**Home**
+![Alt text](image-32.png)
+
+**Hotels**
+
+![Alt text](image-33.png)
+
+**Hotel page**
+
+![Alt text](image-34.png)
+
+**Room page**
+
+![Alt text](image-35.png)
+
+**Booking page**
+
+![Alt text](image-36.png)
+
 
 ### Browser Compatibility
 
