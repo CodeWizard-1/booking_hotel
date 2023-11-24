@@ -159,8 +159,8 @@ class BaseBookingForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'checking_date', 'checkout_date', 'phone_number', 'email', 'people_count', 'children_count', 'children_ages', 'child_bed', 'playroom_services']
 
         widgets = {
-            'checking_date': forms.TextInput(attrs={'autocomplete': 'off', 'data-input-format': 'dd/mm/yyyy', 'data-format': 'DD/MM/YYYY'}),
-            'checking_date': forms.TextInput(attrs={'autocomplete': 'off', 'data-input-format': 'dd/mm/yyyy', 'data-format': 'DD/MM/YYYY'}),
+            'checking_date': forms.TextInput(attrs={'autocomplete': 'off'}),
+            'checking_date': forms.TextInput(attrs={'autocomplete': 'off'}),
         }
 
 
