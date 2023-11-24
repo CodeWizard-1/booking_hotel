@@ -358,13 +358,56 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 
 - All custom code Python files were formatted using the PEP8 - [Black](https://pypi.org/project/black/) complaint formatter.
 
-### Manual Testing user stories
 
-### Manual Testing features
-| Status | feature
-|:-------:|:--------|
-| &check; | description
-- attach screenshot
+### Manual Testing
+
+- Responsiveness was tested according to the table above.
+- All HTML files passed the W3C validator without errors.
+- The CSS file also passed the W3C validator without errors.
+- All JavaScript files passed through JSHint without errors.
+- Navigation through the booking process, entering search queries, clicking on buttons when going to descriptions of hotels and rooms, sending reviews and likes about the room, links, and forms were also thoroughly tested.
+-All forms have been tested to ensure they are validated and can be submitted without errors.
+- Lighthouse was used to test performance, accessibility, SEO, and modifications were made to improve testing results.
+
+**General Testing**
+
+| Test                  | Action                                                                                                                                                                                         | Success Criteria                                                              |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Homepage loads        | Navigate to website URL                                                                                                                                                                        | Page loads < 3s, no errors                                                    |
+| Links                 | Click on each Navigation link, CTA, button, logo, footer link                                                                                                                                  | Correct page is loaded/correct action performed, new tab opened if applicable |
+| Form validation       | Enter data into each input field, ensure only valid data is accepted                                                                                                                           | Form doesn't submit until correct data entered, error message shown           |
+| Lighthouse            | Perform Lighthouse test on each page for the primary user flow                                                                                                               | Score of > 92 on Performance, Accessibility, Best Practices                   |
+
+| Test                         | Action                                                                                                             | Success Criteria                                                                                                                                                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Selecting a city and check-in check-out dates | Сlick on the field with the city from the drop-down list, select the city you need, then select the dates and click find                                                                                | - Drop down menu opens with correct data.<br>- Text input disabled. <br>- Dropdown closes on click outside. <br>- Correct selection added to field. <br> -Dates until today are blocked 
+
+
+**Homepage & Search Testing**
+
+![Alt text](image-44.png)
+![Alt text](image-45.png)
+![Alt text](image-46.png)
+
+| Test                         | Action                                                                                                             | Success Criteria                                                                                                                                                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Selecting a room or hotel from the home page | Click on the card with the room or hotel                                                                              |- the cursor will become active <br>-card will increase in size<br>- description change color to blue<br>-clicking will take you to a page with detailed information
+ 
+ ![Alt text](image-47.png)
+![Alt text](image-48.png)
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Booking a room by an unauthorized user | Clicking the "Book now" button by an unauthorized user |A dialog box will appear asking you to log in or register on the site. |
+
+
+**Room booking**
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Booking a room by an unauthorized user | Clicking the "Book now" button by an unauthorized user |A dialog box will appear asking you to log in or register on the site. |
+
+![Alt text](image-49.png)
+
 ### Automated testing
 
 ## Bugs
