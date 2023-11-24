@@ -331,6 +331,10 @@ Home
 
 - All JavaScript files passed through [JSHint](https://jshint.com/)t without errors.
 
+![Alt text](image-25.png)
+
+![Alt text](image-37.png)
+
 - All custom code Python files were formatted using the PEP8 - [Black](https://pypi.org/project/black/) complaint formatter.
 
 ### Manual Testing user stories

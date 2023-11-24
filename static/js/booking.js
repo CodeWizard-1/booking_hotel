@@ -5,12 +5,13 @@ const startDatepicker = new Datepicker(idcheckinInput, {
     minDate: new Date(),
     autohide: true,
     datesDisabled: bookedDates,
-})
+});
+
 const endDatepicker = new Datepicker(idcheckoutInput, {
     minDate: new Date(),
     autohide: true,
     datesDisabled: bookedDates,
-})
+});
 
 idcheckinInput.addEventListener('changeDate', updateTotalPrice);
 idcheckoutInput.addEventListener('changeDate', updateTotalPrice);
@@ -28,5 +29,7 @@ function updateTotalPrice() {
         document.getElementById('totalPrice').innerText = '0';
     }
 }
+
+
 
 updateTotalPrice();

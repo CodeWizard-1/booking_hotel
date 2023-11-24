@@ -64,8 +64,6 @@
           {% if user.is_authenticated %}
           <h4>Did you like room? Like it:</h4>
           <div class="col-1">
-            <!-- ------------------------------------------------------------- -->
-            <strong>
               {% if user.is_authenticated %}
               <form class="d-inline" action="{% url 'room_like' room.slug %}" method="POST">
                 {% csrf_token %}
@@ -81,7 +79,6 @@
               <span class="text-secondary"><i class="far fa-heart"></i></span>
               {% endif %}
               <span class="text-secondary">{{ room.number_of_likes }} </span>
-            </strong>
           </div>
           <h5>Leave a review:</h5>
           <p>Review from: {{ user.username }}</p>
@@ -99,7 +96,6 @@
       <!-- Hotel and Room Information Block -->
       <div class="row">
         <div class="col-12 mt-3 mb-3">
-          <h3 class="post-title">{{ hotel.hotel_name }}</h3>
           <h2 class="post-title">{{ room.room_name }}</h2>
           <img src="{{ room.room_image.url }}" alt="{{ room.room_image.url }}" class="img-fluid rounded-2"  width="1200" height="1200">
         </div>
@@ -112,7 +108,7 @@
                         <div class="col-md-3 mb-1">
                             <div class="card">
                                 <div class="card-body text-center p-0">
-                                    <p class="mt-0">{{ facility.name }}</p>
+                                    <p class="mt-0"> {{ facility.name }}</p>
                                 </div>
                             </div>
                         </div>
@@ -120,12 +116,11 @@
                 </div>
             </div>
               <!-- Room Description -->
-            <p class="card-text">{{ room.description_room | safe }}</p>
+            <div class="card-text"> {{ room.description_room | safe }}</div>
             <!-- Likes and Comments -->
             <div class="row">
               <!-- Likes -->
               <div class="col-1">
-                <!-- ------------------------------------------------------------- -->
               </div>
             </div>
             <!-- Booking Button -->
@@ -155,6 +150,4 @@
     </div>
   </div>
 </div>
-<!-- -------------------------------- -->
-
 {% endblock content %}

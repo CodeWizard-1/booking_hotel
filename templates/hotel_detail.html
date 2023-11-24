@@ -44,41 +44,39 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">               
-            <p class="card-text">{{ hotel.description_hotel | safe }}</p>
+        <div class="col-12">
+            <div class="card-text">{{ hotel.description_hotel | safe }}</div>
         </div>
     </div>
-<!-- ----------------------------------------------------------- -->
-
-<div class="container mt-5">
-    <h2>Rooms in this Hotel</h2>
-    <table class="table table-bordered border-primary table-hover table-responsive text-center">
-        <thead class="blue-hat">
-            <tr>
-                <th scope="col">Room type</th>
-                <th scope="col">Description</th>
-                <th scope="col">Number of guests</th>
-                <th scope="col">Price per night</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for room in object.room_set.all %}
+    <div class="container mt-5">
+        <h2>Rooms in this Hotel</h2>
+        <table class="table table-bordered border-primary table-hover table-responsive text-center">
+            <thead class="blue-hat">
                 <tr>
-                    <td scope="row">{{ room.room_name }}</td>
+                    <th scope="col">Room type</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Number of guests</th>
+                    <th scope="col">Price per night</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in object.room_set.all %}
+                <tr>
+                    <td>{{ room.room_name }}</td>
                     <td>{{ room.description_room | safe |truncatewords_html:20 }}</td>
                     <td>{{ room.capacity }}</td>
                     <td><strong>&euro; {{ room.price }}</strong></td>
                     <td>
-                        <form method="get" action="{% url 'room_detail' room.slug %}" class="d-flex justify-content-center">
+                        <form method="get" action="{% url 'room_detail' room.slug %}"
+                            class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">More Details ></button>
                         </form>
                     </td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-<!-- -----------------------------------------------------------  -->
-  
 {% endblock content %}

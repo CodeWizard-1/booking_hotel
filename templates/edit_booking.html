@@ -15,9 +15,8 @@
                             <p><strong>Room:</strong> {{ booking.room.room_name }}</p>
                             <p><strong>Price per night:</strong> €  <span id="price">{{ booking.room.price }}</span></p>
                             <div class="row">
-                                {{ form.media }}
                                 {{ form.as_p }}
-                                <p style="margin-top: 3rem;"><strong>Total Price:</strong> € <span id="totalPrice">{{ total_price }}</span></p>
+                                <div style="margin-top: 2rem; margin-bottom: 2rem;"><strong>Total Price:</strong> € <span id="totalPrice">{{ total_price }}</span></div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block custom-search-btn">Save Changes</button>
                         </form>
@@ -31,11 +30,10 @@
     </div>
 </section>
 {% block scripts %}
-<script type="text/javascript">
+<script>
     if (typeof window.bookedDates === 'undefined') {
         window.bookedDates = {{ booked_dates|safe }};
     }
-   
 </script>
 <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
 <script src="{% static 'js/booking.js' %}"></script>

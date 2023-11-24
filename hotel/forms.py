@@ -26,9 +26,7 @@ class Guest_reviewsForm(forms.ModelForm):
 
 
 class BaseBookingForm(forms.ModelForm):
-    # checking_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_in_date'}),  initial=date.today())
-    # checkout_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'min': datetime.now().date, 'id': 'id_check_out_date'}), initial=date.today())
-    
+
     phone_number = forms.CharField(
         label='Phone Number',
         widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'tel'}),
@@ -60,7 +58,6 @@ class BaseBookingForm(forms.ModelForm):
             ),]
     )
 
-
     last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class': 'form-control'}), 
     required=True,
     validators=[MinLengthValidator(2, message='Enter at least 2 characters.'), MaxLengthValidator(15, message='Enter at most 15 characters.'),
@@ -86,7 +83,6 @@ class BaseBookingForm(forms.ModelForm):
             if age < 0 or age > 99:
                 raise forms.ValidationError('Enter valid ages between 1 and 99.')
 
-
     children_ages = forms.CharField(
     label='Ages of Children (comma-separated)',
     widget=forms.TextInput(attrs={'class': 'form-control'}),
@@ -105,9 +101,6 @@ class BaseBookingForm(forms.ModelForm):
         label='Playroom Services (complimentary)',
         required=False,
         widget=forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]))
-
-
-    
 
     def clean(self):
         cleaned_data = super().clean()
@@ -132,8 +125,6 @@ class BaseBookingForm(forms.ModelForm):
             if not all(age > 0 for age in ages):
                 raise ValidationError('Please enter valid ages for the children.')
 
-
-
         room = self.room
         existing_bookings = Booking.objects.filter(
             Q(room=room),
@@ -144,14 +135,10 @@ class BaseBookingForm(forms.ModelForm):
         return cleaned_data
 
 
-
-
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         self.room = kwargs.pop('room', None) 
         super(BaseBookingForm, self).__init__(*args, **kwargs)
-
-
 
 
     class Meta:
@@ -163,15 +150,9 @@ class BaseBookingForm(forms.ModelForm):
             'checking_date': forms.TextInput(attrs={'autocomplete': 'off'}),
         }
 
-
-
-
-
-
 class BookingForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
-
 
     def __init__(self, *args, **kwargs):
         super(BookingForm, self).__init__(*args, **kwargs)
@@ -183,7 +164,6 @@ class BookingForm(BaseBookingForm):
             self.fields['people_count'].choices = [
                 (i, str(i)) for i in range(1, capacity + 1)
             ]
-
 
     def clean(self):
         cleaned_data = super().clean()
@@ -207,7 +187,6 @@ class BookingForm(BaseBookingForm):
         return cleaned_data
     
 
-
 class BookingEditForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
@@ -215,11 +194,11 @@ class BookingEditForm(BaseBookingForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Передаем существующее бронирование в форму
         if 'instance' in kwargs:
             booking = kwargs['instance']
-            self.fields['checking_date'].initial = booking.checking_date
-            self.fields['checkout_date'].initial = booking.checkout_date
+            self.fields['checking_date'].initial = booking.checking_date.strftime("%m/%d/%Y")
+            self.fields['checkout_date'].initial = booking.checkout_date.strftime("%m/%d/%Y")
+
 
     def clean(self):
         cleaned_data = super().clean()
@@ -237,7 +216,6 @@ class BookingEditForm(BaseBookingForm):
                 Q(Q(checking_date__lt=checkout_date) & Q(checkout_date__gt=checking_date)),
             )
 
-            # Исключим текущее бронирование из проверки пересечения дат
             if self.instance:
                 existing_bookings = existing_bookings.exclude(id=self.instance.id)
 
