@@ -8,6 +8,9 @@ body {
   background-color: #013b94;
 }
 
+.hidden-element {
+  display: none;
+}
 
 .red-o {
   color: #e84610;
@@ -303,7 +306,7 @@ label[for="id_username"],
 .login label[for="id_email"],
 label[for="id_password1"], 
 label[for="id_password2"]  {
-  display: none;
+display: none;
 }
 
 .fixed-height-img {

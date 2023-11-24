@@ -11,7 +11,7 @@
                     <form method="post" action="{% url 'search' %}">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for "city" class="form-label">City</label>
+                            <label for="city" class="form-label">City</label>
                             <select class="form-select" id="city" name="city">
                                 {% for city in cities %}
                                 <option value="{{ city.id }}">{{ city.city_name }}</option>
@@ -43,15 +43,12 @@
                     </div>
                     <div class="col-md-9">
                         <div class="property-details">
-                            <h2 class="property-title">
-                                <h2 class="post-title">{{ hotel.hotel_name }}</h2>
-                            </h2>
+                            <h2 class="post-title">{{ hotel.hotel_name }}</h2>
                             <div class="property-description">
-                                    {{ hotel.description_hotel | safe | truncatewords_html:70}}
-                                </p>
+                                {{ hotel.description_hotel | safe | truncatewords_html:70}}
                             </div>
                             <div class="property-action d-flex justify-content-end m-2">
-                                <a href="{% url 'hotel_detail' hotel.slug %}"class="btn btn-primary">
+                                <a href="{% url 'hotel_detail' hotel.slug %}" class="btn btn-primary">
                                     <span>Show rooms and prices > </span>
                                 </a>
                             </div>

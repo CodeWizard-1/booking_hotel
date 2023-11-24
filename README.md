@@ -284,7 +284,30 @@ Functionality that is not in the scope of this project but may be added later to
 
 ### Responsiveness
 
+Responsiveness testing was done using Chrome Dev Tools and ResponsivityApp.
+The website has been thoroughly tested on emulated mobile devices, tablets and widescreen screens of various sizes.
+![Alt text](image-25.png)
+
+| Device             | iPhone SE   | iPhone X    | iPhone 12 Pro | iPhone 13 Pro Max | iPhone 14 Pro Max | iPad         | iPad Air     | iPad Pro      | Macbook Pro  |
+| ------------------ | ----------- | ----------- | ------------- | ----------------- | ----------------- | ------------ | ------------ | ------------- | ------------ |
+| **Resolution**     | **375x667** | **375x812** | **390x844**   | **414x76**        | **414x896**       | **768x1024** | **820x1180** | **1024x1366** | **1440x900** |
+| Render             | Pass        | Pass        | Pass          | Pass              | Pass              | Pass         | Pass         | Pass          | Pass         |
+| Layout             | Pass        | Pass        | Pass          | Pass              | Pass              | Pass         | Pass         | Pass          | Pass         |
+| Functionality      | Pass        | Pass        | Pass          | Pass              | Pass              | Pass         | Pass         | Pass          | Pass         |
+| Links              | Pass        | Pass        | Pass          | Pass              | Pass              | Pass         | Pass         | Pass          | Pass         |
+| Images             | Pass        | Pass        | Pass          | Pass              | Pass              | Pass         | Pass         | Pass          | Pass         |
+| Portrait/Landscape | Pass        | Pass        | Pass          | Pass              | Pass              | Pass         | Pass         | Pass          | Pass         |
+
+
 ### Code Validation
+- All HTML pages were checked using the [W3C Markup Validation Service](https://validator.w3.org/) and found no major errors:
+
+Home
+
+
+- All JavaScript files passed through [JSHint](https://jshint.com/)t without errors.
+
+- All custom code Python files were formatted using the PEP8 - [Black](https://pypi.org/project/black/) complaint formatter.
 
 ### Manual Testing user stories
 

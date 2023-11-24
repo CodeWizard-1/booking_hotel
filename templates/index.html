@@ -39,8 +39,9 @@
         </button>
     </div>
 </section>
-<!-- --------Search bar-------- -->
+<!-- Search bar -->
 <section>
+    <h2 class="hidden-element">Search bar</h2>
     <div class="container">
         <div class="row">
             <div class="col position-relative">
@@ -66,7 +67,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-calendar fs-3 mt-2"></i></span>
                                     <label for="checkin" class="form-label sr-only">Check-In Date</label>
-                                    <input type="date" class="form-control" id="checkin" name="checkin" >
+                                    <input type="date" class="form-control" id="checkin" name="checkin">
                                 </div>
                             </div>
                         </div>
@@ -88,8 +89,6 @@
         </div>
     </div>
 </section>
-
-<!-- ------------------------------------------ -->
 <section class="section bg-white">
     <div class="container text-center mt-5">
         <h2 class="text-9 fw-500">Why Book with Us?</h2>
@@ -130,7 +129,6 @@
         </div>
     </div>
 </section>
-<!-- ------------------------------------------ -->
 <section class="section bg-white">
     <div class="container text-center mt-5">
         <h2 class="text-9 fw-500">Special Offers: Promotions, Discounts, and Exclusive Deals Await You</h2>
@@ -140,7 +138,7 @@
                     {% for room in rooms%}
                     {% if room.on_main %}
                     <div class="col-md-4">
-                        <a href="{% url 'room_detail' room.slug %}">
+                        <a href="{% url 'room_detail' room.slug %}" class="post-link mt-3">
                             <div class="card card-body d-flex flex-column shadow mt-1 mb-2 rounded-4 hover-effect">
                                 <div class="image-container ">
                                     {% if room.room_image %}
@@ -161,11 +159,10 @@
                                         <p class="City">{{ room.hotel.city.city_name }}</p>
                                     </div>
                                 </div>
-                                <a href="{% url 'room_detail' room.slug %}" class="post-link mt-3">
+                                <div>
                                     <h4 class="card-title text-center">{{ room.hotel }}</h4>
                                     <h6 class="card-title text-center">{{ room.room_name }}</h6>
-                                </a>
-
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -178,9 +175,8 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
-<!-- ------------------------------------------------------- -->
-<!-- ------------------------------------------------------- -->
 <section class="section bg-white">
     <div class="container text-center mt-5 mb-5">
         <h2 class="text-9 fw-500">Best Hotels: High Ratings and Guest Preference</h2>
@@ -190,7 +186,7 @@
                     {% for hotel in hotels %}
                     {% if hotel.on_main %}
                     <div class="col-md-4">
-                        <a href="{% url 'hotel_detail' hotel.slug %}">
+                        <a href="{% url 'hotel_detail' hotel.slug %}" class="post-link mt-5">
                             <div class="card card-body d-flex flex-column shadow mt-1 mb-2 rounded-4 hover-effect">
                                 <div class="image-container ">
                                     {% if hotel.hotel_image %}
@@ -205,9 +201,9 @@
                                         <p class="City">{{ hotel.city.city_name }}</p>
                                     </div>
                                 </div>
-                                <a href="{% url 'hotel_detail' hotel.slug %}" class="post-link mt-5">
+                                <div>
                                     <h4 class="card-title text-center">{{ hotel.hotel_name }}</h4>
-                                </a>
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -220,6 +216,6 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
-    
 {%endblock%}
