@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('hotel', '0004_booking_total_price_alter_room_price'),
+        ("hotel", "0004_booking_total_price_alter_room_price"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='room',
-            name='on_main',
-            field=models.BooleanField(default=False, verbose_name='Show on Main Page'),
+            model_name="room",
+            name="on_main",
+            field=models.BooleanField(default=False, verbose_name="Show on Main Page"),
         ),
     ]
