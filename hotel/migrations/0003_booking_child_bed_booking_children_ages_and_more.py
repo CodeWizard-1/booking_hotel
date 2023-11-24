@@ -4,45 +4,44 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('hotel', '0002_booking_is_cancelled'),
+        ("hotel", "0002_booking_is_cancelled"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='booking',
-            name='child_bed',
+            model_name="booking",
+            name="child_bed",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='booking',
-            name='children_ages',
+            model_name="booking",
+            name="children_ages",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='booking',
-            name='children_count',
+            model_name="booking",
+            name="children_count",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='booking',
-            name='first_name',
+            model_name="booking",
+            name="first_name",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='booking',
-            name='last_name',
+            model_name="booking",
+            name="last_name",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='booking',
-            name='people_count',
+            model_name="booking",
+            name="people_count",
             field=models.PositiveIntegerField(default=1),
         ),
         migrations.AddField(
-            model_name='booking',
-            name='playroom_services',
+            model_name="booking",
+            name="playroom_services",
             field=models.BooleanField(default=False),
         ),
     ]

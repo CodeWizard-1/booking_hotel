@@ -326,7 +326,28 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 ### Code Validation
 - All HTML pages were checked using the [W3C Markup Validation Service](https://validator.w3.org/) and found no major errors:
 
-Home
+**Home**
+![Alt text](image-39.png)
+
+**Hotels**
+
+![Alt text](image-40.png)
+
+**Hotel page**
+
+![Alt text](image-41.png)
+
+**Room page**
+
+![Alt text](image-42.png)
+
+**Booking page**
+
+![Alt text](image-43.png)
+
+- CSS page was also checked using the [W3C Markup Validation Service](https://validator.w3.org/) and found no errors:
+
+![Alt text](image-38.png)
 
 
 - All JavaScript files passed through [JSHint](https://jshint.com/)t without errors.

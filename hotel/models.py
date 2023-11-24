@@ -13,13 +13,13 @@ class City(models.Model):
         return self.city_name
 
 
-class Hotel (models.Model):
+class Hotel(models.Model):
     hotel_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description_hotel = models.TextField()
-    hotel_image = CloudinaryField('image', default='plaseholder')
+    hotel_image = CloudinaryField("image", default="plaseholder")
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    on_main = models.BooleanField(default=False, verbose_name='Show on Main Page')
+    on_main = models.BooleanField(default=False, verbose_name="Show on Main Page")
 
     def __str__(self) -> str:
         return self.hotel_name
@@ -35,17 +35,17 @@ class Facilities(models.Model):
 class Room(models.Model):
     room_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    category = models.ForeignKey("Category", on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=0)
     is_booked = models.BooleanField(default=False)
     capacity = models.IntegerField()
     description_room = models.TextField()
-    room_image = CloudinaryField('image', default='plaseholder')
+    room_image = CloudinaryField("image", default="plaseholder")
     facilities = models.ManyToManyField(Facilities, blank=True)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name='room_likes', blank=True)
-    on_main = models.BooleanField(default=False, verbose_name='Show on Main Page')
+    likes = models.ManyToManyField(User, related_name="room_likes", blank=True)
+    on_main = models.BooleanField(default=False, verbose_name="Show on Main Page")
 
     def __str__(self) -> str:
         return self.room_name
@@ -63,7 +63,8 @@ class Category(models.Model):
 
 class Customer(models.Model):
     customer = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='customers')
+        User, on_delete=models.CASCADE, related_name="customers"
+    )
 
     def __str__(self):
         return self.customer
@@ -71,7 +72,7 @@ class Customer(models.Model):
 
 class Booking(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    room = models.ForeignKey('Room', on_delete=models.CASCADE)
+    room = models.ForeignKey("Room", on_delete=models.CASCADE)
     booking_date = models.DateTimeField(auto_now_add=True)
     checking_date = models.DateTimeField(blank=True, null=True)
     checkout_date = models.DateTimeField(null=True, blank=True)
@@ -105,7 +106,7 @@ class Booking(models.Model):
 
 class CheckIn(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    room = models.ForeignKey('Room', on_delete=models.CASCADE)
+    room = models.ForeignKey("Room", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=14, null=True)
     email = models.EmailField(null=True)
 
@@ -114,7 +115,7 @@ class CheckIn(models.Model):
 
 
 class CheckOut(models.Model):
-    customer = models.ForeignKey('Customer', on_delete=models.CASCADE)
+    customer = models.ForeignKey("Customer", on_delete=models.CASCADE)
     check_out_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -122,8 +123,7 @@ class CheckOut(models.Model):
 
 
 class Guest_reviews(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE,
-                             related_name="rooms")
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="rooms")
     name = models.CharField(max_length=80)
     email = models.EmailField(blank=True)
     body = models.TextField()

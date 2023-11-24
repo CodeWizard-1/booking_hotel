@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('hotel', '0003_booking_child_bed_booking_children_ages_and_more'),
+        ("hotel", "0003_booking_child_bed_booking_children_ages_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='booking',
-            name='total_price',
+            model_name="booking",
+            name="total_price",
             field=models.DecimalField(decimal_places=0, default=0, max_digits=10),
         ),
         migrations.AlterField(
-            model_name='room',
-            name='price',
+            model_name="room",
+            name="price",
             field=models.DecimalField(decimal_places=0, max_digits=6),
         ),
     ]

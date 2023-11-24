@@ -13,48 +13,49 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import timedelta
 
+
 class CityListView(View):
-    template_name = 'hotel_detail.html',
+    template_name = ("hotel_detail.html",)
 
     def get(self, request):
         cities = City.objects.all()
-        context = {'cities': cities}
+        context = {"cities": cities}
         return render(request, self.template_name, context)
 
 
 class HotelList(generic.ListView):
     model = Hotel
-    template_name = 'index.html'
-    ordering = 'hotel_name'
-    context_object_name = 'hotels'
+    template_name = "index.html"
+    ordering = "hotel_name"
+    context_object_name = "hotels"
 
     def get_queryset(self):
         return Hotel.objects.filter(on_main=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cities'] = City.objects.all()
-        context['rooms'] = Room.objects.filter(status=1).order_by('-id')
-        
-        city_id = self.request.GET.get('city_id')
-        context['City'] = City.objects.get(pk=city_id) if city_id else None
+        context["cities"] = City.objects.all()
+        context["rooms"] = Room.objects.filter(status=1).order_by("-id")
+
+        city_id = self.request.GET.get("city_id")
+        context["City"] = City.objects.get(pk=city_id) if city_id else None
 
         return context
 
 
 class HotelDetail(DetailView):
     model = Hotel
-    template_name = 'hotel_detail.html'
+    template_name = "hotel_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cities'] = City.objects.all()
-        context['hotels'] = Hotel.objects.all()
+        context["cities"] = City.objects.all()
+        context["hotels"] = Hotel.objects.all()
         return context
 
 
 class CityHotelsView(View):
-    template_name = 'city_hotels.html'
+    template_name = "city_hotels.html"
     paginate_by = 4
 
     def get(self, request, city_id):
@@ -63,7 +64,7 @@ class CityHotelsView(View):
         cities = City.objects.all()
 
         paginator = Paginator(hotels, self.paginate_by)
-        page = request.GET.get('page')
+        page = request.GET.get("page")
 
         try:
             hotels = paginator.page(page)
@@ -72,19 +73,18 @@ class CityHotelsView(View):
         except EmptyPage:
             hotels = paginator.page(paginator.num_pages)
 
-
-        context = {'city': city, 'hotels': hotels, 'cities': cities}
+        context = {"city": city, "hotels": hotels, "cities": cities}
         return render(request, self.template_name, context)
 
 
 class SearchView(View):
-    template_name = 'search.html'
+    template_name = "search.html"
 
     def post(self, request):
-        city_id = request.POST.get('city')
+        city_id = request.POST.get("city")
 
         if city_id:
-            return redirect('city_hotels', city_id=city_id)
+            return redirect("city_hotels", city_id=city_id)
         else:
             return render(request, self.template_name)
 
@@ -94,14 +94,13 @@ class SearchView(View):
 
 class RoomList(generic.ListView):
     model = Room
-    queryset = Room.objects.filter(status=1).order_by('-id')
-    template_name = 'index.html'
-
+    queryset = Room.objects.filter(status=1).order_by("-id")
+    template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         city = City.objects.get(pk=1)
-        context['City'] = city
+        context["City"] = city
         return context
 
 
@@ -111,14 +110,12 @@ class RoomDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Room.objects.filter(status=1)
         room = get_object_or_404(queryset, slug=slug)
-        reviews = Guest_reviews.objects.filter(
-            room=room, approved=True).order_by('-id')
+        reviews = Guest_reviews.objects.filter(room=room, approved=True).order_by("-id")
         liked = False
 
         if request.user.is_authenticated:
             if room.likes.filter(id=request.user.id).exists():
                 liked = True
-        
 
         cities = City.objects.all()
 
@@ -136,8 +133,7 @@ class RoomDetail(View):
     def post(self, request, slug, *args, **kwargs):
         queryset = Room.objects.filter(status=1)
         room = get_object_or_404(queryset, slug=slug)
-        reviews = Guest_reviews.objects.filter(
-            room=room, approved=True).order_by('-id')
+        reviews = Guest_reviews.objects.filter(room=room, approved=True).order_by("-id")
         liked = False
 
         if request.user.is_authenticated:
@@ -155,8 +151,7 @@ class RoomDetail(View):
         else:
             reviews_form = Guest_reviewsForm()
 
-
-        cities = City.objects.all() 
+        cities = City.objects.all()
 
         context = {
             "room": room,
@@ -171,7 +166,7 @@ class RoomDetail(View):
 
 
 class BookRoomView(View):
-    template_name = 'booking.html'
+    template_name = "booking.html"
 
     def get(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
@@ -179,7 +174,9 @@ class BookRoomView(View):
         city = hotel.city
 
         total_price = room.price
-        form = BookingForm(request=request, room=room, initial={'total_price': total_price})
+        form = BookingForm(
+            request=request, room=room, initial={"total_price": total_price}
+        )
 
         bookings = Booking.objects.filter(room=room)
         booked_dates = []
@@ -189,10 +186,15 @@ class BookRoomView(View):
                 booked_dates.append(current_date.strftime("%m/%d/%Y"))
                 current_date += timedelta(days=1)
 
-        context = {'room': room, 'city': city, 'hotel': hotel, 'form': form, 'booked_dates': booked_dates}
+        context = {
+            "room": room,
+            "city": city,
+            "hotel": hotel,
+            "form": form,
+            "booked_dates": booked_dates,
+        }
 
         return render(request, self.template_name, context)
-
 
     def post(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
@@ -206,40 +208,46 @@ class BookRoomView(View):
                 booking.customer = request.user
                 booking.room = room
                 booking.save()
-                return redirect('success_booking', booking_id=booking.id)
+                return redirect("success_booking", booking_id=booking.id)
         else:
-            return render(request, self.template_name, {'room': room, 'city': city, 'hotel': hotel, 'form': form})
+            return render(
+                request,
+                self.template_name,
+                {"room": room, "city": city, "hotel": hotel, "form": form},
+            )
 
 
 class BookingDetailView(View):
-    template_name = 'my_booking.html'
+    template_name = "my_booking.html"
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        bookings = Booking.objects.filter(customer=user).order_by('-is_cancelled','-id')
+        bookings = Booking.objects.filter(customer=user).order_by(
+            "-is_cancelled", "-id"
+        )
         active_bookings = [booking for booking in bookings if not booking.is_cancelled]
         cancelled_bookings = [booking for booking in bookings if booking.is_cancelled]
-        
+
         sorted_bookings = active_bookings + cancelled_bookings
 
         context = {
-            'bookings': sorted_bookings,
+            "bookings": sorted_bookings,
         }
-        
+
         if not bookings:
-            context['no_bookings'] = True
+            context["no_bookings"] = True
 
         return render(request, self.template_name, context)
 
     def post(self, request):
-        if 'cancel_booking' in request.POST:
-            booking_id = request.POST.get('booking_id')
+        if "cancel_booking" in request.POST:
+            booking_id = request.POST.get("booking_id")
             booking = get_object_or_404(Booking, id=booking_id)
             if request.user == booking.customer:
                 booking.is_cancelled = True
                 booking.save()
-                return HttpResponseRedirect('/my_booking/')
-        return HttpResponseRedirect('/my_booking/')
+                return HttpResponseRedirect("/my_booking/")
+        return HttpResponseRedirect("/my_booking/")
 
 
 class CancelBookingView(View):
@@ -247,7 +255,7 @@ class CancelBookingView(View):
         booking = get_object_or_404(Booking, id=booking_id)
         booking.is_cancelled = True
         booking.save()
-        return redirect('my_booking')
+        return redirect("my_booking")
 
 
 class SuccessBookingView(View):
@@ -255,15 +263,16 @@ class SuccessBookingView(View):
 
     def get(self, request, booking_id, *args, **kwargs):
         booking = get_object_or_404(Booking, id=booking_id)
-        total_price = booking.room.price * (booking.checkout_date - booking.checking_date).days
-        context = {'booking': booking, 'total_price': total_price}
+        total_price = (
+            booking.room.price * (booking.checkout_date - booking.checking_date).days
+        )
+        context = {"booking": booking, "total_price": total_price}
 
         return render(request, self.template_name, context)
 
 
 class EditBookingView(View):
-
-    template_name = 'edit_booking.html'
+    template_name = "edit_booking.html"
 
     def get(self, request, booking_id):
         booking = Booking.objects.get(id=booking_id)
@@ -277,7 +286,11 @@ class EditBookingView(View):
             while current_date <= other_booking.checkout_date:
                 booked_dates.append(current_date.strftime("%m/%d/%Y"))
                 current_date += timedelta(days=1)
-        return render(request, self.template_name, {'form': form, 'booking': booking, 'booked_dates': booked_dates})
+        return render(
+            request,
+            self.template_name,
+            {"form": form, "booking": booking, "booked_dates": booked_dates},
+        )
 
     def post(self, request, booking_id):
         booking = Booking.objects.get(id=booking_id)
@@ -285,19 +298,34 @@ class EditBookingView(View):
         if form.is_valid():
             form.save()
 
-            messages.success(request, 'Changes have been successfully saved.')
+            messages.success(request, "Changes have been successfully saved.")
 
-            return redirect('my_booking')
+            return redirect("my_booking")
 
-        total_price = booking.room.price * (booking.checkout_date - booking.checking_date).days
+        total_price = (
+            booking.room.price * (booking.checkout_date - booking.checking_date).days
+        )
 
-        booked_dates = Booking.objects.filter(room=booking.room).exclude(id=booking.id).values_list('checking_date', 'checkout_date')
+        booked_dates = (
+            Booking.objects.filter(room=booking.room)
+            .exclude(id=booking.id)
+            .values_list("checking_date", "checkout_date")
+        )
         booked_dates = [str(date) for dates in booked_dates for date in dates]
 
-        return render(request, self.template_name, {'form': form, 'booking': booking, 'total_price': total_price, 'booked_dates': booked_dates})
+        return render(
+            request,
+            self.template_name,
+            {
+                "form": form,
+                "booking": booking,
+                "total_price": total_price,
+                "booked_dates": booked_dates,
+            },
+        )
+
 
 class RoomLike(View):
-
     def post(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
 
@@ -306,7 +334,8 @@ class RoomLike(View):
         else:
             room.likes.add(request.user)
 
-        return HttpResponseRedirect(reverse('room_detail', args=[slug]))
+        return HttpResponseRedirect(reverse("room_detail", args=[slug]))
+
 
 def error_404(request, exception):
-    return render(request, '404.html', status=404)
+    return render(request, "404.html", status=404)
