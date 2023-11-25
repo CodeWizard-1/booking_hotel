@@ -481,6 +481,15 @@ If the user entered the number of children but did not enter their age | Clickin
 
 
 ![Alt text](hotel/documentation/image-62.png)
+
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| When a user writes a review about a hotel room, the message first goes to the administrator for confirmation | Clicking the "Submit" button  | A corresponding message appears|
+
+
+
+![Alt text](hotel/documentation/reviews.png)
 ### Automated testing
 
 ## Bugs
