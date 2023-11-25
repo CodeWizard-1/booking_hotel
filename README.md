@@ -135,104 +135,104 @@ Users can login from the login page.
 Login is required to access certain pages such as Booking, My Bookings and Edit Bookings. Requesting these pages without authorization will redirect users to the login page.
 
 
-![Alt text](image.png)
+![Alt text](hotel/documentation/image.png)
 
 login page
 
-![Alt text](image-2.png)
+![Alt text](hotel/documentation/image-2.png)
 
 If the user is not logged in at the time of booking a room, a modal window is displayed on the screen informing them of the need to register or log in using their username.
 
-![Alt text](image-5.png)
+![Alt text](hotel/documentation/image-5.png)
 
 If an authorized user decides to log out of their account, they will see the following message:
 
-![Alt text](image-18.png)
+![Alt text](hotel/documentation/image-18.png)
 
 **Navigation**
 
 The main navigation is located in the header and is present on all pages.
 The hamburger menu is present on mobile devices and expands to show the main navigation links.
 
-![Alt text](image-26.png)
+![Alt text](hotel/documentation/image-26.png)
 
 
 **Search**
 
 The hotel search form by city is located on the main page and allows users to search for hotels by selecting a city from a drop-down menu, the desired check-in date and check-out date.
 After which the user is redirected to a page that displays all hotels in the selected city.
-![Alt text](image-27.png)
+![Alt text](hotel/documentation/image-27.png)
 
 **Home page**
 
 On the main page there is a block with the advantages of booking on this site
-![Alt text](image-6.png)
+![Alt text](hotel/documentation/image-6.png)
 
 The next block is a block with selected offers of rooms from different hotels. The user can see basic information about the room, such as city, price per night, number of likes, hotel and room name. By clicking on the room card, the user will go directly to the room page.
 
-![Alt text](image-7.png)
+![Alt text](hotel/documentation/image-7.png)
 
 You can control which rooms will be added to this block on the main screen from the admin panel.
 
-![Alt text](image-12.png)
-![Alt text](image-8.png)
+![Alt text](hotel/documentation/image-12.png)
+![Alt text](hotel/documentation/image-8.png)
 
 The next block comes with selected hotels.
 
 
-![Alt text](image-9.png)
+![Alt text](hotel/documentation/image-9.png)
 
 Which hotels will be added to the main screen are also controlled from the admin panel.
 
-![Alt text](image-11.png)
-![Alt text](image-10.png)
+![Alt text](hotel/documentation/image-11.png)
+![Alt text](hotel/documentation/image-10.png)
 
 **Hotels**
 
 When searching for hotels in a specific city, the user is taken to a page with a list of hotels with an image of the hotel and brief information about the hotel.
 
-![Alt text](image-28.png)
+![Alt text]hotel/documentation/(image-28.png)
 
 
 After selecting a hotel, the user clicks the “Show rooms and prices” button and goes to the hotel page with a detailed description and room options.
 
-![Alt text](image-29.png)
+![Alt text](hotel/documentation/image-29.png)
 
 After a brief overview of the room options at a given hotel, the user can select “More details” to learn more about the selected room.
 On the page of the selected room, the user can learn more about the room, read reviews about it, and if he has already been to this room before, he can leave his review about the room and like it if he wants.
 Only authorized users can leave reviews and like.
 
-![Alt text](image-30.png)
+![Alt text](hotel/documentation/image-30.png)
 
 
 After the user has decided to book a room and clicks the “Book Now” button, he is taken to the booking page where he needs to enter the necessary information.
 
-![Alt text](image-19.png)
+![Alt text](hotel/documentation/image-19.png)
 
 
 
 After the user has entered the necessary data correctly, he is redirected to a page informing the user about the successful reservation.
 
-![Alt text](image-20.png)
+![Alt text](hotel/documentation/image-20.png)
 
 
 If necessary, the user can immediately edit his data by clicking on the "Edit booking" button
 
-![Alt text](image-21.png)
+![Alt text](hotel/documentation/image-21.png)
 
 After changes are made, the user is automatically redirected to the "My Bookings" page.
 On this page, he can also go to the booking edit page or, if necessary, cancel the booking by clicking on the “Cancel booking” button.
 
 
-![Alt text](image-22.png)
+![Alt text](hotel/documentation/image-22.png)
 
 When choosing to cancel a booking, a modal window will appear in front of the user asking them to confirm the specified actions, and only after the user confirms the booking will the booking be cancelled.
 
-![Alt text](image-23.png)
+![Alt text](hotel/documentation/image-23.png)
 
 Canceled bookings are removed from the database but remain on the user’s page; the status changes to “Canceled” and the buttons become inactive. Moreover, if the user has several bookings, then bookings with an active status will go first, and those with an inactive status will be shuffled to the end of the list and come after the active ones.
 
-![](image-24.png)
+![Alt text](hotel/documentation/image-24.png)
 
 **Future Implementations**
 
@@ -285,23 +285,23 @@ All pages were tested using Lighthouse with the primary goal of identifying perf
 The Lighthouse test results are shown below:
 
 **Home**
-![Alt text](image-32.png)
+![Alt text](hotel/documentation/image-32.png)
 
 **Hotels**
 
-![Alt text](image-33.png)
+![Alt text](hotel/documentation/image-33.png)
 
 **Hotel page**
 
-![Alt text](image-34.png)
+![Alt text](hotel/documentation/image-34.png)
 
 **Room page**
 
-![Alt text](image-35.png)
+![Alt text](hotel/documentation/image-35.png)
 
 **Booking page**
 
-![Alt text](image-36.png)
+![Alt text](hotel/documentation/image-36.png)
 
 
 ### Browser Compatibility
@@ -327,34 +327,34 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 - All HTML pages were checked using the [W3C Markup Validation Service](https://validator.w3.org/) and found no major errors:
 
 **Home**
-![Alt text](image-39.png)
+![Alt text](hotel/documentation/image-39.png)
 
 **Hotels**
 
-![Alt text](image-40.png)
+![Alt text](hotel/documentation/image-40.png)
 
 **Hotel page**
 
-![Alt text](image-41.png)
+![Alt text](hotel/documentation/image-41.png)
 
 **Room page**
 
-![Alt text](image-42.png)
+![Alt text](hotel/documentation/image-42.png)
 
 **Booking page**
 
-![Alt text](image-43.png)
+![Alt text](hotel/documentation/image-43.png)
 
 - CSS page was also checked using the [W3C Markup Validation Service](https://validator.w3.org/) and found no errors:
 
-![Alt text](image-38.png)
+![Alt text](hotel/documentation/image-38.png)
 
 
 - All JavaScript files passed through [JSHint](https://jshint.com/)t without errors.
 
-![Alt text](image-25.png)
+![Alt text](hotel/documentation/image-25.png)
 
-![Alt text](image-37.png)
+![Alt text](hotel/documentation/image-37.png)
 
 - All custom code Python files were formatted using the PEP8 - [Black](https://pypi.org/project/black/) complaint formatter.
 
@@ -373,7 +373,7 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 
 | Test                  | Action                                                                                                                                                                                         | Success Criteria                                                              |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Homepage loads        | Navigate to website URL                                                                                                                                                                        | Page loads < 3s, no errors                                                    |
+| Homepage loads        | Navigate to website URL                                                                                                                                                                        | Page loads, no errors                                                    |
 | Links                 | Click on each Navigation link, CTA, button, logo, footer link                                                                                                                                  | Correct page is loaded/correct action performed, new tab opened if applicable |
 | Form validation       | Enter data into each input field, ensure only valid data is accepted                                                                                                                           | Form doesn't submit until correct data entered, error message shown           |
 | Lighthouse            | Perform Lighthouse test on each page for the primary user flow                                                                                                               | Score of > 92 on Performance, Accessibility, Best Practices                   |
@@ -387,16 +387,16 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Selecting a city and check-in check-out dates | Сlick on the field with the city from the drop-down list, select the city you need, then select the dates and click find                                                                                | - Drop down menu opens with correct data.<br>- Text input disabled. <br>- Dropdown closes on click outside. <br>- Correct selection added to field. <br> -Dates until today are blocked 
 
-![Alt text](image-44.png)
-![Alt text](image-45.png)
-![Alt text](image-46.png)
+![Alt text](hotel/documentation/image-44.png)
+![Alt text](hotel/documentation/image-45.png)
+![Alt text](hotel/documentation/image-46.png)
 
 | Test                         | Action                                                                                                             | Success Criteria                                                                                                                                                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Selecting a room or hotel from the home page | Click on the card with the room or hotel                                                                              |- the cursor will become active <br>-card will increase in size<br>- description change color to blue<br>-clicking will take you to a page with detailed information
  
- ![Alt text](image-47.png)
-![Alt text](image-48.png)
+ ![Alt text](hotel/documentation/image-47.png)
+![Alt text](hotel/documentation/image-48.png)
 
 
 **Room booking**
@@ -404,19 +404,19 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Booking a room by an unauthorized user | Clicking the "Book now" button by an unauthorized user |A dialog box will appear asking you to log in or register on the site. |
 
-![Alt text](image-49.png)
+![Alt text](hotel/documentation/image-49.png)
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Booking a room by an authorized user | Clicking the "Book now" button by an authorized user |A page for entering information appears in front of the user. |
 
-![Alt text](image-50.png)
+![Alt text](hotel/documentation/image-50.png)
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | The user enters incorrect data in the First Name and Last Name fields | Clicking the "Book now" button r | A message appears that the data was entered incorrectly and that the data entered was incorrect. |
 
-![Alt text](image-52.png)
+![Alt text](hotel/documentation/image-52.png)
 
 
 | Test                         | Action                                                                                                             | Success Criteria       
@@ -424,39 +424,39 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 | If the user does not enter data in the Checking date and Checkout date fields (leave them blank) | Clicking the "Book now" button r | A calendar widget will open in the Checking date and Checkout date fields, which must be filled in. |
 
 
-![Alt text](image-53.png)
+![Alt text](hotel/documentation/image-53.png)
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 If the user enters the same data in the Checking date and Checkout date fields | Clicking the "Book now" button | The message "Check-out date must be later than check-in date" appears. |
 
-![Alt text](image-54.png)
+![Alt text](hotel/documentation/image-54.png)
 
 Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 If the user entered a date in the Checking date field later than the date in the Checkout date field | Clicking the "Book now" button  | The message "Check-out date must be later than check-in date" appears. |
 
-![Alt text](image-55.png)
+![Alt text](hotel/documentation/image-55.png)
 
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 If the user wants to enter dates for which this room is already booked or dates before the current day |Opens a calendar with dates  | All dates before the current day, as well as dates on which this room is already booked, will be displayed as inactive. |
 
-![Alt text](image-56.png)
+![Alt text](hotel/documentation/image-56.png)
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 If the user enters incorrect data in the Phone Number field | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
 
-![Alt text](image-57.png)
+![Alt text](hotel/documentation/image-57.png)
 
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 If the user enters an incorrect email address | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
 
-![Alt text](image-58.png)
+![Alt text](hotel/documentation/image-58.png)
 
 
 | Test                         | Action                                                                                                             | Success Criteria       
@@ -464,7 +464,7 @@ If the user enters an incorrect email address | Clicking the "Book now" button  
 If the user entered the number of children but did not enter their age | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
 
 
-![Alt text](image-59.png)
+![Alt text](hotel/documentation/image-59.png)
 
 
 | Test                         | Action                                                                                                             | Success Criteria       
@@ -472,7 +472,7 @@ If the user entered the number of children but did not enter their age | Clickin
 | if the user entered the age of the children but did not enter their number | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
 
 
-![Alt text](image-60.png)
+![Alt text](hotel/documentation/image-60.png)
 
 
 | Test                         | Action                                                                                                             | Success Criteria       
@@ -480,7 +480,7 @@ If the user entered the number of children but did not enter their age | Clickin
 |if the user has entered the incorrect age of the children | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
 
 
-![Alt text](image-62.png)
+![Alt text](hotel/documentation/image-62.png)
 ### Automated testing
 
 ## Bugs
@@ -517,4 +517,7 @@ This website is deployed to Heroku from a GitHub repository, the following steps
 - Once it has been connected scroll down to the **Manual Deploy** and click **Deploy branch** when it has deployed you will see a **view app** button below and this will bring you to your newly deployed app.
 - Please note that when deploying manually you will have to deploy after each change you make to your repository.
 ## Credits
-
+- Inspired by the Code Institute's training project "I Think Therefore I Blog"
+- Descriptions of hotels, rooms and their photographs for educational purposes were taken from the website [Booking.com](https://www.booking.com/).
+-  Also, in preparing this project, a lot of useful information was obtained from this [reference book](https://www.w3schools.com/python/).
+- Images were taken from the website [Freepik.com](https://www.freepik.com/).
