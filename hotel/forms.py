@@ -34,6 +34,12 @@ class Guest_reviewsForm(forms.ModelForm):
 
 
 class BaseBookingForm(forms.ModelForm):
+
+    # checking_date = forms.TextInput(attrs={"autocomplete": "off"}),
+    # checking_date = forms.TextInput(attrs={"autocomplete": "off"}),
+    checking_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
+    checkout_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
+
     phone_number = forms.CharField(
         label="Phone Number",
         widget=forms.TextInput(attrs={"class": "form-control", "type": "tel"}),
@@ -105,8 +111,8 @@ class BaseBookingForm(forms.ModelForm):
     def validate_children_ages(value):
         ages = [int(age.strip()) for age in value.split(",") if age.strip().isdigit()]
         for age in ages:
-            if age < 0 or age > 99:
-                raise forms.ValidationError("Enter valid ages between 1 and 99.")
+            if age < 0 or age > 18:
+                raise forms.ValidationError("Enter valid ages between 1 and 18.")
 
     children_ages = forms.CharField(
         label="Ages of Children (comma-separated)",
@@ -163,14 +169,14 @@ class BaseBookingForm(forms.ModelForm):
             if not all(age > 0 for age in ages):
                 raise ValidationError("Please enter valid ages for the children.")
 
-        room = self.room
-        existing_bookings = Booking.objects.filter(
-            Q(room=room),
-            Q(Q(checkout_date__gt=checking_date) & Q(checking_date__lt=checkout_date))
-            | Q(
-                Q(checking_date__lt=checkout_date) & Q(checkout_date__gt=checking_date)
-            ),
-        )
+        # room = self.room
+        # existing_bookings = Booking.objects.filter(
+        #     Q(room=room),
+        #     Q(Q(checkout_date__gt=checking_date) & Q(checking_date__lt=checkout_date))
+        #     | Q(
+        #         Q(checking_date__lt=checkout_date) & Q(checkout_date__gt=checking_date)
+        #     ),
+        # )
 
         return cleaned_data
 
@@ -195,10 +201,10 @@ class BaseBookingForm(forms.ModelForm):
             "playroom_services",
         ]
 
-        widgets = {
-            "checking_date": forms.TextInput(attrs={"autocomplete": "off"}),
-            "checking_date": forms.TextInput(attrs={"autocomplete": "off"}),
-        }
+        # widgets = {
+        #     "checking_date": forms.TextInput(attrs={"autocomplete": "off"}),
+        #     "checking_date": forms.TextInput(attrs={"autocomplete": "off"}),
+        # }
 
 
 class BookingForm(BaseBookingForm):

@@ -419,6 +419,69 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 ![Alt text](image-52.png)
 
 
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| If the user does not enter data in the Checking date and Checkout date fields (leave them blank) | Clicking the "Book now" button r | A calendar widget will open in the Checking date and Checkout date fields, which must be filled in. |
+
+
+![Alt text](image-53.png)
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If the user enters the same data in the Checking date and Checkout date fields | Clicking the "Book now" button | The message "Check-out date must be later than check-in date" appears.. |
+
+![Alt text](image-54.png)
+
+Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If the user entered a date in the Checking date field later than the date in the Checkout date field | Clicking the "Book now" button  | The message "Check-out date must be later than check-in date" appears. |
+ |
+
+![Alt text](image-55.png)
+
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If the user wants to enter dates for which this room is already booked or dates before the current day |Opens a calendar with dates  | All dates before the current day, as well as dates on which this room is already booked, will be displayed as inactive. |
+
+![Alt text](image-56.png)
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If the user enters incorrect data in the Phone Number field | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
+
+![Alt text](image-57.png)
+
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If the user enters an incorrect email address | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
+
+![Alt text](image-58.png)
+
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+if the user entered the number of children but did not enter their age | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
+
+
+![Alt text](image-59.png)
+
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| if the user entered the age of the children but did not enter their number | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
+
+
+![Alt text](image-60.png)
+
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|if the user has entered the incorrect age of the children | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
+
+
+![Alt text](image-62.png)
 ### Automated testing
 
 ## Bugs

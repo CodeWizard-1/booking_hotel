@@ -180,11 +180,13 @@ class BookRoomView(View):
 
         bookings = Booking.objects.filter(room=room)
         booked_dates = []
-        for booking in bookings:
-            current_date = booking.checking_date
-            while current_date <= booking.checkout_date:
-                booked_dates.append(current_date.strftime("%m/%d/%Y"))
-                current_date += timedelta(days=1)
+        if bookings.exists():
+            for booking in bookings:
+                if booking.checking_date and booking.checkout_date:
+                    current_date = booking.checking_date
+                    while current_date <= booking.checkout_date:
+                        booked_dates.append(current_date.strftime("%m/%d/%Y"))
+                        current_date += timedelta(days=1)
 
         context = {
             "room": room,
