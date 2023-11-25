@@ -1,4 +1,4 @@
-![Alt text](image-25.png)
+![Alt text](hotel/documentation/responsive.png)
 
 <br>
 
@@ -310,7 +310,7 @@ The Lighthouse test results are shown below:
 
 Responsiveness testing was done using Chrome Dev Tools and ResponsivityApp.
 The website has been thoroughly tested on emulated mobile devices, tablets and widescreen screens of various sizes.
-![Alt text](image-25.png)
+![Alt text](hotel/documentation/responsive-devises.png)
 
 | Device             | iPhone SE   | iPhone X    | iPhone 12 Pro | iPhone 13 Pro Max | iPhone 14 Pro Max | iPad         | iPad Air     | iPad Pro      | Macbook Pro  |
 | ------------------ | ----------- | ----------- | ------------- | ----------------- | ----------------- | ------------ | ------------ | ------------- | ------------ |
@@ -428,14 +428,13 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-If the user enters the same data in the Checking date and Checkout date fields | Clicking the "Book now" button | The message "Check-out date must be later than check-in date" appears.. |
+If the user enters the same data in the Checking date and Checkout date fields | Clicking the "Book now" button | The message "Check-out date must be later than check-in date" appears. |
 
 ![Alt text](image-54.png)
 
 Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 If the user entered a date in the Checking date field later than the date in the Checkout date field | Clicking the "Book now" button  | The message "Check-out date must be later than check-in date" appears. |
- |
 
 ![Alt text](image-55.png)
 
@@ -462,7 +461,7 @@ If the user enters an incorrect email address | Clicking the "Book now" button  
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-if the user entered the number of children but did not enter their age | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
+If the user entered the number of children but did not enter their age | Clicking the "Book now" button  | A message appears stating that the data was entered incorrectly and how to enter the data correctly. |
 
 
 ![Alt text](image-59.png)
