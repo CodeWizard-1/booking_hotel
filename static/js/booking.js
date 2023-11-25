@@ -1,17 +1,6 @@
 const idcheckinInput = document.getElementById('id_checking_date');
 const idcheckoutInput = document.getElementById('id_checkout_date');
 
-const startDatepicker = new Datepicker(idcheckinInput, {
-    minDate: new Date(),
-    autohide: true,
-    datesDisabled: bookedDates,
-});
-
-const endDatepicker = new Datepicker(idcheckoutInput, {
-    minDate: new Date(),
-    autohide: true,
-    datesDisabled: bookedDates,
-});
 
 idcheckinInput.addEventListener('changeDate', updateTotalPrice);
 idcheckoutInput.addEventListener('changeDate', updateTotalPrice);
@@ -31,5 +20,16 @@ function updateTotalPrice() {
 }
 
 
-
 updateTotalPrice();
+
+const startDatepicker = new Datepicker(idcheckinInput, {
+    minDate: new Date(),
+    autohide: true,
+    datesDisabled: bookedDates,
+});
+
+const endDatepicker = new Datepicker(idcheckoutInput, {
+    minDate: new Date(),
+    autohide: true,
+    datesDisabled: bookedDates,
+});
