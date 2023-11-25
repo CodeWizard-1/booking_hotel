@@ -378,12 +378,14 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 | Form validation       | Enter data into each input field, ensure only valid data is accepted                                                                                                                           | Form doesn't submit until correct data entered, error message shown           |
 | Lighthouse            | Perform Lighthouse test on each page for the primary user flow                                                                                                               | Score of > 92 on Performance, Accessibility, Best Practices                   |
 
-| Test                         | Action                                                                                                             | Success Criteria                                                                                                                                                                                                                            |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Selecting a city and check-in check-out dates | Сlick on the field with the city from the drop-down list, select the city you need, then select the dates and click find                                                                                | - Drop down menu opens with correct data.<br>- Text input disabled. <br>- Dropdown closes on click outside. <br>- Correct selection added to field. <br> -Dates until today are blocked 
+
 
 
 **Homepage & Search Testing**
+
+| Test                         | Action                                                                                                             | Success Criteria                                                                                                                                                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Selecting a city and check-in check-out dates | Сlick on the field with the city from the drop-down list, select the city you need, then select the dates and click find                                                                                | - Drop down menu opens with correct data.<br>- Text input disabled. <br>- Dropdown closes on click outside. <br>- Correct selection added to field. <br> -Dates until today are blocked 
 
 ![Alt text](image-44.png)
 ![Alt text](image-45.png)
@@ -396,10 +398,6 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
  ![Alt text](image-47.png)
 ![Alt text](image-48.png)
 
-| Test                         | Action                                                                                                             | Success Criteria       
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Booking a room by an unauthorized user | Clicking the "Book now" button by an unauthorized user |A dialog box will appear asking you to log in or register on the site. |
-
 
 **Room booking**
 | Test                         | Action                                                                                                             | Success Criteria       
@@ -407,6 +405,19 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 | Booking a room by an unauthorized user | Clicking the "Book now" button by an unauthorized user |A dialog box will appear asking you to log in or register on the site. |
 
 ![Alt text](image-49.png)
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Booking a room by an authorized user | Clicking the "Book now" button by an authorized user |A page for entering information appears in front of the user. |
+
+![Alt text](image-50.png)
+
+| Test                         | Action                                                                                                             | Success Criteria       
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The user enters incorrect data in the First Name and Last Name fields | Clicking the "Book now" button r | A message appears that the data was entered incorrectly and that the data entered was incorrect. |
+
+![Alt text](image-52.png)
+
 
 ### Automated testing
 

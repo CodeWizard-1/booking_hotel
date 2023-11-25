@@ -83,7 +83,7 @@ class BaseBookingForm(forms.ModelForm):
             MaxLengthValidator(15, message="Enter at most 15 characters."),
             RegexValidator(
                 regex=r"^[A-Za-zА-Яа-яЁё]+$",
-                message="Enter a valid last first name without numbers, symbols, or spaces.",
+                message="Enter a valid last name without numbers, symbols, or spaces.",
             ),
         ],
     )
