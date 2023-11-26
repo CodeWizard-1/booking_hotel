@@ -15,7 +15,7 @@ from datetime import timedelta
 from django.http import Http404
 from django.db import transaction
 
-
+# View for displaying the list of cities
 class CityListView(View):
     template_name = ("hotel_detail.html",)
 
@@ -25,6 +25,7 @@ class CityListView(View):
         return render(request, self.template_name, context)
 
 
+# View for displaying the list of hotels
 class HotelList(generic.ListView):
     model = Hotel
     template_name = "index.html"
@@ -44,7 +45,7 @@ class HotelList(generic.ListView):
 
         return context
 
-
+# View for displaying the details of a hotel
 class HotelDetail(DetailView):
     model = Hotel
     template_name = "hotel_detail.html"
@@ -55,7 +56,7 @@ class HotelDetail(DetailView):
         context["hotels"] = Hotel.objects.all()
         return context
 
-
+# View for displaying hotels in a specific city
 class CityHotelsView(View):
     template_name = "city_hotels.html"
     paginate_by = 4
@@ -78,7 +79,7 @@ class CityHotelsView(View):
         context = {"city": city, "hotels": hotels, "cities": cities}
         return render(request, self.template_name, context)
 
-
+ # View for handling search functionality
 class SearchView(View):
     template_name = "search.html"
 
@@ -93,7 +94,7 @@ class SearchView(View):
     def get(self, request):
         return render(request, self.template_name)
 
-
+# View for displaying the list of rooms
 class RoomList(generic.ListView):
     model = Room
     queryset = Room.objects.filter(status=1).order_by("-id")
@@ -105,7 +106,7 @@ class RoomList(generic.ListView):
         context["City"] = city
         return context
 
-
+# View for displaying the details of a room
 class RoomDetail(View):
     template_name = "room_detail.html"
 
@@ -166,7 +167,7 @@ class RoomDetail(View):
 
         return render(request, self.template_name, context)
 
-
+# View for handling room booking
 class BookRoomView(View):
     template_name = "booking.html"
 
@@ -219,7 +220,7 @@ class BookRoomView(View):
                 {"room": room, "city": city, "hotel": hotel, "form": form},
             )
 
-
+# View for displaying user's booking details
 class BookingDetailView(View):
     template_name = "my_booking.html"
 
@@ -252,7 +253,7 @@ class BookingDetailView(View):
                 return HttpResponseRedirect("/my_booking/")
         return HttpResponseRedirect("/my_booking/")
 
-
+# View for handling cancellation of a booking
 class CancelBookingView(View):
     def post(self, request, booking_id):
         booking = get_object_or_404(Booking, id=booking_id)
@@ -260,7 +261,7 @@ class CancelBookingView(View):
         booking.save()
         return redirect("my_booking")
 
-
+# View for displaying a success message after booking
 class SuccessBookingView(View):
     template_name = "success_booking.html"
 
@@ -273,7 +274,7 @@ class SuccessBookingView(View):
 
         return render(request, self.template_name, context)
 
-
+ # View for editing a booking
 class EditBookingView(View):
     template_name = "edit_booking.html"
 
@@ -332,7 +333,7 @@ class EditBookingView(View):
             },
         )
 
-
+# View for handling room likes
 class RoomLike(View):
     def post(self, request, slug):
         room = get_object_or_404(Room, slug=slug)
@@ -344,6 +345,7 @@ class RoomLike(View):
 
         return HttpResponseRedirect(reverse("room_detail", args=[slug]))
 
+# View for handling 404 errors
 
 def error_404(request, exception):
     return render(request, "404.html", status=404)

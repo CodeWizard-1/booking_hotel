@@ -3,16 +3,17 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from datetime import timedelta
 
+# Status choices for a room
 STATUS = ((0, "Draft"), (1, "Published"))
 
-
+# Model for City
 class City(models.Model):
     city_name = models.CharField(max_length=100)
 
     def __str__(self) -> str:
         return self.city_name
 
-
+# Model for Hotel
 class Hotel(models.Model):
     hotel_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -24,14 +25,14 @@ class Hotel(models.Model):
     def __str__(self) -> str:
         return self.hotel_name
 
-
+# Model for Facilities
 class Facilities(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self) -> str:
         return self.name
 
-
+# Model for Room
 class Room(models.Model):
     room_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -53,14 +54,14 @@ class Room(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
-
+# Model for Room Category
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.category_name
 
-
+# Model for Customer
 class Customer(models.Model):
     customer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="customers"
@@ -69,7 +70,7 @@ class Customer(models.Model):
     def __str__(self):
         return self.customer
 
-
+# Model for Booking
 class Booking(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey("Room", on_delete=models.CASCADE)
@@ -103,7 +104,7 @@ class Booking(models.Model):
     def __str__(self):
         return self.customer.username
 
-
+# Model for Check-In
 class CheckIn(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey("Room", on_delete=models.CASCADE)
@@ -113,7 +114,7 @@ class CheckIn(models.Model):
     def __str__(self):
         return self.room.slug
 
-
+# Model for Check-Out
 class CheckOut(models.Model):
     customer = models.ForeignKey("Customer", on_delete=models.CASCADE)
     check_out_date = models.DateTimeField(auto_now_add=True)
@@ -121,7 +122,7 @@ class CheckOut(models.Model):
     def __str__(self):
         return self.customer
 
-
+# Model for Guest Reviews
 class Guest_reviews(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="rooms")
     name = models.CharField(max_length=80)

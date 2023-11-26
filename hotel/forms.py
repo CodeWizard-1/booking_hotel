@@ -20,7 +20,7 @@ from django_flatpickr.widgets import (
 )
 from django_flatpickr.schemas import FlatpickrOptions
 
-
+# Form for guest reviews
 class Guest_reviewsForm(forms.ModelForm):
     class Meta:
         model = Guest_reviews
@@ -32,7 +32,7 @@ class Guest_reviewsForm(forms.ModelForm):
             "body": forms.Textarea(attrs={"placeholder": "Type your message here..."}),
         }
 
-
+# Base form for room booking
 class BaseBookingForm(forms.ModelForm):
 
     checking_date = forms.DateField(
@@ -207,7 +207,7 @@ class BaseBookingForm(forms.ModelForm):
             "playroom_services",
         ]
 
-
+# Form for creating a new booking
 class BookingForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass
@@ -256,7 +256,7 @@ class BookingForm(BaseBookingForm):
         return cleaned_data
 
 
-
+# Form for editing an existing booking
 class BookingEditForm(BaseBookingForm):
     class Meta(BaseBookingForm.Meta):
         pass

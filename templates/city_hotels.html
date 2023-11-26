@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<!-- Search Form Section -->
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -31,6 +32,7 @@
                 </div>
             </div>
         </div>
+         <!-- Hotels Listing Column -->
         <div class="col-md-8">
             <h1>Hotels in {{ city.city_name }}</h1>
             {% for hotel in hotels %}
@@ -59,6 +61,7 @@
             {% endfor %}
         </div>
     </div>
+    <!-- Pagination Section -->
     {% if hotels.has_other_pages %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">

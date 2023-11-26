@@ -3,6 +3,7 @@
 
 
 {% block content %}
+<!-- Search Section -->
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -43,11 +44,13 @@
             </div>
         </div>
     </div>
+    <!-- Hotel Description Section -->
     <div class="row">
         <div class="col-12">
             <div class="card-text">{{ hotel.description_hotel | safe }}</div>
         </div>
     </div>
+    <!-- Rooms in the Hotel Section -->
     <div class="container mt-5">
         <h2>Rooms in this Hotel</h2>
         <table class="table table-bordered border-primary table-hover table-responsive text-center">
