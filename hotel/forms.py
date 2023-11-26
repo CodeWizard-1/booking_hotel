@@ -36,8 +36,19 @@ class Guest_reviewsForm(forms.ModelForm):
 class BaseBookingForm(forms.ModelForm):
 
    
-    checking_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
-    checkout_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
+    # checking_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
+    # checkout_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
+
+    checking_date = forms.DateField(
+        widget=DatePickerInput(),
+        required=True
+    )
+    checkout_date = forms.DateField(
+        widget=DatePickerInput(),
+        required=True
+    )
+
+
 
 
 
@@ -263,10 +274,10 @@ class BookingEditForm(BaseBookingForm):
         if "instance" in kwargs:
             booking = kwargs["instance"]
             self.fields["checking_date"].initial = booking.checking_date.strftime(
-                "%m/%d/%Y"
+                "%Y-%m-%d"
             )
             self.fields["checkout_date"].initial = booking.checkout_date.strftime(
-                "%m/%d/%Y"
+                "%Y-%m-%d"
             )
 
     def clean(self):

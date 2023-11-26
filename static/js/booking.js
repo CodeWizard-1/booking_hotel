@@ -1,3 +1,8 @@
+
+const today = new Date();
+
+// const isoDate = today.getDate().toString().padStart(2, '0') + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getFullYear();
+
 const idcheckinInput = document.getElementById('id_checking_date');
 const idcheckoutInput = document.getElementById('id_checkout_date');
 
@@ -22,14 +27,42 @@ function updateTotalPrice() {
 
 updateTotalPrice();
 
-const startDatepicker = new Datepicker(idcheckinInput, {
-    minDate: new Date(),
-    autohide: true,
-    datesDisabled: bookedDates,
+// const startDatepicker = new Datepicker(idcheckinInput, {
+//     minDate: new Date(),
+//     autohide: true,
+//     datesDisabled: bookedDates,
+//     defaultViewDate: 'today', 
+//     todayButton: true,
+//     format: 'dd/mm/yyyy',
+// });
+
+// const endDatepicker = new Datepicker(idcheckoutInput, {
+//     minDate: new Date(),
+//     autohide: true,
+//     datesDisabled: bookedDates,
+//     defaultViewDate: 'today', 
+//     todayButton: true,
+//     format: 'dd/mm/yyyy',
+// });
+
+
+
+const startDatepicker = new flatpickr(idcheckinInput, {
+    enableTime: false,
+    altInput: true,
+    altFormat: "d-m-Y",
+    dateFormat: "Y-m-d",
+    minDate: today,
+    defaultDate: today,
+    disable: bookedDates,
 });
 
-const endDatepicker = new Datepicker(idcheckoutInput, {
-    minDate: new Date(),
-    autohide: true,
-    datesDisabled: bookedDates,
+const endDatepicker = new flatpickr(idcheckoutInput, {
+    enableTime: false,
+    altInput: true,
+    altFormat: "d-m-Y",
+    dateFormat: "Y-m-d",
+    minDate: today,
+    defaultDate: today,
+    disable: bookedDates,
 });

@@ -185,7 +185,7 @@ class BookRoomView(View):
                 if booking.checking_date and booking.checkout_date:
                     current_date = booking.checking_date
                     while current_date <= booking.checkout_date:
-                        booked_dates.append(current_date.strftime("%m/%d/%Y"))
+                        booked_dates.append(current_date.strftime("%Y-%m-%d"))
                         current_date += timedelta(days=1)
 
         context = {
@@ -286,7 +286,7 @@ class EditBookingView(View):
         for other_booking in other_bookings:
             current_date = other_booking.checking_date
             while current_date <= other_booking.checkout_date:
-                booked_dates.append(current_date.strftime("%m/%d/%Y"))
+                booked_dates.append(current_date.strftime("%Y-%m-%d"))
                 current_date += timedelta(days=1)
         return render(
             request,
