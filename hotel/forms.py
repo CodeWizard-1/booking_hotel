@@ -35,10 +35,6 @@ class Guest_reviewsForm(forms.ModelForm):
 
 class BaseBookingForm(forms.ModelForm):
 
-   
-    # checking_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
-    # checkout_date = forms.DateField(widget=forms.TextInput(attrs={"autocomplete": "off"}), required=True)
-
     checking_date = forms.DateField(
         widget=DatePickerInput(),
         required=True
@@ -47,9 +43,6 @@ class BaseBookingForm(forms.ModelForm):
         widget=DatePickerInput(),
         required=True
     )
-
-
-
 
 
 
@@ -311,5 +304,6 @@ class BookingEditForm(BaseBookingForm):
                 raise ValidationError(
                     "The selected dates overlap with an existing booking for this room."
                 )
+
 
         return cleaned_data

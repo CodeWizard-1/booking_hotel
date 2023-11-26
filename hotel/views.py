@@ -12,6 +12,8 @@ from django.contrib.messages import success
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import timedelta
+from django.http import Http404
+from django.db import transaction
 
 
 class CityListView(View):
@@ -184,9 +186,8 @@ class BookRoomView(View):
             for booking in bookings:
                 if booking.checking_date and booking.checkout_date:
                     current_date = booking.checking_date
-                    while current_date <= booking.checkout_date:
+                    while current_date <= booking.checkout_date: 
                         booked_dates.append(current_date.strftime("%Y-%m-%d"))
-                        current_date += timedelta(days=1)
 
         context = {
             "room": room,
@@ -278,6 +279,8 @@ class EditBookingView(View):
 
     def get(self, request, booking_id):
         booking = Booking.objects.get(id=booking_id)
+
+
         form = BookingEditForm(instance=booking)
         room = booking.room
 
@@ -296,6 +299,9 @@ class EditBookingView(View):
 
     def post(self, request, booking_id):
         booking = Booking.objects.get(id=booking_id)
+
+        
+
         form = BookingEditForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
