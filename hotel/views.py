@@ -185,10 +185,14 @@ class BookRoomView(View):
         booked_dates = []
         if bookings.exists():
             for booking in bookings:
+                if booking.is_cancelled:
+                    continue
                 if booking.checking_date and booking.checkout_date:
                     current_date = booking.checking_date
-                    if current_date <= booking.checkout_date: 
+                    while current_date <= booking.checkout_date: 
                         booked_dates.append(current_date.strftime("%Y-%m-%d"))
+                        current_date += timedelta(days=1)
+
 
         context = {
             "room": room,
@@ -259,16 +263,6 @@ class CancelBookingView(View):
         booking = get_object_or_404(Booking, id=booking_id)
         booking.is_cancelled = True
         booking.save()
-        
-        if booking.checking_date and booking.checkout_date:
-            booked_dates = [booking.checking_date + timedelta(days=x) for x in range((booking.checkout_date - booking.checking_date).days + 1)]
-
-            
-            Room.objects.filter(
-                Q(bookings__checking_date__in=booked_dates) |
-                Q(bookings__checkout_date__in=booked_dates) |
-                Q(bookings__checking_date__lte=booking.checking_date, bookings__checkout_date__gte=booking.checking_date)
-            ).update(status=1) 
 
         return redirect("my_booking")
 
@@ -299,8 +293,10 @@ class EditBookingView(View):
         other_bookings = Booking.objects.filter(room=room).exclude(id=booking.id)
         booked_dates = []
         for other_booking in other_bookings:
+            if other_booking.is_cancelled:
+                continue 
             current_date = other_booking.checking_date
-            if current_date <= other_booking.checkout_date:
+            while current_date <= other_booking.checkout_date:
                 booked_dates.append(current_date.strftime("%Y-%m-%d"))
                 current_date += timedelta(days=1)
         return render(
