@@ -496,7 +496,30 @@ If the user entered the number of children but did not enter their age | Clickin
 
 | Bug | Fix
 |:-------:|:--------|
-|   |    |
+|The problem is that when booking a room, namely when clicking on the “Book now” button, the site stopped responding to requests and simply “hung”, while giving the error indicated in the screenshots below |   After studying the problem for a very long time, it was discovered that the code included a while loop, which was used to populate the booked_dates list with the dates between the checking_date and checkout_date of each booking. ![Alt text](code.png) The problem was that the loop did not have an exit condition, and therefore became infinite, making endless queries to the database causing it to crash and the site to freeze. The solution to the problem is to add a condition for its completion. current_date += timedelta(days=1). So the while condition becomes false when current_date becomes greater than checkout_date and the loop ends. |
+
+
+![Alt text](<hotel/documentation/Screenshot-bug1.png>)
+![Alt text](<hotel/documentation/Screenshot-bug2.png>)
+
+
+
+| Bug | Fix
+|:-------:|:--------|
+|It was also a big problem to transfer the dates of the reserved rooms to the calendar widget when booking a room, since when using different options the reserved dates were not displayed| The use of “flatpickr” helped to solve this problem, into which it is possible to transfer booked dates and also block them to prevent repeated bookings by users|
+
+![Alt text](hotel/documentation/Screenshot-bug3.png)
+![Alt text](hotel/documentation/Screenshot-bug4.png)
+
+
+
+| Bug | Fix
+|:-------:|:--------|
+|It was also a big problem to transfer the dates of the reserved rooms to the calendar widget when booking a room, since when using different options the reserved dates were not displayed| The use of “flatpickr” helped to solve this problem, into which it is possible to transfer booked dates and also block them to prevent repeated bookings by users|When adding code to a project that checks the number of valid seats in a room that was specified when adding this contact to the database through the admin panel, and if this is a single room, then the user will not be able to select more than one person, and if this is a country house, then the user can specify much more people|
+
+![Alt text](hotel/documentation/Screenshot-bug5.png)
+![Alt text](hotel/documentation/Screenshot-bug6.png)
+
 ## Deployment
 This website is deployed to Heroku from a GitHub repository, the following steps were taken:
 

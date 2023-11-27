@@ -193,7 +193,7 @@ class BookRoomView(View):
                         booked_dates.append(current_date.strftime("%Y-%m-%d"))
                         current_date += timedelta(days=1)
 
-
+ 
         context = {
             "room": room,
             "city": city,
