@@ -253,6 +253,7 @@ Functionality that is not in the scope of this project but may be added later to
 **Libraries, Frameworks and Packages**
 - [Tailwind CSS](https://tailwindcss.com/) - used to style elements throughout the site.
 - [Flowbite](https://htmx.org/) - a Tailwind-based open-source library; used very sparingly for small number of minor components in the site (radio select, dropdown select)
+-[Flatpickr](https://flatpickr.js.org/) - is a lightweight and powerful datetime picker.
 
 
 **Python/Django Packages**
@@ -395,7 +396,7 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Selecting a room or hotel from the home page | Click on the card with the room or hotel                                                                              |- the cursor will become active <br>-card will increase in size<br>- description change color to blue<br>-clicking will take you to a page with detailed information
  
- ![Alt text](hotel/documentation/image-47.png)
+![Alt text](hotel/documentation/image-47.png)
 ![Alt text](hotel/documentation/image-48.png)
 
 
@@ -488,15 +489,13 @@ If the user entered the number of children but did not enter their age | Clickin
 | When a user writes a review about a hotel room, the message first goes to the administrator for confirmation | Clicking the "Submit" button  | A corresponding message appears|
 
 
-
 ![Alt text](hotel/documentation/reviews.png)
-### Automated testing
 
 ## Bugs
 
 | Bug | Fix
 |:-------:|:--------|
-|The problem is that when booking a room, namely when clicking on the “Book now” button, the site stopped responding to requests and simply “hung”, while giving the error indicated in the screenshots below |   After studying the problem for a very long time, it was discovered that the code included a while loop, which was used to populate the booked_dates list with the dates between the checking_date and checkout_date of each booking. ![Alt text](code.png) The problem was that the loop did not have an exit condition, and therefore became infinite, making endless queries to the database causing it to crash and the site to freeze. The solution to the problem is to add a condition for its completion. current_date += timedelta(days=1). So the while condition becomes false when current_date becomes greater than checkout_date and the loop ends. |
+|The problem is that when booking a room, namely when clicking on the “Book now” button, the site stopped responding to requests and simply “hung”, while giving the error indicated in the screenshots below |   After studying the problem for a very long time, it was discovered that the code included a while loop, which was used to populate the booked_dates list with the dates between the checking_date and checkout_date of each booking. ![Alt text](hotel/documentation/code.png) The problem was that the loop did not have an exit condition, and therefore became infinite, making endless queries to the database causing it to crash and the site to freeze. The solution to the problem is to add a condition for its completion. current_date += timedelta(days=1). So the while condition becomes false when current_date becomes greater than checkout_date and the loop ends. |
 
 
 ![Alt text](<hotel/documentation/Screenshot-bug1.png>)

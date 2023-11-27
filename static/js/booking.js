@@ -6,9 +6,6 @@ const idcheckinInput = document.getElementById('id_checking_date');
 const idcheckoutInput = document.getElementById('id_checkout_date');
 
 
-// idcheckinInput.addEventListener('changeDate', updateTotalPrice);
-// idcheckoutInput.addEventListener('changeDate', updateTotalPrice);
-
 idcheckinInput.addEventListener('change', updateTotalPrice);
 idcheckoutInput.addEventListener('change', updateTotalPrice);
 
