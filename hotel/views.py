@@ -254,6 +254,7 @@ class BookingDetailView(View):
             if request.user == booking.customer:
                 booking.is_cancelled = True
                 booking.save()
+
                 return HttpResponseRedirect("/my_booking/")
         return HttpResponseRedirect("/my_booking/")
 
@@ -263,7 +264,7 @@ class CancelBookingView(View):
         booking = get_object_or_404(Booking, id=booking_id)
         booking.is_cancelled = True
         booking.save()
-
+        messages.success(request, "Changes have been successfully saved.")
         return redirect("my_booking")
 
 # View for displaying a success message after booking
