@@ -176,6 +176,7 @@ class BookRoomView(View):
         hotel = room.hotel
         city = hotel.city
 
+
         total_price = room.price
         form = BookingForm(
             request=request, room=room, initial={"total_price": total_price}
@@ -264,7 +265,7 @@ class CancelBookingView(View):
         booking = get_object_or_404(Booking, id=booking_id)
         booking.is_cancelled = True
         booking.save()
-        messages.success(request, "Changes have been successfully saved.")
+        messages.success(request, "Booking was successfully canceled!")
         return redirect("my_booking")
 
 # View for displaying a success message after booking
@@ -284,8 +285,11 @@ class SuccessBookingView(View):
 class EditBookingView(View):
     template_name = "edit_booking.html"
 
+
     def get(self, request, booking_id):
-        booking = Booking.objects.get(id=booking_id)
+
+        # booking = Booking.objects.get(id=booking_id)
+        booking = get_object_or_404(Booking, id=booking_id)
 
 
         form = BookingEditForm(instance=booking)
@@ -315,7 +319,7 @@ class EditBookingView(View):
         if form.is_valid():
             form.save()
 
-            messages.success(request, "Changes have been successfully saved.")
+            messages.success(request, "Changes have been successfully saved!")
 
             return redirect("my_booking")
 
@@ -354,6 +358,5 @@ class RoomLike(View):
         return HttpResponseRedirect(reverse("room_detail", args=[slug]))
 
 # View for handling 404 errors
-
 def error_404(request, exception):
     return render(request, "404.html", status=404)
