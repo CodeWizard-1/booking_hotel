@@ -288,7 +288,6 @@ class EditBookingView(View):
 
     def get(self, request, booking_id):
 
-        # booking = Booking.objects.get(id=booking_id)
         booking = get_object_or_404(Booking, id=booking_id)
 
 

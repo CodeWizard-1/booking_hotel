@@ -1,7 +1,3 @@
-
-const today = new Date();
-
-
 const idcheckinInput = document.getElementById('id_checking_date');
 const idcheckoutInput = document.getElementById('id_checkout_date');
 

@@ -273,6 +273,14 @@ class BookingEditForm(BaseBookingForm):
                 "%Y-%m-%d"
             )
 
+            room = booking.room if hasattr(booking, 'room') else None
+            if room:
+                capacity = room.capacity
+                self.fields["people_count"].choices = [
+                    (i, str(i)) for i in range(1, capacity + 1)
+                ]
+
+
     def clean(self):
         cleaned_data = super().clean()
         checking_date = cleaned_data.get("checking_date")
