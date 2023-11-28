@@ -122,7 +122,7 @@ This approach helped me effectively manage priorities and focus on important tas
 
 
 ### Typography
-I chose the Roboto and Lato fonts from Google Fonts for the project. Roboto with a weight of 300 gives a modern and lightweight appearance, ensuring good readability. Lato (weights 300 and 700) provides versatility and the ability to emphasize different parts of the content. These fonts convey modernity and professionalism, which is important for a hotel booking website.
+I chose the Roboto and Lato fonts from Google Fonts for the project. Roboto gives a modern and lightweight appearance, ensuring good readability. Lato provides versatility and the ability to emphasize different parts of the content. These fonts convey modernity and professionalism, which is important for a hotel booking website.
 
 ### Colour Scheme
 I chose blue, light blue, and white for my project. Blue for trust and professionalism, light blue for calmness and comfort, and white for cleanliness and clarity. These colors create a pleasant and professional atmosphere, which is important for a hotel booking website.
@@ -130,6 +130,7 @@ I chose blue, light blue, and white for my project. Blue for trust and professio
 ### Database Diagram
 
 **Data base Models**
+
 The data models for the project are shown below:
 
 ![Alt text](hotel/documentation/drawSQL-hotel.png) 
@@ -139,11 +140,11 @@ The data models for the project are shown below:
 
 ### **CRUD Functionality**
 
-CRUD user functionality is primarily related to Booking:
-- Create: Users create a reservation by going through the entire user flow. The reservation is created after the user completes the checkout process.
-- Read: Users can view the reservations they have created by logging in.
-- Update: Users can edit a Booking by changing the information.
-- Delete: Users can cancel a reservation, which will remove it from the database.
+CRUD user functionality is primarily related to Booking and Edit Booking:
+- Create: users create a booking by going through the entire user flow. The booking is created after the user completes the checkout process.
+- Read: users can view the reservations they have created by logging in.
+- Update: users can edit a Booking by changing the information.
+- Delete: users can cancel a reservation, which will remove it from the database.
 
 CRUD administration functionality exists for all models and is executed from the Django admin panel.
 
@@ -156,17 +157,21 @@ Login is required to access certain pages such as Booking, My Bookings and Edit 
 
 ![Alt text](hotel/documentation/image.png)
 
-login page
+
+Login page
 
 ![Alt text](hotel/documentation/image-2.png)
+
 
 If the user is not logged in at the time of booking a room, a modal window is displayed on the screen informing them of the need to register or log in using their username.
 
 ![Alt text](hotel/documentation/image-5.png)
 
+
 If an authorized user decides to log out of their account, they will see the following message:
 
 ![Alt text](hotel/documentation/image-18.png)
+
 
 ### **Navigation**
 
@@ -180,24 +185,29 @@ The hamburger menu is present on mobile devices and expands to show the main nav
 
 The hotel search form by city is located on the main page and allows users to search for hotels by selecting a city from a drop-down menu, the desired check-in date and check-out date.
 After which the user is redirected to a page that displays all hotels in the selected city.
+
 ![Alt text](hotel/documentation/image-27.png)
+
 
 ### **Home page**
 
-On the main page there is a block with the advantages of booking on this site
+On the main page there is a block with the advantages of booking on this site.
+
 ![Alt text](hotel/documentation/image-6.png)
 
-The next block is a block with selected offers of rooms from different hotels. The user can see basic information about the room, such as city, price per night, number of likes, hotel and room name. By clicking on the room card, the user will go directly to the room page.
+
+The next block is a block with selected offers of rooms from different hotels. The user can see basic information about the room such as city, price per night, number of likes, hotel and room name. By clicking on the room card, the user will go directly to the room page.
 
 ![Alt text](hotel/documentation/image-7.png)
+
 
 You can control which rooms will be added to this block on the main screen from the admin panel.
 
 ![Alt text](hotel/documentation/image-12.png)
 ![Alt text](hotel/documentation/image-8.png)
 
-The next block comes with selected hotels.
 
+The next block comes with selected hotels.
 
 ![Alt text](hotel/documentation/image-9.png)
 
@@ -299,8 +309,9 @@ Functionality that is not in the scope of this project but may be added later to
 - HTML/CSS + Django Template Language used for building out site pages.
 
 ### **Libraries, Frameworks and Packages**
-- [Tailwind CSS](https://tailwindcss.com/) - used to style elements throughout the site.
-- [Flowbite](https://htmx.org/) - a Tailwind-based open-source library; used very sparingly for small number of minor components in the site (radio select, dropdown select).
+- [Crispy forms](https://django-crispy-forms.readthedocs.io/en/latest/) - provides additional options for styling and forming web applications.
+- [Summernote](https://pypi.org/project/django-summernote/) - is a Django app that integrates the Summernote editor into web forms for easier visual text editing.
+- [Django Allauth](https://allauth.org/) - is a package of applications for Django that provides a comprehensive solution for authentication, registration, and user account management in Django-based web applications.
 - [Flatpickr](https://flatpickr.js.org/) - is a lightweight and powerful datetime picker.
 
 
@@ -310,20 +321,19 @@ Functionality that is not in the scope of this project but may be added later to
 - [psycopg2](https://pypi.org/project/psycopg2/) - provides PostgreSQL connection.
 - [Pillow](https://pypi.org/project/Pillow/) - used for image processing (Model ImageField).
 - [Whitenoise](https://pypi.org/project/whitenoise/) - used for serving static files.
-- [Django Markdown Field](https://pypi.org/project/django-markdownfield/) - adds a markdown-compatible text field to admin panel (for BlogPost model).
 - [Black](https://pypi.org/project/black/) - A PEP8 compliant code formatter.
 
 
 ### **Infrastructural Technologies**
 
 * Git -  Version control.
-* [GitHub](https://github.com/) - All files for the website stored and saved in a repository.
+* [GitHub](https://github.com/) - all files for the website stored and saved in a repository.
 * Gitpod - IDE used to write the code.
-* [Drawsql](https://drawsql.app/) -For creating a date base model
-* [Heroku](https://dashboard.heroku.com/apps) - For deployment of the project.
-* [Cloudconvert](https://cloudconvert.com/) - For compression of image files to improve website performance.
-* [UiDev](https://ui.dev/amiresponsive) - For generating an image of the deployed app on devices
-- [PostgreSQL](https://www.postgresql.org/) (via Digital Ocean) - used for database.
+* [Drawsql](https://drawsql.app/) -for creating a date base model
+* [Heroku](https://dashboard.heroku.com/apps) - for deployment of the project.
+* [Cloudconvert](https://cloudconvert.com/) - for compression of image files to improve website performance.
+* [UiDev](https://ui.dev/amiresponsive) - for generating an image of the deployed app on devices
+- [PostgreSQL](https://www.postgresql.org/) - used for database.
 - [Cloudinary](https://cloudinary.com/) - used for storing static files and media files.
 
 ## Testing
@@ -416,7 +426,7 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 - The CSS file also passed the W3C validator without errors.
 - All JavaScript files passed through JSHint without errors.
 - Navigation through the booking process, entering search queries, clicking on buttons when going to descriptions of hotels and rooms, sending reviews and likes about the room, links, and forms were also thoroughly tested.
--All forms have been tested to ensure they are validated and can be submitted without errors.
+- All forms have been tested to ensure they are validated and can be submitted without errors.
 - Lighthouse was used to test performance, accessibility, SEO, and modifications were made to improve testing results.
 
 **General Testing**
@@ -435,7 +445,7 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 
 | Test                         | Action                                                                                                             | Success Criteria                                                                                                                                                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Selecting a city and check-in check-out dates | Сlick on the field with the city from the drop-down list, select the city you need, then select the dates and click find                                                                                | - Drop down menu opens with correct data.<br>- Text input disabled. <br>- Dropdown closes on click outside. <br>- Correct selection added to field. <br> -Dates until today are blocked 
+| Selecting a city and check-in check-out dates | Сlick on the field with the city from the drop-down list, select the city you need, then select the dates and click find                                                                                | - drop down menu opens with correct data.<br> - text input disabled. <br> - dropdown closes on click outside. <br> - correct selection added to field. <br> - dates until today are blocked 
 
 ![Alt text](hotel/documentation/image-44.png)
 ![Alt text](hotel/documentation/image-45.png)
@@ -464,14 +474,14 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The user enters incorrect data in the First Name and Last Name fields | Clicking the "Book now" button r | A message appears that the data was entered incorrectly and that the data entered was incorrect. |
+| The user enters incorrect data in the First Name and Last Name fields | Clicking the "Book now" button | A message appears that the data was entered incorrectly |
 
 ![Alt text](hotel/documentation/image-52.png)
 
 
 | Test                         | Action                                                                                                             | Success Criteria       
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| If the user does not enter data in the Checking date and Checkout date fields (leave them blank) | Clicking the "Book now" button r | A calendar widget will open in the Checking date and Checkout date fields, which must be filled in. |
+| If the user does not enter data in the Checking date and Checkout date fields (leave them blank) | Clicking the "Book now" button | A calendar widget will open in the Checking date and Checkout date fields, which must be filled in. |
 
 
 ![Alt text](hotel/documentation/image-53.png)
@@ -563,7 +573,7 @@ If the user entered the number of children but did not enter their age | Clickin
 
 | Bug | Fix
 |:-------:|:--------|
-|It was also a big problem to transfer the dates of the reserved rooms to the calendar widget when booking a room, since when using different options the reserved dates were not displayed| The use of “flatpickr” helped to solve this problem, into which it is possible to transfer booked dates and also block them to prevent repeated bookings by users|When adding code to a project that checks the number of valid seats in a room that was specified when adding this contact to the database through the admin panel, and if this is a single room, then the user will not be able to select more than one person, and if this is a country house, then the user can specify much more people|
+|When selecting the number of adults for a reserved room, the default option allowed up to 10 people. This led to a misunderstanding since such a number of individuals cannot stay in a single-room accommodation.| The issue has been resolved by limiting the dropdown menu options for selecting the number of people to the quantity specified when entering information about the room in the admin panel. Consequently, for a single room, only one adult can be selected, whereas for a country house, a greater number of people can be chosen.|
 
 ![Alt text](hotel/documentation/Screenshot-bug5.png)
 ![Alt text](hotel/documentation/Screenshot-bug6.png)
