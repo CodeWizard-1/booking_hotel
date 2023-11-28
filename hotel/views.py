@@ -13,6 +13,7 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime, timedelta, date
 from django.http import Http404
+from django.http import HttpResponse, HttpResponseNotFound
 
 # View for displaying the list of cities
 class CityListView(View):
@@ -362,5 +363,9 @@ class RoomLike(View):
         return HttpResponseRedirect(reverse("room_detail", args=[slug]))
 
 # View for handling 404 errors
-def handler404(request, exception):
+def custom_page_not_found(request, exception):
     return render(request, '404.html', status=404)
+
+
+def custom_server_error(request):
+    return render(request, '404.html', status=500)

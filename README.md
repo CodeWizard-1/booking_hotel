@@ -262,6 +262,12 @@ Canceled bookings are removed from the database but remain on the user’s page;
 
 ![Alt text](hotel/documentation/image-24.png)
 
+### **Page Not Found**
+
+If the user follows a non-existent link (error code 404) or if there is a problem with the server (error code 500), the user will be redirected to a specially prepared page from which he can go to the main page
+
+![Alt text](hotel/documentation/page-not-found.png)
+
 ### **Future Implementations**
 
 Functionality that is not in the scope of this project but may be added later to improve the user experience:
