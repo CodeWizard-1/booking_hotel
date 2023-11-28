@@ -24,6 +24,8 @@
     * [Successful page](#successful-page)
     * [Edit booking](#edit-booking)
     * [My Bookings page](#my-bookings-page)
+    * [Page Not Found](#page-not-found)
+    * [Actions: User Feedback](#actions-user-feedback)
     * [Future Implementations](#future-implementations)
 
 3. [Technologies Used](#technologies-used)
@@ -267,6 +269,18 @@ Canceled bookings are removed from the database but remain on the user’s page;
 If the user follows a non-existent link (error code 404) or if there is a problem with the server (error code 500), the user will be redirected to a specially prepared page from which he can go to the main page
 
 ![Alt text](hotel/documentation/page-not-found.png)
+
+
+### **Actions: User Feedback**
+
+During interaction with the website, the user needs to receive feedback indicating that their actions are successful. For instance, when logging in and out of the account, as well as when editing or canceling a reservation. This is achieved through a pop-up modal window containing a message about the user's successful actions.
+
+
+![Alt text](hotel/documentation/succeess-enter.png)
+![Alt text](hotel/documentation/succeess-edit.png)
+![Alt text](hotel/documentation/succeess-cancel.png)
+![Alt text](hotel/documentation/succeess-out.png)
+
 
 ### **Future Implementations**
 
