@@ -385,6 +385,7 @@ The website has been thoroughly tested on emulated mobile devices, tablets and w
 
 ![Alt text](hotel/documentation/image-37.png)
 
+
 - All custom code Python files were formatted using the PEP8 - [Black](https://pypi.org/project/black/) complaint formatter.
 
 

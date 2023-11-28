@@ -11,9 +11,8 @@ from django.contrib import messages
 from django.contrib.messages import success
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from datetime import timedelta
+from datetime import datetime, timedelta, date
 from django.http import Http404
-
 
 # View for displaying the list of cities
 class CityListView(View):
@@ -304,6 +303,11 @@ class EditBookingView(View):
             while current_date <= other_booking.checkout_date:
                 booked_dates.append(current_date.strftime("%Y-%m-%d"))
                 current_date += timedelta(days=1)
+
+
+        form.fields['checking_date'].initial = booking.checking_date
+        form.fields['checkout_date'].initial = booking.checkout_date
+
         return render(
             request,
             self.template_name,

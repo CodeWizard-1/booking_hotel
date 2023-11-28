@@ -1,12 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // setTimeout(function () {
-    //     let messages = document.getElementById('msg');
-    //     let alert = new bootstrap.Alert(messages);
-    //     alert.close();
-    // }, 2000);
-
-
     const today = new Date();
 
     const isoDate = today.getDate().toString().padStart(2, '0') + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getFullYear();
