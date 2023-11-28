@@ -32,6 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = [
     "booking-hotel-a07bb3df7136.herokuapp.com",
     "8000-codewizard1-bookinghote-slqkas4q43x.ws-eu106.gitpod.io",

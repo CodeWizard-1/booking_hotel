@@ -16,15 +16,32 @@
     * [CRUD Functionality](#crud-functionality)
     * [Authentication \& Authorisation](#authentication--authorisation)
     * [Navigation](#Navigation-bar)
+    * [Search](#search)
     * [Home page](#home-page)
-
+    * [Hotels page](#hotels-page)
+    * [Room page](#room-page)
+    * [Booking](#booking)
+    * [Successful page](#successful-page)
+    * [Edit booking](#edit-booking)
+    * [My Bookings page](#my-bookings-page)
+    * [Future Implementations](#future-implementations)
 
 3. [Technologies Used](#technologies-used)
-4. [Libraries](#libraries-used)
-5. [Testing](#testing)
-6. [Bugs](#bugs)
-7. [Deployment](#deployment)
-8. [Credits](#credits)
+    * [Core Development Technologiess](#core-development-technologies)
+    * [Libraries, Frameworks and Packages](#libraries-frameworks-and-packages)
+    * [Python/Django Packages](#python--django-packages)
+    * [Infrastructural Technologies](#infrastructural-technologies)
+
+
+4. [Testing](#testing)
+    * [Google's Lighthouse Performance](#googles-lighthouse-performance)
+    * [Responsiveness](#responsiveness)
+    * [Code Validation](#code-validation)
+    * [Manual Testing](#manual-testing)  
+
+5. [Bugs](#bugs)
+6. [Deployment](#deployment)
+7. [Credits](#credits)
 
 ## Design & Planning:
 
@@ -118,7 +135,7 @@ The data models for the project are shown below:
 
 ## Features:
 
-**CRUD Functionality**
+### **CRUD Functionality**
 
 CRUD user functionality is primarily related to Booking:
 - Create: Users create a reservation by going through the entire user flow. The reservation is created after the user completes the checkout process.
@@ -128,7 +145,7 @@ CRUD user functionality is primarily related to Booking:
 
 CRUD administration functionality exists for all models and is executed from the Django admin panel.
 
-**Authentication & Authorisation**
+### **Authentication & Authorisation**
 
 Users can create an account on the registration page.
 Users can login from the login page.
@@ -149,7 +166,7 @@ If an authorized user decides to log out of their account, they will see the fol
 
 ![Alt text](hotel/documentation/image-18.png)
 
-**Navigation**
+### **Navigation**
 
 The main navigation is located in the header and is present on all pages.
 The hamburger menu is present on mobile devices and expands to show the main navigation links.
@@ -157,13 +174,13 @@ The hamburger menu is present on mobile devices and expands to show the main nav
 ![Alt text](hotel/documentation/image-26.png)
 
 
-**Search**
+### **Search**
 
 The hotel search form by city is located on the main page and allows users to search for hotels by selecting a city from a drop-down menu, the desired check-in date and check-out date.
 After which the user is redirected to a page that displays all hotels in the selected city.
 ![Alt text](hotel/documentation/image-27.png)
 
-**Home page**
+### **Home page**
 
 On the main page there is a block with the advantages of booking on this site
 ![Alt text](hotel/documentation/image-6.png)
@@ -187,16 +204,19 @@ Which hotels will be added to the main screen are also controlled from the admin
 ![Alt text](hotel/documentation/image-11.png)
 ![Alt text](hotel/documentation/image-10.png)
 
-**Hotels**
+### **Hotels page**
 
 When searching for hotels in a specific city, the user is taken to a page with a list of hotels with an image of the hotel and brief information about the hotel.
 
-![Alt text]hotel/documentation/(image-28.png)
+![Alt text](hotel/documentation/image-28.png)
 
 
 After selecting a hotel, the user clicks the “Show rooms and prices” button and goes to the hotel page with a detailed description and room options.
 
 ![Alt text](hotel/documentation/image-29.png)
+
+
+### **Room page**
 
 After a brief overview of the room options at a given hotel, the user can select “More details” to learn more about the selected room.
 On the page of the selected room, the user can learn more about the room, read reviews about it, and if he has already been to this room before, he can leave his review about the room and like it if he wants.
@@ -205,20 +225,28 @@ Only authorized users can leave reviews and like.
 ![Alt text](hotel/documentation/image-30.png)
 
 
+### **Booking**
+
 After the user has decided to book a room and clicks the “Book Now” button, he is taken to the booking page where he needs to enter the necessary information.
 
 ![Alt text](hotel/documentation/image-19.png)
 
 
-
+### **Successful page**
 After the user has entered the necessary data correctly, he is redirected to a page informing the user about the successful reservation.
 
 ![Alt text](hotel/documentation/image-20.png)
 
 
+
+### **Edit booking**
+
 If necessary, the user can immediately edit his data by clicking on the "Edit booking" button
 
 ![Alt text](hotel/documentation/image-21.png)
+
+
+### **My Bookings page**
 
 After changes are made, the user is automatically redirected to the "My Bookings" page.
 On this page, he can also go to the booking edit page or, if necessary, cancel the booking by clicking on the “Cancel booking” button.
@@ -234,7 +262,7 @@ Canceled bookings are removed from the database but remain on the user’s page;
 
 ![Alt text](hotel/documentation/image-24.png)
 
-**Future Implementations**
+### **Future Implementations**
 
 Functionality that is not in the scope of this project but may be added later to improve the user experience:
  - search for hotels by name;
@@ -245,18 +273,18 @@ Functionality that is not in the scope of this project but may be added later to
 
 ## Technologies Used
 
-**Core Development Technologies**
+### **Core Development Technologies**
 - Django used as a full-stack framwork for developing the app.
 - JavaScript used for client-side interaction and validation.
 - HTML/CSS + Django Template Language used for building out site pages.
 
-**Libraries, Frameworks and Packages**
+### **Libraries, Frameworks and Packages**
 - [Tailwind CSS](https://tailwindcss.com/) - used to style elements throughout the site.
-- [Flowbite](https://htmx.org/) - a Tailwind-based open-source library; used very sparingly for small number of minor components in the site (radio select, dropdown select)
--[Flatpickr](https://flatpickr.js.org/) - is a lightweight and powerful datetime picker.
+- [Flowbite](https://htmx.org/) - a Tailwind-based open-source library; used very sparingly for small number of minor components in the site (radio select, dropdown select).
+- [Flatpickr](https://flatpickr.js.org/) - is a lightweight and powerful datetime picker.
 
 
-**Python/Django Packages**
+### **Python/Django Packages**
 
 - [Gunicorn](https://pypi.org/project/gunicorn/) - provides HTTP server.
 - [psycopg2](https://pypi.org/project/psycopg2/) - provides PostgreSQL connection.
@@ -266,7 +294,7 @@ Functionality that is not in the scope of this project but may be added later to
 - [Black](https://pypi.org/project/black/) - A PEP8 compliant code formatter.
 
 
-**Infrastructural Technologies**
+### **Infrastructural Technologies**
 
 * Git -  Version control.
 * [GitHub](https://github.com/) - All files for the website stored and saved in a repository.

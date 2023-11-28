@@ -14,12 +14,10 @@ from .views import (
     RoomLike,
     SuccessBookingView,
     CityListView,
-    error_404,
-)
+    )
+
+    
 from django.conf.urls import handler404
-
-handler404 = error_404
-
 urlpatterns = [
     path("", views.HotelList.as_view(), name="home"),
     path(

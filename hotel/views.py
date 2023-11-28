@@ -358,5 +358,5 @@ class RoomLike(View):
         return HttpResponseRedirect(reverse("room_detail", args=[slug]))
 
 # View for handling 404 errors
-def error_404(request, exception):
-    return render(request, "404.html", status=404)
+def handler404(request, exception):
+    return render(request, '404.html', status=404)
