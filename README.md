@@ -100,6 +100,9 @@ At the beginning of each iteration, I conducted planning and selected user stori
 
 Each iteration represented a specific period, usually a few days, during which I focused on completing the selected user stories.
 
+
+![Alt text](hotel/documentation/milestones.png)
+
 **Applying Labels and Updating Status:**
 
 Labels like "must-have," "should-have," and "could-have" were used to indicate the importance of the task. 
