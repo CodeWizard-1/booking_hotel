@@ -573,6 +573,14 @@ If the user entered the number of children but did not enter their age | Clickin
 
 | Bug | Fix
 |:-------:|:--------|
+|If the user enters incorrect data, the form does not pass verification and displays an error message; the calendar widget in the Checking date and Checkout date fields become inactive.| The error probably occurs because after entering incorrect data, the form does not pass validation and an error page is returned. In this case, the booking.js script continues to execute, but the bookedDates variable is not defined.  Solving this problem requires a more thorough analysis and meaningful approach. Since the problem turns out to be more complex and multifaceted than initially expected, it is suggested that additional time be devoted to deeper research and analysis of the causes.|
+
+![Alt text](hotel/documentation/Screenshot-bug7.png)
+
+
+
+| Bug | Fix
+|:-------:|:--------|
 |When selecting the number of adults for a reserved room, the default option allowed up to 10 people. This led to a misunderstanding since such a number of individuals cannot stay in a single-room accommodation.| The issue has been resolved by limiting the dropdown menu options for selecting the number of people to the quantity specified when entering information about the room in the admin panel. Consequently, for a single room, only one adult can be selected, whereas for a country house, a greater number of people can be chosen.|
 
 ![Alt text](hotel/documentation/Screenshot-bug5.png)

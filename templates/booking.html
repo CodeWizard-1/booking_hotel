@@ -39,6 +39,7 @@
     if (typeof window.bookedDates === 'undefined') {
         window.bookedDates = {{ booked_dates|safe }};
     }
+    window.bookedDates = window.bookedDates || [];
 </script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="{% static 'js/booking.js' %}"></script>
